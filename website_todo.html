@@ -1,0 +1,46 @@
+Website To Do List:
+
+- session logged in info
+
+<?php 
+
+    if ($_SESSION('username')) {
+    //logged in
+} else{
+    header('Location: http://localhost/login.php');
+    die();
+}
+
+$user_id = $_SESSION('user_id');
+
+$query = sprintf(INSERT INTO tablename (user_id, stuff) VALUES ('%d', '%d')" $user_id, $whatever);
+?>
+
+
+---------------------STANDARD PHP TO CREATE----------------------
+
+
+-php for footer info 
+
+---------------------HTML TO CREATE--------------------------
+
+-> wod_results page populate dropdown list from workouts in mysql database
+-> wod_results page populate description based on dropdown value workouts in mysql database
+
+---------------------DATABASE TO DO------------------------------
+Database to do: 
+
+-once you register have the registration page send you to the correct homepage (user/coach)
+- Dummy data from generate script for populating the database
+- work on queries for the database
+
+* wod results into database (how to figure out an autoselected type) and enter results 
+
+
+---------------------APP TO DO------------------------------
+
+-JSON decode for api 
+
+
+
+"first_name=will&last_name=kjeldsen&username=will@me.com&password=1234"
