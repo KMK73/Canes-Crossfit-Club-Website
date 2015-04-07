@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(!isset($_SESSION["sess_user"])){
+	header("location:/login_test.php");
+}
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -18,23 +24,28 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/wod_display.js"></script>
-      
-<!-- -------------------------------------NAVIGATION------------------------- -->
-<?php include 'header_athlete.php' ;?>
 
-<!--        start of icon image row row---------------------------------------->
+<!-- -------------------------------------NAVIGATION------------------------- -->
+          
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
+<!--      start member session---------------------------------------------------->
+
+
 <!--        user icon image-->
     <div class="row">
-        <div class="small-2 columns">
-            <img src="images/kmk-logo.png" alt="User Icon"></div>
-        <div class="small-10 columns" >
-            <p>Kelsey Kjeldsen</p>
-            <p>Peak 360 Crossfit</p>
+        <div class="large-12 columns" >
+            <!--call the user first name from the database-->
+
+            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+            <div class="small-2 columns" >
+            <img src="/images/kmk-logo.png" alt="User Icon"></div>
+        <div class="small-10 columns">
+            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
+            <p><?=$_SESSION['user_type'];?></p>
+            <a href="/logout.php">Logout</a>
         </div>
         </div>
     </div>
-
 <!--        start of RESULTS AREA row---------------------------------------->
       
 <!--        Database call for workouts api ---------------------------------------------->

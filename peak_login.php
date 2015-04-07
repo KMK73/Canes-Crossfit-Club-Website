@@ -5,10 +5,7 @@ if(isset($_POST["submit"])){
 if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$username =$_POST['username'];
 	$password =$_POST['password'];
-    $first_name = mysqli_escape_string($sql_link, $_POST['first']);
-    $last_name = mysqli_escape_string($sql_link, $_POST['last']);
-    $user_type = mysqli_escape_string($sql_link, $_POST['user_type']);
-    
+
     //connect to database in mysql
 	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
 
@@ -22,12 +19,14 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$numrows=mysqli_num_rows($result);
     //get the array keys to make the first name, last name, and type variables
     $row= mysqli_fetch_array($result);
-    
+
     if($numrows!=0) {
         session_start();
         $_SESSION['sess_user'] = $username;
         $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['user_type'] = $row['user_type'];
+        $_SESSION['user_id'] = $row['user_id'];       
         
         /* Redirect browser */
         header("Location: athlete/member_athlete.php");     

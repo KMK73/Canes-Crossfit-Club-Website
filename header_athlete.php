@@ -1,7 +1,8 @@
-
-<!--
-NAVIGATION INFO FOR ATHLETES
--->
+<?php 
+session_start();
+if(!isset($_SESSION["sess_user"])){
+	header("location:/login_test.php");
+}?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 

@@ -2,23 +2,11 @@ Website To Do List:
 
 - session logged in info
 
-<?php 
-
-    if ($_SESSION('username')) {
-    //logged in
-} else{
-    header('Location: http://localhost/login.php');
-    die();
-}
-
-$user_id = $_SESSION('user_id');
-
-$query = sprintf(INSERT INTO tablename (user_id, stuff) VALUES ('%d', '%d')" $user_id, $whatever);
-?>
 
 
 ---------------------STANDARD PHP TO CREATE----------------------
 
+**** how to insert PR data with a user id???
 
 -php for footer info 
 
@@ -32,7 +20,8 @@ Database to do:
 
 -once you register have the registration page send you to the correct homepage (user/coach)
 - Dummy data from generate script for populating the database
-- work on queries for the database
+
+- how to change header to show username and type with account settings
 
 * wod results into database (how to figure out an autoselected type) and enter results 
 
@@ -41,6 +30,3 @@ Database to do:
 
 -JSON decode for api 
 
-
-
-"first_name=will&last_name=kjeldsen&username=will@me.com&password=1234"

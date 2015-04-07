@@ -30,17 +30,19 @@ if(!isset($_SESSION["sess_user"])){
 <?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 <!--      start member session---------------------------------------------------->
 
-<!--call the user first name from the database-->
-<h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
 
 <!--        user icon image-->
     <div class="row">
-        <div class="small-2 columns" >
+        <div class="large-12 columns" >
+            <!--call the user first name from the database-->
+
+            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+            <div class="small-2 columns" >
             <img src="/images/kmk-logo.png" alt="User Icon"></div>
         <div class="small-10 columns">
-            <p>Kelsey Kjeldsen</p>
-            <p>Peak 360 Crossfit</p>
-            <a href="logout.php">Logout</a>
+            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
+            <p><?=$_SESSION['user_type'];?></p>
+            <a href="/logout.php">Logout</a>
         </div>
         </div>
     </div>
@@ -71,7 +73,7 @@ if(!isset($_SESSION["sess_user"])){
                 Even 5 Strict Press
                 Odd 10 Bent Over Row (3 second eccentric / negative)
                 *same weight across all 5 sets, slight increases are acceptable</p>
-               <button type="button" onclick="wod.html">LOG RESULT</button>
+               <a href="/wod_results.php" class="button" >LOG RESULT</a>
             </div> 
        </div>
 
@@ -82,7 +84,7 @@ if(!isset($_SESSION["sess_user"])){
                 150 WallBalls (20, 14)
                 90 Double Unders
                 30 Muscle-ups</p>
-            <button type="button" onclick="wod.html">LOG RESULT</button>
+               <a href="/wod_results.php" class="button" >LOG RESULT</a>
     </div> 
 <!--        WOD BOX 3  ------------------------------------------------->
 <div class="small-4 columns">
@@ -100,7 +102,7 @@ if(!isset($_SESSION["sess_user"])){
                 Rest 30 sec
                 16 Heavy Russian KB Swings
                 Rest 90 seconds</p>
-            <button type="button" onclick="wod.html">LOG RESULT</button>
+               <a href="/wod_results.php" class="button" >LOG RESULT</a>
             </div> 
     </div>
 <!--        start of LEADERBOARD flexbox row---------------------------------------->

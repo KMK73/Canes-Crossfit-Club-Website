@@ -47,62 +47,57 @@ if(!isset($_SESSION["sess_user"])){
         </div>
     </div>
 
-<!--        start of icon image flexbox row---------------------------------------->
-<div class="row">
-<h1>YOUR PR's</h1>
-<!--        start of icon image flexbox row---------------------------------------->
-<div class="row">
-    <div class="large-6 columns" style = "border: 1px solid black">
-      <div class="row collapse">
-        <div class="small-10 columns">
-          <input type="text" placeholder="Search">
-        </div>
-            <div class="small-2 columns">
-                <a href="#" class="button postfix">Search</a>
-            </div>
-        </div>
-</div>
 
-<!--new PR button-->
+<!--        pr enter data row---------------------------------------->
 <div class="row">
-    <div class="large-12 columns">
-        <a href="create_pr.php" class="button round">Add new PR</a>
+      <div class="small-12 small-centered columns">
+<h1>Add new PR</h1>
+
+<form action="create_pr.php" method="POST">
+    <h3>Exercise Name</h3>
+	   <input type="text" placeholder="Exercise" name="exercise_name"/>
+
+    <h3>Enter Reps and Weights</h3>
+        <input type="text" placeholder="Workout Description" name="rep_description"/>
+
+    <h3>Date</h3>
+    <input type="date" name="pr_date">
+    
+    <input type="submit" value="Create"/>
+          </form> 
     </div>
 </div>
+        
+<!--        Database call for username and password PHP ---------------------------------------------->
+			
+<?php if($_POST): ?>
 
-<!--       PR DATA row---------------------------------------->
-<div class="row">
-  <div class="large-6 columns">
-<!--       PR DATA from sql---------------------------------------->    
-    <?php
-	   include 'connect.php';
+<?php 
+    include 'connect.php';
 
-		$dancer_id = $_GET['id'];
+        $exercise_name = mysqli_escape_string($sql_link, $_POST['exercise_name']);
+        $rep_description = mysqli_escape_string($sql_link, $_POST['rep_description']);
+        $integer_date = strtotime($_POST['pr_date']); //integer date format
+		$pr_date = date("Y-m-d", $integer_date);
+    // to insert the pr to the right user
+        $user_id = $_SESSION['user_id'];
+        echo $user_id;
+    
+        $query = sprintf("INSERT INTO pr_data (user_id, exercise_name, rep_description, pr_date) VALUES ('%s','%s', '%s', '%s')", $user_id, $exercise_name,  $rep_description, $pr_date);
 
-		$query = "SELECT * FROM food JOIN dancer_food ON dancer_food.food_id = food.id WHERE dancer_food.dancer_id = " . $dancer_id;
-
-		$result = mysqli_query($sql_link, $query);
-
-		$food = array();
-
-//		foreach($result as $row) {
-		while ($row = mysqli_fetch_assoc($result)) {
-			$new_food = array("food" => $row['name'], "id" => $row['food_id']);
-			$food[] = $new_food;
-			}
-
-			echo json_encode($food);
+        $result = mysqli_query($sql_link, $query);
+        echo $query;
 		?>
 
-    
-    </div>  
-</div>
+	<h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
+			echo "Entered a PR for " . $_POST['exercise_name'] . " on " . $dateToDisplay;?>
+			</h1>
 
-    
-    
-    
-    
-    
-    
+	<?php else:?>
+
+	<h3>No PR Provided</h3>
+
+	<?php endif;?>
+
     </body>
 </html>
