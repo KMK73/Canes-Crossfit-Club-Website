@@ -18,26 +18,33 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
     //get a row value of only 1 to know the user is in the database 
 	$numrows=mysqli_num_rows($result);
     //get the array keys to make the first name, last name, and type variables
-    $row= mysqli_fetch_array($result);
-
-    if($numrows!=0) {
+    $row = mysqli_fetch_array($result);
+    $user_type = $row['user_type'];
+    
+    if($numrows!= 0) {
         session_start();
         $_SESSION['sess_user'] = $username;
         $_SESSION['first_name'] = $row['first_name'];
         $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['user_type'] = $row['user_type'];
         $_SESSION['user_id'] = $row['user_id'];       
-        
-        /* Redirect browser */
-        header("Location: athlete/member_athlete.php");     
     }
-    else {
+    else if ($numrows = null) {
+	   echo "All fields are required!";
+    }     
+    else  {
         echo "Invalid username or password!";   
     }
-
-    } else {
-	   echo "All fields are required!";
-    }
+    if ($row['user_type'] == "Athlete") {
+  
+            /* Redirect browser */
+            header("Location: athlete/member_athlete.php");     
+        } 
+        else {
+            //redirect for the coaches page
+            header("Location: /home_coach.php");        
+        }
+}
 }
 ob_end_flush();
 ?>

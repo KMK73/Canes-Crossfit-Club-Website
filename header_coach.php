@@ -26,7 +26,7 @@ NAVIGATION INFO FOR ATHLETES
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="home_coach.php">Home</a></h1>
+      <h1><a href="/home_coach.php">Home</a></h1>
     </li>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     
@@ -36,14 +36,14 @@ NAVIGATION INFO FOR ATHLETES
 <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-        <li><a href="peak_login.php">Login</a></li>
-        <li><a href="account.html">Account Settings</a></li>
+        <li><a href="/peak_login.php">Login</a></li>
+        <li><a href="/account.html">Account Settings</a></li>
     </ul>
    <!-- Left Nav Section -->
     <ul class="left">
-        <li><a href="wod_database.php">WOD Database</a></li>
-        <li><a href="wod_scheduler.php">WOD Scheduler</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="/wod_database.php">WOD Database</a></li>
+        <li><a href="/wod_scheduler.php">WOD Scheduler</a></li>
+        <li><a href="/leaderboard.html">Leaderboard</a></li>
     </ul>
   </section>
 </nav>
