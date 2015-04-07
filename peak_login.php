@@ -5,22 +5,30 @@ if(isset($_POST["submit"])){
 if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$username =$_POST['username'];
 	$password =$_POST['password'];
-
+    $first_name = mysqli_escape_string($sql_link, $_POST['first']);
+    $last_name = mysqli_escape_string($sql_link, $_POST['last']);
+    $user_type = mysqli_escape_string($sql_link, $_POST['user_type']);
+    
     //connect to database in mysql
 	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
 
     $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
-	
+    
+
     $result = mysqli_query($con, $query);
 //    echo $query;
     var_dump($result);
-    
+    //get a row value of only 1 to know the user is in the database 
 	$numrows=mysqli_num_rows($result);
-	
+    //get the array keys to make the first name, last name, and type variables
+    $row= mysqli_fetch_array($result);
+    
     if($numrows!=0) {
-session_start();
-	   $_SESSION['sess_user']=$username;
-
+        session_start();
+        $_SESSION['sess_user'] = $username;
+        $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['user_type'] = $row['user_type'];
+        
         /* Redirect browser */
         header("Location: athlete/member_athlete.php");     
     }
@@ -53,18 +61,20 @@ ob_end_flush();
         <script src="js/main.js"></script>
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
-<?php include 'header_athlete.php' ;?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 
 <div class="row">
-
-<p><a href="/peak_registration.php">Register</a> | <a href="/login_test.php">Login</a></p>
-<h3>Login Form</h3>
-<form action="/peak_login.php" method="POST">
-Username: <input type="text" name="username"><br />
-Password: <input type="password" name="password"><br />	
-<input type="submit" value="Login" name="submit" />
-</form>
+    <h3>Login Form</h3>
+    <form action="/peak_login.php" method="POST">
+    Username: <input type="text" name="username"><br />
+    Password: <input type="password" name="password"><br />	
+    <input type="submit" value="Login" name="submit" />
+    </form>
    </div> 
-        
-</body>
+
+<div class="row">
+<p>Not a member? <a href="/peak_registration.php">Register</a>        
+</div>
+            
+    </body>
 </html>

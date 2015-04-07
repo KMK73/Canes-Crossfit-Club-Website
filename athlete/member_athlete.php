@@ -30,8 +30,9 @@ if(!isset($_SESSION["sess_user"])){
 <?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 <!--      start member session---------------------------------------------------->
 
-<h2>Welcome, <?=$_SESSION['sess_user'];?>! <a href="logout.php">Logout</a></h2>
-<!--        start of icon image flexbox row---------------------------------------->
+<!--call the user first name from the database-->
+<h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+
 <!--        user icon image-->
     <div class="row">
         <div class="small-2 columns" >
@@ -39,6 +40,7 @@ if(!isset($_SESSION["sess_user"])){
         <div class="small-10 columns">
             <p>Kelsey Kjeldsen</p>
             <p>Peak 360 Crossfit</p>
+            <a href="logout.php">Logout</a>
         </div>
         </div>
     </div>

@@ -21,7 +21,7 @@
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
           
-<?php include 'header_coach.php';?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 
 <!-- -------------------------------------REGISTRATION FORM------------------------- -->
 <body>
