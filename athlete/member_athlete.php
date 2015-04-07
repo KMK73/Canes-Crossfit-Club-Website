@@ -27,7 +27,7 @@ if(!isset($_SESSION["sess_user"])){
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
           
-<?php include 'header_athlete.php';?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 <!--      start member session---------------------------------------------------->
 
 <h2>Welcome, <?=$_SESSION['sess_user'];?>! <a href="logout.php">Logout</a></h2>
@@ -35,7 +35,7 @@ if(!isset($_SESSION["sess_user"])){
 <!--        user icon image-->
     <div class="row">
         <div class="small-2 columns" >
-            <img src="images/kmk-logo.png" alt="User Icon"></div>
+            <img src="/images/kmk-logo.png" alt="User Icon"></div>
         <div class="small-10 columns">
             <p>Kelsey Kjeldsen</p>
             <p>Peak 360 Crossfit</p>
@@ -43,14 +43,14 @@ if(!isset($_SESSION["sess_user"])){
         </div>
     </div>
 
-<!--        start of ANNOUNCEMENTS flexbox row---------------------------------------->
+<!--        start of ANNOUNCEMENTS row row---------------------------------------->
 
     <div class="row">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU"        frameborder="0" allowfullscreen></iframe> 
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU" frameborder="0" allowfullscreen></iframe> 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
     </div>
     
-<!--        start of WOD TITLE flexbox row---------------------------------------->
+<!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
         <h2>WOD<p id="date"></p>
             <script>
@@ -113,7 +113,7 @@ if(!isset($_SESSION["sess_user"])){
  <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->   
 
 
-        <table class="leaderboard" id="table1">
+        <table class="leaderboard" id="table1" role="grid">
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
@@ -154,18 +154,6 @@ if(!isset($_SESSION["sess_user"])){
     var tf03 = setFilterGrid("table1",2,table1Filters);  
 </script> 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

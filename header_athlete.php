@@ -10,8 +10,8 @@ NAVIGATION INFO FOR ATHLETES
   <!-- if you remove this meta tag, the NSA will spy on you through your Xbox Kinect camera -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peak 360 Crossfit</title>
-    <link rel="stylesheet" href="stylesheets/app.css" />
-    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="/stylesheets/app.css" />
+    <link rel="stylesheet" href="/stylesheets/app.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
@@ -36,14 +36,14 @@ NAVIGATION INFO FOR ATHLETES
 <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-        <li><a href="peak_login.php">Login</a></li>
-        <li><a href="account.html">Account Settings</a></li>
+        <li><a href="/peak_login.php">Login</a></li>
+        <li><a href="/account.html">Account Settings</a></li>
     </ul>
    <!-- Left Nav Section -->
     <ul class="left">
-        <li><a href="wod_results.php">WOD</a></li>
-        <li><a href="pr.php">PR's</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="/wod_results.php">WOD</a></li>
+        <li><a href="/pr.php">PR's</a></li>
+        <li><a href="/leaderboard.html">Leaderboard</a></li>
     </ul>
   </section>
 </nav>

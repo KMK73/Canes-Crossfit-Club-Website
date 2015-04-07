@@ -1,3 +1,40 @@
+<?php
+ob_start();
+if(isset($_POST["submit"])){
+
+if(!empty($_POST['username']) && !empty($_POST['password'])) {
+	$username =$_POST['username'];
+	$password =$_POST['password'];
+
+    //connect to database in mysql
+	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
+
+    $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
+	
+    $result = mysqli_query($con, $query);
+//    echo $query;
+    var_dump($result);
+    
+	$numrows=mysqli_num_rows($result);
+	
+    if($numrows!=0) {
+session_start();
+	   $_SESSION['sess_user']=$username;
+
+        /* Redirect browser */
+        header("Location: athlete/member_athlete.php");     
+    }
+    else {
+        echo "Invalid username or password!";   
+    }
+
+    } else {
+	   echo "All fields are required!";
+    }
+}
+ob_end_flush();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,56 +53,18 @@
         <script src="js/main.js"></script>
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
-          
 <?php include 'header_athlete.php' ;?>
 
-
-
-<!-- -------------------------------------REGISTRATION FORM------------------------- -->
 <div class="row">
-    <div class="small-6 small-centered columns">
-        <h1>User Login</h1>
-        <form action="peak_login.php?attempt" method="POST">
-        <input type ="text" name="username" placeholder="Username or Email"/>
-        <input type ="password" name="password" placeholder="Password"/>
 
-        <br/><input type= "submit" value = "Login"/>
-        </form>
-        <br>
-        <p>Not a member <a href="peak_registration.php">Sign Up</a></p>
-    </div>
-</div>
-<!--        Database call for username and password PHP ---------------------------------------------->
-<?php
-
-
-if ($_POST['submit']) {
-    
-		include 'connect.php';
-    
-        $username = mysqli_escape_string($sql_link, $_POST['username']);
-        $password = mysqli_escape_string($sql_link, $_POST['password']);
-        $hash_password = md5($password);
-
-        $query = sprintf("SELECT * FROM users WHERE username = '%s' AND password = '%s'", $username, $hashed_password);
-        echo $query;
-    
-        $result = mysqli_query($sql_link, $query);
-		echo $result;
-//if login is successful
-        $rows = mysqli_num_rows($result);
-
-				if ($rows = 0) {
-					$row = mysqli_fetch_array($result, MYSQLI_NUM);
-                    header ('Location: http://localhost/athlete_logged_in.php');
-				}
-				else {
-					echo "login failed";
-
-				};
-}
-		?>
-
-
+<p><a href="/peak_registration.php">Register</a> | <a href="/login_test.php">Login</a></p>
+<h3>Login Form</h3>
+<form action="/peak_login.php" method="POST">
+Username: <input type="text" name="username"><br />
+Password: <input type="password" name="password"><br />	
+<input type="submit" value="Login" name="submit" />
+</form>
+   </div> 
+        
 </body>
 </html>
