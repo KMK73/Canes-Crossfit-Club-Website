@@ -81,12 +81,12 @@ if(!isset($_SESSION["sess_user"])){
 		$pr_date = date("Y-m-d", $integer_date);
     // to insert the pr to the right user
         $user_id = $_SESSION['user_id'];
-        echo $user_id;
+
     
         $query = sprintf("INSERT INTO pr_data (user_id, exercise_name, rep_description, pr_date) VALUES ('%s','%s', '%s', '%s')", $user_id, $exercise_name,  $rep_description, $pr_date);
 
         $result = mysqli_query($sql_link, $query);
-        echo $query;
+//        echo $query;
 		?>
 
 	<h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
