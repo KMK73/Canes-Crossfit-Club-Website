@@ -31,27 +31,25 @@
 	<h1>User Registration</h1>
 
     <form action ="peak_registration.php" method="POST">
-	<h3>First Name</h3>
-	<input type ="text" name="first"/>
-	<h3>Last Name</h3>
-	<input type= "text" name= "last"/>
-	
-    <h3>Email (Username)</h3>
-	<input type= "text" name= "username"/>
-	
-    <h3>Password</h3>
-	<input type= "password" name= "password"/>
+        <h3>First Name</h3>
+        <input type ="text" name="first"/>
+        <h3>Last Name</h3>
+        <input type= "text" name= "last"/>
 
-	<h3>User Type</h3>
-	<input type = "radio" name="user_type" value= "Athlete">Athlete
-	<input type = "radio" name="user_type" value= "Coach" > Coach
+        <h3>Email (Username)</h3>
+        <input type= "text" name= "username"/>
 
-	<br/><input type= "submit" value = "Register"/>
+        <h3>Password</h3>
+        <input type= "password" name= "password"/>
+
+        <h3>User Type</h3>
+        <input type = "radio" name="user_type" value= "Athlete">Athlete
+        <input type = "radio" name="user_type" value= "Coach" > Coach
+
+        <br/><input type= "submit" value = "Register"/>
 	</form>
     </div> 
 </div>
-    
-
 <?php
 		if ($mysqli->connect_errno) {
 	    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -81,9 +79,9 @@
                //make a new user
 				$insert_query = sprintf("INSERT INTO users (first_name, last_name, username, password, user_type) VALUES ('%s', '%s', '%s', '%s', '%s')", 
 				$first_name, $last_name, $username, $hash_password, $user_type);
-					
-            $result = mysqli_query($sql_link, $insert_query);
-            echo $result;
+            
+               $result = mysqli_query($sql_link, $insert_query);
+               echo json_encode($result);
     
                if($result){
 	           echo "Account Successfully Created";
@@ -96,7 +94,6 @@
                 }
 ?>
 	<?php endif;?>
-
 
 <a href="peak_login.php">Login</a></p>
     

@@ -38,7 +38,7 @@ if(!isset($_SESSION["sess_user"])){
     <!-- Right Nav Section -->
     <ul class="right">
         <li><a href="/peak_login.php">Login</a></li>
-        <li><a href="/account.html">Account Settings</a></li>
+        <li><a href="/account.html"><?=$_SESSION['first_name'];?>Settings</a></li>
     </ul>
    <!-- Left Nav Section -->
     <ul class="left">

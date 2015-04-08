@@ -26,12 +26,14 @@ if(!isset($_SESSION["sess_user"])){
     <script src="js/app.js"></script>
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
-<?php include 'header_coach.php';?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');?>
 
 <!--        start of icon image flexbox row---------------------------------------->
 <!--        user icon image-->
     <div class="row">
-        <div class="large-12 columns"><img src="images/peak_logo.png" alt="Gym Logo">
+        <div class="large-12 columns">
+            <img src="images/UCrossFitLogo.png" alt="Gym Logo">
+            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
         </div>
     </div>
 
@@ -39,16 +41,16 @@ if(!isset($_SESSION["sess_user"])){
 
 <div class="row">
     <div class="large-12 columns" >
-        <form action="wod_database.php">
+        <form action="/wod_database.php">
             <input type="submit" value="Wod Database">
         </form>    
 
-        <form action="wod_scheduler.php">
+        <form action="/wod_scheduler.php">
             <input type="submit" value="Wod Scheduler">
         </form>
 
-        <form action="manage_users.php">
-            <input type="submit" value="Manage Users">
+        <form action="/leaderboard.php">
+            <input type="submit" value="Leaderboard">
         </form>  
     </div>
 </div>

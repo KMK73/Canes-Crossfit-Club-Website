@@ -18,7 +18,6 @@ if(!isset($_SESSION["sess_user"])){
   </head>
 
   <body>
-
     <!-- body content here -->
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>

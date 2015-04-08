@@ -48,7 +48,6 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
 }
 ob_end_flush();
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -70,17 +69,21 @@ ob_end_flush();
 <?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 
 <div class="row">
+    <div class="small-6 large-centered columns">
     <h3>Login Form</h3>
-    <form action="/peak_login.php" method="POST">
-    Username: <input type="text" name="username"><br />
-    Password: <input type="password" name="password"><br />	
-    <input type="submit" value="Login" name="submit" />
-    </form>
+        <form action="/peak_login.php" method="POST">
+        Username: <input type="text" name="username"><br />
+        Password: <input type="password" name="password"><br />	
+        <input type="submit" value="Login" name="submit" />
+        </form>
    </div> 
+        </div>
 
 <div class="row">
-<p>Not a member? <a href="/peak_registration.php">Register</a>        
-</div>
+        <div class="small-6 large-centered columns">
+            <p>Not a member? <a href="/peak_registration.php">Register</a></p>     
+        </div>
+    </div>
             
     </body>
 </html>
