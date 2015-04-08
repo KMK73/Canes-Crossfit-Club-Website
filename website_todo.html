@@ -29,3 +29,32 @@ Database to do:
 
 -LOGOUT SCREEN and view controller
 
+LEADERBOARD PHP/MYSQL 
+
+-all workouts best overall in order (losers first)
+SELECT user_id, workout_id, workout_level, workout_score FROM wod_results ORDER BY workout_score ASC
+
+-all workouts best overall with names
+SELECT first_name, last_name, wod_results.user_id, workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+ORDER BY workout_score ASC
+
+-all workouts specific workout
+SELECT first_name, last_name, wod_results.user_id, workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+WHERE workout_id = <workout id>
+ORDER BY workout_score ASC
+
+- all workouts from specific workout id with names of workout and people 
+SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id = 37
+ORDER BY workout_score DESC
+
+TO DO 
+
+php by date kinda done
+
+- js event for dropdown changes 
+-generate and clear rows after js event 

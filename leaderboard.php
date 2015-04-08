@@ -41,7 +41,7 @@ if(!isset($_SESSION["sess_user"])){
         <div class="small-10 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
-        <p><a href="/api/Logout.php"/a>Logout</p>
+            <a href="/api/Logout.php">Logout</a>
         </div>
         </div>
     </div>
@@ -50,12 +50,12 @@ if(!isset($_SESSION["sess_user"])){
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row">    
-    <h2>Log your results for</h2>
+    <h2>Leaderboard for</h2>
         <select class="wod_name" name ="daily_wod">
                 
-            <?php include '/connect.php';
+            <?php include 'connect.php';
 				
-            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $query = "SELECT * FROM workouts";
             $result = mysqli_query($sql_link, $query);?>
 
             <?php while ($row = mysqli_fetch_assoc($result)):?>
@@ -71,7 +71,6 @@ if(!isset($_SESSION["sess_user"])){
                     echo htmlentities($_POST['daily_wod'], ENT_QUOTES, "UTF-8");
                 } else {
                     echo "task option is required";
-                exit; 
                 }
             ?>  
         </select>
@@ -90,8 +89,8 @@ if(!isset($_SESSION["sess_user"])){
                 
         </div>
     </div>
-    
-<!--        start of LEADERBOARD flexbox row---------------------------------------->
+</div>
+<!--        start of LEADERBOARD row---------------------------------------->
 <div class="row">
     <div class="large-12 columns">
         <h2>LEADERBOARD<p id="date_leaderboard"></p>
@@ -107,24 +106,6 @@ if(!isset($_SESSION["sess_user"])){
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
             <tr>
                 <td>Kelsey Kjeldsen</td>
                 <td>WOD B Crossfit Open 15.3</td>
