@@ -49,7 +49,7 @@ NAVIGATION INFO FOR ATHLETES
         <li class="divider"></li>
         <li><a href="/wod_scheduler.php">WOD Scheduler</a></li>
         <li class="divider"></li>
-        <li><a href="/leaderboard.html">Leaderboard</a></li>
+        <li><a href="/leaderboard.php">Leaderboard</a></li>
         <li class="divider"></li>
     </ul>
   </section>

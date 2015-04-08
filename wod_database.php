@@ -29,7 +29,7 @@
 <h1>Wod Database</h1>
 
 <!--new workout button-->
-    <form action="create_workout.php">
+    <form action="/create_workout.php">
         <input type="submit" value="Add New Workout">
     </form> 
 

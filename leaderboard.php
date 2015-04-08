@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(isset($_SESSION["sess_user"])){
+if(!isset($_SESSION["sess_user"])){
 	header("location:/peak_login.php");
 }
 ?>
@@ -30,70 +30,67 @@ if(isset($_SESSION["sess_user"])){
         
 <?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 
-<!--        logo row ---------------------------------------->
+<!--        user icon image-->
     <div class="row">
-        <div class="large-12 columns">
-            <img src="images/UCrossFitLogo.png" alt="Gym Logo">
+        <div class="large-12 columns" >
+            <!--call the user first name from the database-->
+
+            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+            <div class="small-2 columns" >
+            <img src="/images/kmk-logo.png" alt="User Icon"></div>
+        <div class="small-10 columns">
+            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
+            <p><?=$_SESSION['user_type'];?></p>
+        <p><a href="/api/Logout.php"/a>Logout</p>
+        </div>
         </div>
     </div>
- <!--        start of ANNOUNCEMENTS row row---------------------------------------->     
-    <div class="row">
-        <div class="large-12 columns">
-            <h1>Welcome to Canes Peak 360 Crossfit Club</h1>
-    </div>
-</div>
-    
-<!--        start of WOD TITLE row row---------------------------------------->
-   <div class="row">
-        <h2>What we are up to today: WOD<p id="date">
-            <script>
-            var d = new Date();
-            document.getElementById("date").innerHTML = d.toDateString();
-            </script>
-       </h2>    
-    </div>
-<!--        start of WOD BOXES flexbox row---------------------------------------->
-   <div class="row">    
-<!--        WOD BOX 1---------------------------------------->
-      <div class="large-4 small-12 columns">
-           <div class="wod_box">
-           <h3>STRENGTH WOD A</h3>
-            <p>OTM – 10 Minutes
-                Even 5 Strict Press
-                Odd 10 Bent Over Row (3 second eccentric / negative)
-                *same weight across all 5 sets, slight increases are acceptable</p>
-               <button type="button" onclick="wod.html">LOG RESULT</button>
-            </div> 
-       </div>
+<!--        start of RESULTS AREA row---------------------------------------->
+      
+<!--        Database call for workouts api ---------------------------------------------->
 
-<!--        WOD BOX 2  ------------------------------------------------->
-<div class="large-4 small-12 columns">
-           <h3>WOD B - Crossfit Open 13.3</h3>
-            <p>12 Minutes AMRAP
-                150 WallBalls (20, 14)
-                90 Double Unders
-                30 Muscle-ups</p>
-            <button type="button" onclick="wod.html">LOG RESULT</button>
-    </div> 
-<!--        WOD BOX 3  ------------------------------------------------->
-<div class="large-4 small-12 columns">
-           <h3>ISI Exta WODS</h3>
-            <p>WOD C</p>
-            <p>C)
-                3 Rounds for time
-                20 calories Bike
-                400 meter Run</p>
-            <p>WOD D</p>
-            <p>D)
-                Accessory Strength Work
-                4 Rounds
-                8 GH Raises
-                Rest 30 sec
-                16 Heavy Russian KB Swings
-                Rest 90 seconds</p>
-            <button type="button" onclick="wod.html">LOG RESULT</button>
-            </div> 
+<div class="row">    
+    <h2>Log your results for</h2>
+        <select class="wod_name" name ="daily_wod">
+                
+            <?php include '/connect.php';
+				
+            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $result = mysqli_query($sql_link, $query);?>
+
+            <?php while ($row = mysqli_fetch_assoc($result)):?>
+            <option value="<?php echo $row['id']?>"><?php echo $row['workout_name'];?></option>
+            <?php $selectOption = $_POST['daily_wod'];?>
+            
+            <?php endwhile;?>	
+            
+            <?php
+                $option = isset($_POST['daily_wod']) ? $_POST['daily_wod'] : false;
+                    
+                if($option) {
+                    echo htmlentities($_POST['daily_wod'], ENT_QUOTES, "UTF-8");
+                } else {
+                    echo "task option is required";
+                exit; 
+                }
+            ?>  
+        </select>
+    
+    <div class="small-12 small-centered columns">
+            <div id="wod_display" >
+                <h3>Description of Workout</h3>
+ <!--display the selected workout description--------------------------------->               
+
+    <!--display the selected workout description--------------------------------->
+            <script>   
+            var selectValue = document.getElementById('daily_wod').text(); 
+            var selectOption = $("#daily_wod option[value=" + selectValue + "]").text(); 
+                
+            </script>
+                
+        </div>
     </div>
+    
 <!--        start of LEADERBOARD flexbox row---------------------------------------->
 <div class="row">
     <div class="large-12 columns">
@@ -105,9 +102,7 @@ if(isset($_SESSION["sess_user"])){
        </h2>
 
  <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->   
-
-
-        <table class="leaderboard" id="table1" role="grid">
+       <table class="leaderboard" id="table1" role="grid">
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>

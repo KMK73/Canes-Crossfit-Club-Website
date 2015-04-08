@@ -44,7 +44,7 @@ if(!isset($_SESSION["sess_user"])){
     <ul class="left">
         <li><a href="/wod_results.php">WOD</a></li>
         <li><a href="/pr.php">PR's</a></li>
-        <li><a href="/leaderboard.html">Leaderboard</a></li>
+        <li><a href="/leaderboard.php">Leaderboard</a></li>
     </ul>
   </section>
 </nav>
