@@ -27,7 +27,7 @@ if(!isset($_SESSION["sess_user"])){
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="index.php">Home</a></h1>
+      <h1><a href="athlete/member_athlete.php">Home</a></h1>
     </li>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     
@@ -38,7 +38,7 @@ if(!isset($_SESSION["sess_user"])){
     <!-- Right Nav Section -->
     <ul class="right">
         <li><a href="/peak_login.php">Login</a></li>
-        <li><a href="/account.html"><?=$_SESSION['first_name'];?>Settings</a></li>
+        <li><a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a></li>
     </ul>
    <!-- Left Nav Section -->
     <ul class="left">

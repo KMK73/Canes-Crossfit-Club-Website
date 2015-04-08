@@ -1,4 +1,3 @@
-
 <!--
 NAVIGATION INFO FOR ATHLETES
 -->
@@ -35,14 +34,9 @@ NAVIGATION INFO FOR ATHLETES
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="has-dropdown">
-        <a href="#"><?=$_SESSION['first_name'];?> Settings</a>
-        <ul class="dropdown">
-        <li><a href="/peak_login.php">Login</a></li>
         <li class="divider"></li>
-        <li><a href="/account.html">Account Settings</a></li>
-        <li class="divider"></li>
-        <li><a href="/logout.php">Logout</a></li>
+        <li><a href="api/Logout.php">Logout</a></li>
+        <a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a>
         <li class="divider"></li>
         </ul>
       </li>
