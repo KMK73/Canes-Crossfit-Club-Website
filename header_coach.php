@@ -35,7 +35,7 @@ NAVIGATION INFO FOR ATHLETES
     <!-- Right Nav Section -->
     <ul class="right">
         <li class="divider"></li>
-        <li><a href="api/Logout.php">Logout</a></li>
+        <li><a href="/api/Logout.php"Logout</a></li>
         <a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a>
         <li class="divider"></li>
         </ul>

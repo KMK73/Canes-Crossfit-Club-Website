@@ -20,10 +20,12 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
     //get the array keys to make the first name, last name, and type variables
     $row = mysqli_fetch_array($result);
     $user_type = $row['user_type'];
-    
+
     if($numrows!= 0) {
         session_start();
+        //creating a login variable for logout function
         $_SESSION['sess_user'] = $username;
+        //creating session variables for user displayed info
         $_SESSION['first_name'] = $row['first_name'];
         $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['user_type'] = $row['user_type'];
