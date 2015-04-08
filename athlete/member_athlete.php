@@ -41,7 +41,7 @@ if(!isset($_SESSION["sess_user"])){
         <div class="small-10 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
-        <a href="?log=out">Logout</a>
+        <p><a href="/api/Logout.php">Logout</p>
         </div>
         </div>
     </div>

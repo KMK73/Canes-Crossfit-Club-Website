@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["sess_user"])){
-	header("location:/login_test.php");
+	header("location:/peak_login.php");
 }
 ?>
 <!DOCTYPE html>

@@ -1,17 +1,14 @@
 <?php
 ob_start();
-if(isset($_POST["submit"])){
 
+if(isset($_POST["submit"])){
 if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$username =$_POST['username'];
 	$password =$_POST['password'];
-
     //connect to database in mysql
 	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
-
     $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
     
-
     $result = mysqli_query($con, $query);
 //    echo $query;
     var_dump($result);
@@ -20,7 +17,6 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
     //get the array keys to make the first name, last name, and type variables
     $row = mysqli_fetch_array($result);
     $user_type = $row['user_type'];
-
     if($numrows!= 0) {
         session_start();
         //creating a login variable for logout function
@@ -76,7 +72,7 @@ ob_end_flush();
         <form action="/peak_login.php" method="POST">
         Username: <input type="text" name="username"><br />
         Password: <input type="password" name="password"><br />	
-        <input type="submit" value="Login" name="submit" />
+        <input class="button" type="submit" value="Login" name="submit" />
         </form>
    </div> 
         </div>

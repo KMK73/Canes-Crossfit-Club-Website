@@ -21,7 +21,7 @@
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
           
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?>
 
 <!-- -------------------------------------REGISTRATION FORM------------------------- -->
 <body>
@@ -95,7 +95,7 @@
 ?>
 	<?php endif;?>
 
-<a href="peak_login.php">Login</a></p>
+<a href="/peak_login.php">Login</a></p>
     
 </body>
 </html>
