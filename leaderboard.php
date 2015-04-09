@@ -51,8 +51,8 @@ if(!isset($_SESSION["sess_user"])){
 
 <div class="row">    
     <h2>Leaderboard for</h2>
-        <select class="wod_name" name ="daily_wod">
-                
+    <form action ="leaderboard.php" method="POST">
+        <select class="wod_name" name ="leaderboard_wod"> 
             <?php include 'connect.php';
 				
             $query = "SELECT * FROM workouts";
@@ -60,21 +60,13 @@ if(!isset($_SESSION["sess_user"])){
 
             <?php while ($row = mysqli_fetch_assoc($result)):?>
             <option value="<?php echo $row['id']?>"><?php echo $row['workout_name'];?></option>
-            <?php $selectOption = $_POST['daily_wod'];?>
             
             <?php endwhile;?>	
             
-            <?php
-                $option = isset($_POST['daily_wod']) ? $_POST['daily_wod'] : false;
-                    
-                if($option) {
-                    echo htmlentities($_POST['daily_wod'], ENT_QUOTES, "UTF-8");
-                } else {
-                    echo "task option is required";
-                }
             ?>  
         </select>
-    
+        <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
+    </form>
     <div class="small-12 small-centered columns">
             <div id="wod_display" >
                 <h3>Description of Workout</h3>
@@ -100,32 +92,56 @@ if(!isset($_SESSION["sess_user"])){
             </script>
        </h2>
 
- <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->   
-       <table class="leaderboard" id="table1" role="grid">
+ <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->
+            
+            <?php
+            include 'connect.php';
+            $selected_val =$_POST['leaderboard_wod']; 
+            //get the selected value from the drop down list
+
+                echo $selected_val;
+
+            if(isset($_POST['submit'])){
+            //get the selected value from the drop down list
+
+                echo $selected_val;
+                
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
+
+            echo $query;
+            $result = mysqli_query($sql_link, $query);
+
+      echo "<table>
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-        </table>
+            <tr>";
+
+while($row = mysql_fetch_array($result)){
+  // define all of our variables 
+ 
+  $first_name = $row['first_name'];
+  $last_name = $row['last_name'];
+  $workout_name  = $row['workout_name'];
+  $workout_level = $row['workout_level'];
+  $workout_score = $row['workout_score'];
+ 
+// Now for each looped row
+ 
+echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+ 
+} // End our while loop
+echo "</table>";
+}?>
+
     </div>
-<script language="javascript" type="text/javascript">  
-    var table1Filters = {  
-        col_0: "select",  
-        col_4: "none",  
-        btn: true  
-    }  
-    var tf03 = setFilterGrid("table1",2,table1Filters);  
-</script> 
 
   </div>  
-
-    
+   
     
     </body>
 </html>
