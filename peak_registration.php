@@ -21,7 +21,7 @@
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
           
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 
 <!-- -------------------------------------REGISTRATION FORM------------------------- -->
 <body>
@@ -46,7 +46,7 @@
         <input type = "radio" name="user_type" value= "Athlete">Athlete
         <input type = "radio" name="user_type" value= "Coach" > Coach
 
-        <br/><input type= "submit" value = "Register"/>
+        <br/><input class="button" type= "submit" value = "Register"/>
 	</form>
     </div> 
 </div>
@@ -94,8 +94,6 @@
                 }
 ?>
 	<?php endif;?>
-
-<a href="/peak_login.php">Login</a></p>
     
 </body>
 </html>
