@@ -59,7 +59,7 @@ if(!isset($_SESSION["sess_user"])){
             $result = mysqli_query($sql_link, $query);?>
 
             <?php while ($row = mysqli_fetch_assoc($result)):?>
-            <option value="<?php echo $row['id']?>"><?php echo $row['workout_name'];?></option>
+            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
             
             <?php endwhile;?>	
             
@@ -99,12 +99,8 @@ if(!isset($_SESSION["sess_user"])){
             $selected_val =$_POST['leaderboard_wod']; 
             //get the selected value from the drop down list
 
-                echo $selected_val;
-
             if(isset($_POST['submit'])){
             //get the selected value from the drop down list
-
-                echo $selected_val;
                 
             $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
 JOIN users ON wod_results.user_id = users.user_id
@@ -121,7 +117,7 @@ WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
             <th>Score</th>
             <tr>";
 
-while($row = mysql_fetch_array($result)){
+while($row = mysqli_fetch_array($result)){
   // define all of our variables 
  
   $first_name = $row['first_name'];
