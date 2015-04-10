@@ -33,7 +33,7 @@ if(isset($_SESSION["sess_user"])){
 <!--        logo row ---------------------------------------->
     <div class="row">
         <div class="large-12 columns">
-            <img src="images/UCrossFitLogo.png" alt="Gym Logo">
+            <img src="images/ucrossfit_logo.png" alt="Gym Logo">
         </div>
     </div>
  <!--        start of ANNOUNCEMENTS row row---------------------------------------->     

@@ -31,24 +31,29 @@ if(!isset($_SESSION["sess_user"])){
 <!--        start of icon image flexbox row---------------------------------------->
 <!--        user icon image-->
     <div class="row">
-        <div class="large-12 columns">
-            <img src="images/UCrossFitLogo.png" alt="Gym Logo">
-            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+        <div class="small-6 large-centered columns">
+            <img src="images/ucrossfit_logo.png" alt="Gym Logo">
         </div>
-    </div>
+        <div class="large-12 columns">
+            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+            </div>
+        </div>
+
 
 <!--        COACH OPTION BUTTONS ---------------------------------------->
 
 <div class="row">
-    <div class="large-12 columns" >
+    <div class="small-6 large-4 columns" >
         <form action="/wod_database.php">
             <input type="submit" value="Wod Database">
         </form>    
-
+        </div>
+    <div class="small-6 large-4 columns" >
         <form action="/wod_scheduler.php">
             <input type="submit" value="Wod Scheduler">
         </form>
-
+</div>
+        <div class="small-6 large-4 columns" >
         <form action="/leaderboard.php">
             <input type="submit" value="Leaderboard">
         </form>  
