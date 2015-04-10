@@ -50,7 +50,7 @@ if(!isset($_SESSION["sess_user"])){
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row">    
-    <h2>Leaderboard for</h2>
+    <h2>Select Workout to see current Leaderboard</h2>
     <form action ="leaderboard.php" method="POST">
         <select class="wod_name" name ="leaderboard_wod"> 
             <?php include 'connect.php';
@@ -73,11 +73,23 @@ if(!isset($_SESSION["sess_user"])){
  <!--display the selected workout description--------------------------------->               
 
     <!--display the selected workout description--------------------------------->
-            <script>   
-            var selectValue = document.getElementById('daily_wod').text(); 
-            var selectOption = $("#daily_wod option[value=" + selectValue + "]").text(); 
-                
-            </script>
+                <p> <?php 
+                if(isset($_POST['submit'])){
+                    
+                    $selected_description =$_POST['leaderboard_wod']; 
+                    
+                    $query = "SELECT description FROM workouts WHERE workout_id='".$selected_description."'";
+//                echo $query;
+
+                //get the description of the workout from the dropdown menu
+                $description_result = mysqli_query($sql_link, $query);
+                //get the value from the row of description query
+                $description_result = mysqli_fetch_array($description_result);
+                echo $description_result['description'];
+                }
+                ?>
+    
+    </p>
                 
         </div>
     </div>
@@ -107,7 +119,7 @@ JOIN users ON wod_results.user_id = users.user_id
 JOIN workouts ON wod_results.workout_id = workouts.workout_id
 WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
 
-            echo $query;
+//            echo $query;
             $result = mysqli_query($sql_link, $query);
 
       echo "<table>
@@ -135,8 +147,7 @@ echo "</table>";
 }?>
 
     </div>
-
-  </div>  
+</div>  
    
     
     </body>
