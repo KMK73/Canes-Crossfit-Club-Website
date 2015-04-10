@@ -112,50 +112,110 @@ if(!isset($_SESSION["sess_user"])){
             document.getElementById("date_leaderboard").innerHTML = d.toDateString();
             </script>
        </h2>
-
+      </div>
  <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->   
+<div class="row">    
+    <h2>Select Workout to see current Leaderboard</h2>
+    <form action ="/athlete/member_athlete.php" method="POST">
+            <?php include '../connect.php';
+				
+            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $result = mysqli_query($sql_link, $query);
+            echo $query;
+var_dump($result);
+        ?>
 
+        <select class="wod_name" name ="leaderboard_wod"> 
+            
+            <?php while ($row = mysqli_fetch_assoc($result)):?>
+            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
+            <?php endwhile;?>	
+            
+            ?>  
+        </select>
+        <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
+    </form>
+    <div class="small-12 small-centered columns">
+            <div id="wod_display" >
+                <h3>Description of Workout</h3>
+ <!--display the selected workout description--------------------------------->               
 
-        <table class="leaderboard" id="table1" role="grid">
+    <!--display the selected workout description--------------------------------->
+                <p> <?php 
+                if(isset($_POST['submit'])){
+                    
+                    $selected_description =$_POST['leaderboard_wod']; 
+                    
+                    $query = "SELECT description FROM workouts WHERE workout_id='".$selected_description."'";
+//                echo $query;
+
+                //get the description of the workout from the dropdown menu
+                $description_result = mysqli_query($sql_link, $query);
+                //get the value from the row of description query
+                $description_result = mysqli_fetch_array($description_result);
+                echo $description_result['description'];
+                }
+                ?>
+    
+    </p>
+                
+        </div>
+    </div>
+</div>
+<!--        start of LEADERBOARD row---------------------------------------->
+<div class="row">
+    <div class="large-12 columns">
+        <h2>LEADERBOARD<p id="date_leaderboard"></p>
+            <script>
+            var d = new Date();
+            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
+            </script>
+       </h2>
+
+ <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->
+            
+            <?php
+            include 'connect.php';
+            $selected_val =$_POST['leaderboard_wod']; 
+            //get the selected value from the drop down list
+
+            if(isset($_POST['submit'])){
+            //get the selected value from the drop down list
+                
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
+
+//            echo $query;
+            $result = mysqli_query($sql_link, $query);
+
+      echo "<table>
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-        </table>
+            <tr>";
 
-</div>
-<script language="javascript" type="text/javascript">  
-    var table1Filters = {  
-        col_0: "select",  
-        col_4: "none",  
-        btn: true  
-    }  
-    var tf03 = setFilterGrid("table1",2,table1Filters);  
-</script> 
+while($row = mysqli_fetch_array($result)){
+  // define all of our variables 
+ 
+  $first_name = $row['first_name'];
+  $last_name = $row['last_name'];
+  $workout_name  = $row['workout_name'];
+  $workout_level = $row['workout_level'];
+  $workout_score = $row['workout_score'];
+ 
+// Now for each looped row
+ 
+echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+ 
+} // End our while loop
+echo "</table>";
+}?>
+
+    </div>
+</div>  
 
     
     
