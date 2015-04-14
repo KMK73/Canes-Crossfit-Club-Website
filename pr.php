@@ -42,7 +42,6 @@ if(!isset($_SESSION["sess_user"])){
         <div class="small-10 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
-            <a href="/logout.php">Logout</a>
         </div>
         </div>
     </div>
@@ -79,19 +78,9 @@ if(!isset($_SESSION["sess_user"])){
         include 'connect.php';   
 
         $query = "SELECT * FROM pr_data WHERE user_id= '".$_SESSION['user_id']."'ORDER BY pr_date DESC";
-        echo $query;
-		$result = mysqli_query($sql_link, $query);
-
-	//	$food = array();
-
-//		foreach($result as $row) {
-//		while ($row = mysqli_fetch_assoc($result)) {
-//			$new_food = array("food" => $row['name'], "id" => $row['food_id']);
-//			$food[] = $new_food;
-//			}
-//
-//			echo json_encode($food);
-		//?>
+//        echo $query;
+		$result = mysqli_query($sql_link, $query); ?>
+    
 <!--        //create div boxes for workouts of current date from mysql -->
         <?php 
         while($row = mysqli_fetch_array($result)) {

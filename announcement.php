@@ -28,7 +28,30 @@ if(!isset($_SESSION["sess_user"])){
 <!-- -------------------------------------NAVIGATION------------------------- -->
           
 <?php include 'header_coach.php';?>
+<!--        Database call for username and password PHP ---------------------------------------------->
+			
+<?php if($_POST): ?>
 
+<?php 
+
+    include 'connect.php';
+
+        $announcement_name = mysqli_escape_string($sql_link, $_POST['announcement_name']);
+        $link = mysqli_escape_string($sql_link, $_POST['link']);
+        $description = mysqli_escape_string($sql_link, $_POST['description']);
+        
+        $query = sprintf("INSERT INTO announcements (announcement_name, link, description) VALUES ('%s', '%s', '%s')", $announcement_name, $link, $description);
+
+        $result = mysqli_query($sql_link, $query);
+//        echo $query;
+		?>
+	<?php else:?>
+
+	<h3>No Post Provided</h3>
+
+	<?php endif;?>
+
+      
 <!--        start of icon image flexbox row---------------------------------------->
 <div class="row">
       <div class="small-12 small-centered columns">
@@ -50,36 +73,7 @@ if(!isset($_SESSION["sess_user"])){
             </form> 
     </div>
 </div>
-        
-<!--        Database call for username and password PHP ---------------------------------------------->
-<?php
 
-		if ($mysqli->connect_errno) {
-	    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-		}
-		?>
-			
-<?php if($_POST): ?>
-
-<?php 
-    include 'connect.php';
-
-        $announcement_name = mysqli_escape_string($sql_link, $_POST['announcement_name']);
-        $link = mysqli_escape_string($sql_link, $_POST['link']);
-        $description = mysqli_escape_string($sql_link, $_POST['description']);
-        
-        $query = sprintf("INSERT INTO announcements (announcement_name, link, description) VALUES ('%s', '%s', '%s')", $announcement_name, $link, $description);
-
-        $result = mysqli_query($sql_link, $query);
-//        echo $query;
-
-		?>
-
-	<?php else:?>
-    <div class="row">
-	<h3>No Announcement Provided</h3>
-    </div>
-	<?php endif;?>
 
     </body>
 </html>

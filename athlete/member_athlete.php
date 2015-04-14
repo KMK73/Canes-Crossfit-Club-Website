@@ -41,16 +41,33 @@ if(!isset($_SESSION["sess_user"])){
         <div class="small-8 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
-        <p><a href="/api/Logout.php"/>Logout</p>
         </div>
     </div>
 
 
-<!--        start of ANNOUNCEMENTS ---------------------------------------->
+<!--DATABASE CONNECTION AND club announcement -->
+        <?php
+        include '../connect.php';   
+        $query ="select * from announcements order by announcement_id desc limit 1";
+        $result = mysqli_query($sql_link, $query);
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU" frameborder="0" allowfullscreen></iframe> 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
-    </div>
+    //create div boxes for workouts of current date from mysql 
+        while($row = mysqli_fetch_array($result)) {
+
+        ?>
+        <div class="row">
+                <div class="large-12 columns">
+                        <h3><?php echo $row['announcement_name']; ?></h3>
+                        <?php echo $row['link']; ?>            
+                        <p><?php echo $row['description']; ?></p>     
+               </div>
+        </div>
+            <?php
+
+         };
+
+         ?>
+</div>
     
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
