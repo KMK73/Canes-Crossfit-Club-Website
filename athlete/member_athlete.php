@@ -31,7 +31,7 @@ if(!isset($_SESSION["sess_user"])){
 
 
 <!--        user icon image-->
-<div class="row">
+    <div class="row">
         <div class="large-6 columns" >
             <!--call the user first name from the database-->
 
@@ -50,7 +50,7 @@ if(!isset($_SESSION["sess_user"])){
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU" frameborder="0" allowfullscreen></iframe> 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
-</div>
+    </div>
     
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">

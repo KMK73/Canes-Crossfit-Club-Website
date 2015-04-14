@@ -60,9 +60,11 @@ if(!isset($_SESSION["sess_user"])){
         <input type="text" placeholder="Workout Description" name="rep_description"/>
 
     <h3>Date</h3>
+    <div class="small-6 columns">
     <input type="date" name="pr_date">
+    </div>
     
-    <input type="submit" value="Create"/>
+    <input class="button" type="submit" value="Create"/>
           </form> 
     </div>
 </div>

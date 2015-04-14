@@ -50,9 +50,10 @@ if(!isset($_SESSION["sess_user"])){
 <!--        start of icon image flexbox row---------------------------------------->
 <div class="row">
 <h1>YOUR PR's</h1>
+</div>
 <!--        start of icon image flexbox row---------------------------------------->
 <div class="row">
-    <div class="large-6 columns" style = "border: 1px solid black">
+    <div class="large-6 columns">
       <div class="row collapse">
         <div class="small-10 columns">
           <input type="text" placeholder="Search">
@@ -61,6 +62,7 @@ if(!isset($_SESSION["sess_user"])){
                 <a href="#" class="button postfix">Search</a>
             </div>
         </div>
+</div>
 </div>
 
 <!--new PR button-->
@@ -72,36 +74,47 @@ if(!isset($_SESSION["sess_user"])){
 
 <!--       PR DATA row---------------------------------------->
 <div class="row">
-  <div class="large-6 columns">
 <!--       PR DATA from sql---------------------------------------->    
     <?php
-	   include 'connect.php';
+        include 'connect.php';   
 
-		$dancer_id = $_GET['id'];
-
-		$query = "SELECT * FROM food JOIN dancer_food ON dancer_food.food_id = food.id WHERE dancer_food.dancer_id = " . $dancer_id;
-
+        $query = "SELECT * FROM pr_data WHERE user_id= '".$_SESSION['user_id']."'ORDER BY pr_date DESC";
+        echo $query;
 		$result = mysqli_query($sql_link, $query);
 
-		$food = array();
+	//	$food = array();
 
 //		foreach($result as $row) {
-		while ($row = mysqli_fetch_assoc($result)) {
-			$new_food = array("food" => $row['name'], "id" => $row['food_id']);
-			$food[] = $new_food;
-			}
+//		while ($row = mysqli_fetch_assoc($result)) {
+//			$new_food = array("food" => $row['name'], "id" => $row['food_id']);
+//			$food[] = $new_food;
+//			}
+//
+//			echo json_encode($food);
+		//?>
+<!--        //create div boxes for workouts of current date from mysql -->
+        <?php 
+        while($row = mysqli_fetch_array($result)) {
 
-			echo json_encode($food);
-		?>
+        ?>
 
-    
-    </div>  
-</div>
+        <div class="large-6 columns" style="border-style: solid">
+                <h3><?php echo $row['exercise_name']; ?></h3>
+                <p><?php echo $row['rep_description']; ?></p>
+            
+        <?php $integer_date = strtotime($row['pr_date']); //integer date format
+		$pr_date = date("F j, Y", $integer_date);?>
+                <p><?php echo $pr_date; ?></p>    
+       </div>
 
-    
-    
-    
-    
+            <?php
+
+         };
+
+         ?>
+         </div>
+
+
     
     
     </body>
