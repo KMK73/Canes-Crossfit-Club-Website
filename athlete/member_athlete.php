@@ -62,48 +62,33 @@ if(!isset($_SESSION["sess_user"])){
             </script>
        </h2>    
     </div>
-<!--        start of WOD BOXES flexbox row---------------------------------------->
+<!--        start of WOD BOXES for daily workouts row---------------------------------------->
    <div class="row">    
-<!--        WOD BOX 1---------------------------------------->
-      <div class="small-4 columns">
-           <div class="wod_box">
-           <h3>STRENGTH WOD A</h3>
-            <p>OTM – 10 Minutes
-                Even 5 Strict Press
-                Odd 10 Bent Over Row (3 second eccentric / negative)
-                *same weight across all 5 sets, slight increases are acceptable</p>
-               <a href="/wod_results.php" class="button" >LOG RESULT</a>
-            </div> 
+<!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
+        <?php
+        include '../connect.php';   
+        $query ="SELECT * FROM workouts WHERE wod_date = CURDATE()";
+        $result = mysqli_query($sql_link, $query);
+
+        while($row = mysqli_fetch_array($result)) {
+
+        ?>
+
+        <div class="small-4 columns">
+                <h3><?php echo $row['workout_name']; ?></h3>
+                <p><?php echo $row['description']; ?></p>
+                <a href="/wod_results.php" class="button" >LOG RESULT</a>     
        </div>
 
-<!--        WOD BOX 2  ------------------------------------------------->
-<div class="small-4 columns">
-           <h3>WOD B - Crossfit Open 13.3</h3>
-            <p>12 Minutes AMRAP
-                150 WallBalls (20, 14)
-                90 Double Unders
-                30 Muscle-ups</p>
-               <a href="/wod_results.php" class="button" >LOG RESULT</a>
-    </div> 
-<!--        WOD BOX 3  ------------------------------------------------->
-<div class="small-4 columns">
-           <h3>ISI Exta WODS</h3>
-            <p>WOD C</p>
-            <p>C)
-                3 Rounds for time
-                20 calories Bike
-                400 meter Run</p>
-            <p>WOD D</p>
-            <p>D)
-                Accessory Strength Work
-                4 Rounds
-                8 GH Raises
-                Rest 30 sec
-                16 Heavy Russian KB Swings
-                Rest 90 seconds</p>
-               <a href="/wod_results.php" class="button" >LOG RESULT</a>
-            </div> 
-    </div>
+            <?php
+
+         };
+
+         ?>
+         </div>
+
+       </div>
+
 <!--        start of LEADERBOARD flexbox row---------------------------------------->
 <div class="row">
         <h2>LEADERBOARD<p id="date_leaderboard"></p>
@@ -117,7 +102,8 @@ if(!isset($_SESSION["sess_user"])){
 <div class="row">    
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="/athlete/member_athlete.php" method="POST">
-            <?php include '../connect.php';
+            <?php         
+            include '../connect.php'; 
 				
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);
@@ -176,7 +162,7 @@ if(!isset($_SESSION["sess_user"])){
  <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->
             
             <?php
-            include 'connect.php';
+                include '../connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 
             //get the selected value from the drop down list
 

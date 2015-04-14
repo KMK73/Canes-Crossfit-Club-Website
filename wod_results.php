@@ -41,7 +41,7 @@ if(!isset($_SESSION["sess_user"])){
         <select class="wod_name" name ="wod_results">
                 
             <?php include 'connect.php';
-error_reporting(E_ALL);
+
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);  ?>
             
