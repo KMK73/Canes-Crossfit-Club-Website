@@ -1,9 +1,4 @@
-<?php 
-session_start();
-if(isset($_SESSION["sess_user"])){
-	header("location:/peak_login.php");
-}
-?>
+
 <!--HOMEPAGE FOR ATHLETES (ATHLETES)----------------------------------------------->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -32,7 +27,7 @@ if(isset($_SESSION["sess_user"])){
 
 <!--        logo row ---------------------------------------->
     <div class="row">
-        <div class="large-12 columns">
+        <div class="small-8 small-centered large-6 large-centered columns">
             <img src="images/ucrossfit_logo.png" alt="Gym Logo">
         </div>
     </div>
@@ -41,64 +36,151 @@ if(isset($_SESSION["sess_user"])){
         <div class="large-12 columns">
             <h1>Welcome to Canes Peak 360 Crossfit Club</h1>
     </div>
-</div>
-    
-<div class="row">
+
         <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU" frameborder="0" allowfullscreen></iframe> 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
     </div>
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
-        <h2>What we are up to today: WOD<p id="date">
+        <h2>WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
             </script>
        </h2>    
     </div>
-<!--        start of WOD BOXES flexbox row---------------------------------------->
+<!--        start of WOD BOXES for daily workouts row---------------------------------------->
    <div class="row">    
-<!--        WOD BOX 1---------------------------------------->
-      <div class="large-4 small-12 columns">
-           <div class="wod_box">
-           <h3>STRENGTH WOD A</h3>
-            <p>OTM – 10 Minutes
-                Even 5 Strict Press
-                Odd 10 Bent Over Row (3 second eccentric / negative)
-                *same weight across all 5 sets, slight increases are acceptable</p>
-               <button type="button" onclick="wod.html">LOG RESULT</button>
-            </div> 
+<!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
+        <?php
+        include 'connect.php';   
+        $query ="SELECT * FROM workouts WHERE wod_date = CURDATE()";
+        $result = mysqli_query($sql_link, $query);
+
+    //create div boxes for workouts of current date from mysql 
+        while($row = mysqli_fetch_array($result)) {
+
+        ?>
+
+        <div class="large-6 columns">
+                <h3><?php echo $row['workout_name']; ?></h3>
+                <p><?php echo $row['description']; ?></p>
+                <a href="/wod_results.php" class="button" />LOG RESULT</a>     
        </div>
 
-<!--        WOD BOX 2  ------------------------------------------------->
-<div class="large-4 small-12 columns">
-           <h3>WOD B - Crossfit Open 13.3</h3>
-            <p>12 Minutes AMRAP
-                150 WallBalls (20, 14)
-                90 Double Unders
-                30 Muscle-ups</p>
-            <button type="button" onclick="wod.html">LOG RESULT</button>
-    </div> 
-<!--        WOD BOX 3  ------------------------------------------------->
-<div class="large-4 small-12 columns">
-           <h3>ISI Exta WODS</h3>
-            <p>WOD C</p>
-            <p>C)
-                3 Rounds for time
-                20 calories Bike
-                400 meter Run</p>
-            <p>WOD D</p>
-            <p>D)
-                Accessory Strength Work
-                4 Rounds
-                8 GH Raises
-                Rest 30 sec
-                16 Heavy Russian KB Swings
-                Rest 90 seconds</p>
-            <button type="button" onclick="wod.html">LOG RESULT</button>
-            </div> 
-    </div>
+            <?php
 
+         };
+
+         ?>
+         </div>
+
+ <!--        start of LEADERBOARD submit form ---------------------------------------->   
+<div class="row">    
+    <h2>Select Workout to see current Leaderboard</h2>
+    <form action ="/athlete/member_athlete.php" method="POST">
+            <?php         
+            include '../connect.php'; 
+				
+            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $result = mysqli_query($sql_link, $query);
+//            echo $query;
+
+        ?>
+
+        <select class="wod_name" name ="leaderboard_wod"> 
+            
+            <?php while ($row = mysqli_fetch_assoc($result)):?>
+            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
+            <?php endwhile;?>	
+            
+            ?>  
+        </select>
+        <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
+<!--        need an anchor tag for leaderboard----------------------->
+    </form>
+    <div class="small-12 small-centered columns">
+            <div id="wod_display" >
+                <h3>Description of Workout</h3>
+
+    <!--display the selected workout description--------------------------------->
+                <p> <?php 
+                if(isset($_POST['submit'])){
+                    
+                    $selected_description =$_POST['leaderboard_wod']; 
+                    
+                    $query = "SELECT description FROM workouts WHERE workout_id='".$selected_description."'";
+//                echo $query;
+
+                //get the description of the workout from the dropdown menu
+                $description_result = mysqli_query($sql_link, $query);
+                //get the value from the row of description query
+                $description_result = mysqli_fetch_array($description_result);
+                echo $description_result['description'];
+                }
+                ?>
+    
+    </p>
+                
+        </div>
+    </div>
+</div>
+<!--        start of LEADERBOARD heading---------------------------------------->
+<div class="row">
+        <h2>LEADERBOARD<p id="date_leaderboard"></p>
+            <script>
+            var d = new Date();
+            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
+            </script>
+       </h2>
+</div>
+
+ <!--        start of LEADERBOARD database call--------------------------------------->
+       <div class="row">   
+           <div class="small-8 small-centered large-6 large-centered columns">
+            <?php
+                include '../connect.php'; 
+            $selected_val =$_POST['leaderboard_wod']; 
+            //get the selected value from the drop down list
+
+            if(isset($_POST['submit'])){
+            //get the selected value from the drop down list
+                
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
+
+//            echo $query;
+            $result = mysqli_query($sql_link, $query);
+
+      echo "<table>
+            <th>Name</th>
+            <th>Workout</th>
+            <th>RX</th>
+            <th>Score</th>
+            <tr>";
+
+while($row = mysqli_fetch_array($result)){
+  // define all of our variables 
+ 
+  $first_name = $row['first_name'];
+  $last_name = $row['last_name'];
+  $workout_name  = $row['workout_name'];
+  $workout_level = $row['workout_level'];
+  $workout_score = $row['workout_score'];
+ 
+// Now for each looped row
+ 
+echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+ 
+} // End our while loop
+echo "</table>";
+}?>
+
+    </div>
+</div>
+    
     
     
     </body>

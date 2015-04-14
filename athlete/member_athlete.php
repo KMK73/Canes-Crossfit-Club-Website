@@ -31,31 +31,30 @@ if(!isset($_SESSION["sess_user"])){
 
 
 <!--        user icon image-->
-    <div class="row">
-        <div class="large-12 columns" >
+<div class="row">
+        <div class="large-6 columns" >
             <!--call the user first name from the database-->
 
             <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
-            <div class="small-2 columns" >
+            <div class="small-4 columns" >
             <img src="/images/kmk-logo.png" alt="User Icon"></div>
-        <div class="small-10 columns">
+        <div class="small-8 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
-        <p><a href="/api/Logout.php">Logout</p>
-        </div>
+        <p><a href="/api/Logout.php"/>Logout</p>
         </div>
     </div>
 
-<!--        start of ANNOUNCEMENTS row row---------------------------------------->
 
-    <div class="row">
+<!--        start of ANNOUNCEMENTS ---------------------------------------->
+
         <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU" frameborder="0" allowfullscreen></iframe> 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
-    </div>
+</div>
     
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
-        <h2>WOD<p id="date"></p>
+        <h2>WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
@@ -70,14 +69,15 @@ if(!isset($_SESSION["sess_user"])){
         $query ="SELECT * FROM workouts WHERE wod_date = CURDATE()";
         $result = mysqli_query($sql_link, $query);
 
+    //create div boxes for workouts of current date from mysql 
         while($row = mysqli_fetch_array($result)) {
 
         ?>
 
-        <div class="small-4 columns">
+        <div class="large-6 columns">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
-                <a href="/wod_results.php" class="button" >LOG RESULT</a>     
+                <a href="/wod_results.php" class="button" />LOG RESULT</a>     
        </div>
 
             <?php
@@ -87,18 +87,8 @@ if(!isset($_SESSION["sess_user"])){
          ?>
          </div>
 
-       </div>
 
-<!--        start of LEADERBOARD flexbox row---------------------------------------->
-<div class="row">
-        <h2>LEADERBOARD<p id="date_leaderboard"></p>
-            <script>
-            var d = new Date();
-            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
-            </script>
-       </h2>
-      </div>
- <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->   
+ <!--        start of LEADERBOARD submit form ---------------------------------------->   
 <div class="row">    
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="/athlete/member_athlete.php" method="POST">
@@ -125,7 +115,6 @@ if(!isset($_SESSION["sess_user"])){
     <div class="small-12 small-centered columns">
             <div id="wod_display" >
                 <h3>Description of Workout</h3>
- <!--display the selected workout description--------------------------------->               
 
     <!--display the selected workout description--------------------------------->
                 <p> <?php 
@@ -149,18 +138,19 @@ if(!isset($_SESSION["sess_user"])){
         </div>
     </div>
 </div>
-<!--        start of LEADERBOARD row---------------------------------------->
+<!--        start of LEADERBOARD heading---------------------------------------->
 <div class="row">
-    <div class="large-12 columns">
-        <h2>LEADERBOARD<p id="date_leaderboard"><a name="leaderboard"></a></p>
+        <h2>LEADERBOARD<p id="date_leaderboard"></p>
             <script>
             var d = new Date();
             document.getElementById("date_leaderboard").innerHTML = d.toDateString();
             </script>
        </h2>
+</div>
 
- <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->
-            
+ <!--        start of LEADERBOARD database call--------------------------------------->
+       <div class="row">   
+           <div class="small-8 small-centered large-6 large-centered columns">
             <?php
                 include '../connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 
@@ -202,8 +192,7 @@ echo "</table>";
 }?>
 
     </div>
-</div>  
-
+</div>
     
     
     
