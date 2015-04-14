@@ -1,7 +1,7 @@
 <?php
     include 'connect.php';
 
-    $query = "select * from announcements";
+    $query = "select * from announcements order by announcement_id desc";
 //    echo $query;
     $result = mysqli_query($sql_link, $query);
 //    var_dump($result);
@@ -13,7 +13,7 @@
 //        $link = mysqli_escape_string($sql_link, $row['link']);
 //        echo $link;
 //        
-        $announcement_array[] = array("id" => $row['announcement_id'], "Title" => $row['announcement_name'], "Link" => $row['/"link/"'], "Description" => $row['description']);
+        $announcement_array[] = array("id" => $row['announcement_id'], "Title" => $row['announcement_name'], "Link" => $row['link'], "Description" => $row['description']);
     }
                                      
     echo json_encode($announcement_array);
