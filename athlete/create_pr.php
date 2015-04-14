@@ -43,7 +43,7 @@
     </div>
 </div>
         
-<!--        Database call for username and password PHP ---------------------------------------------->
+<!--        Database call for entering a PR PHP ---------------------------------------------->
 <?php
 
 		if ($mysqli->connect_errno) {

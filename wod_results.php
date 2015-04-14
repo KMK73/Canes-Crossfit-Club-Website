@@ -31,95 +31,104 @@ if(!isset($_SESSION["sess_user"])){
 <!--      start member session---------------------------------------------------->
 
 
-<!--        user icon image-->
-    <div class="row">
-        <div class="large-12 columns" >
-            <!--call the user first name from the database-->
-
-            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
-            <div class="small-2 columns" >
-            <img src="/images/kmk-logo.png" alt="User Icon"></div>
-        <div class="small-10 columns">
-            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
-            <p><?=$_SESSION['user_type'];?></p>
-            <a href="/api/Logout.php">Logout</a>
-        </div>
-        </div>
-    </div>
 <!--        start of RESULTS AREA row---------------------------------------->
       
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row">    
     <h2>Log your results for</h2>
-        <select class="wod_name" name ="daily_wod">
+    <form action ="wod_results.php" method="POST">
+        <select class="wod_name" name ="wod_results">
                 
             <?php include 'connect.php';
 				
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
-            $result = mysqli_query($sql_link, $query);?>
-
-            <?php while ($row = mysqli_fetch_assoc($result)):?>
-            <option value="<?php echo $row['id']?>"><?php echo $row['workout_name'];?></option>
-            <?php $selectOption = $_POST['daily_wod'];?>
+            $result = mysqli_query($sql_link, $query);  ?>
             
+            <?php while ($row = mysqli_fetch_assoc($result)):?>
+            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
             <?php endwhile;?>	
             
-            <?php
-                $option = isset($_POST['daily_wod']) ? $_POST['daily_wod'] : false;
-                    
-                if($option) {
-                    echo htmlentities($_POST['daily_wod'], ENT_QUOTES, "UTF-8");
-                } else {
-                    echo "task option is required";
-                exit; 
-                }
             ?>  
         </select>
+        <input class="button" type="submit" name="submit" value="Log this Workout" />
+    </form>
     
     <div class="small-12 small-centered columns">
-            <div id="wod_display" >
-                <h3>Description of Workout</h3>
- <!--display the selected workout description--------------------------------->               
+            <div id="wod_results" >
+                <h3>Description of Workout</h3>            
 
     <!--display the selected workout description--------------------------------->
-            <script>   
-            var selectValue = document.getElementById('daily_wod').text(); 
-            var selectOption = $("#daily_wod option[value=" + selectValue + "]").text(); 
+                <p> <?php 
+                if(isset($_POST['submit'])){
+                    
+                    $selected_wod =$_POST['wod_results']; 
+                    
+                    $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
+//                echo $query;
+
+                //get the descriptions and types of the workout from the dropdown menu
+                $wod_result = mysqli_query($sql_link, $query);
                 
-            </script>
+                //get the value from the row of description query
+
+                $wod_result = mysqli_fetch_array($wod_result);
+        //var_dump($wod_result);
+                    echo $wod_result['workout_name'];
+                    echo $wod_result['description'];
+                    echo $wod_result['wod_type'];
+                }
+                ?>
+    
+    </p>
                 
         </div>
     </div>
     
     <h3>What was your score for this workout?</h3>
-            <form>
-                <input type="radio">Total Time<input type="time" name="total_time"></br>
-                <input type="radio" name="not_timed">Not Timed</br>
-                <input type="radio">Rounds Completed<input type="number" name="rounds"></br>
-                <input type="radio">Reps Completed<input type="number" name="reps">
-            </form>
+            <form name="wod_result_form" action ="wod_results.php" method="POST">
+                <h4>Workout Score</h4>
+                <input type="text" name="workout_score">
 
             <h3>How did you perform this workout?</h3>
-                <form>
-                    <input type="radio" name="scaled">Scaled
-                    <input type="radio" name="rx">RX
-                </form>
+                <h4>Level</h4>
+                <input type = "radio" name="workout_level" value= "RX">RX
+                <input type = "radio" name="workout_level" value= "Scaled" > Scaled
 
-            <h3>When did you perform this workout?</h3>
-                <select>
-                    <option>6:15am</option>
-                    <option>9:00am</option>            
-                    <option>4:00pm</option>
-                    <option>5:00pm</option>
-                    <option>6:00pm</option>
-                    <option>7:00pm</option>
-                    <option>8:00pm</option>
-                </select>
-            <p><input type="submit" value="Submit"></p>
+            <p><input class="button" type="submit" value="Submit"></p>
+        </form>
     </div>
-    
-    
+ 
+<!--      ENTERING WORKOUT RESULTS INTO DATABASE BASED ON USER-->
+ <?php
+
+		if ($mysqli->connect_errno) {
+	    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+		}
+		?>
+			
+<?php if($_POST['wod_result_form']): ?>
+
+<?php 
+    include 'connect.php';
+
+        $workout_id = mysqli_escape_string($sql_link, $wod_result['workout_id']);
+        $user_id = mysqli_escape_string($sql_link, $_SESSION['user_id']);
+        $workout_score = mysqli_escape_string($sql_link, $_POST['workout_score']);
+        $workout_level = mysqli_escape_string($sql_link, $_POST['workout_level']);
+        
+        $query = sprintf("INSERT INTO wod_results (workout_id, user_id, workout_score, workout_level) VALUES ('%s', '%s', '%s','%s')", $workout_id,  $user_id, $workout_score, $workout_level);
+        echo $query;
+        $result = mysqli_query($sql_link, $query);
+        echo $result;
+		?>
+
+	<?php else:?>
+
+	<h3>No PR Provided</h3>
+
+	<?php endif;?>
+   
     
     
     </body>

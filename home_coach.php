@@ -54,8 +54,8 @@ if(!isset($_SESSION["sess_user"])){
         </form>
 </div>
         <div class="small-6 large-4 columns" >
-        <form action="/leaderboard.php">
-            <input type="submit" value="Leaderboard">
+        <form action="/announcement.php">
+            <input type="submit" value="Club Announcements">
         </form>  
     </div>
 </div>

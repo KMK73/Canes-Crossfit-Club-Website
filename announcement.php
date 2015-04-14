@@ -32,29 +32,22 @@ if(!isset($_SESSION["sess_user"])){
 <!--        start of icon image flexbox row---------------------------------------->
 <div class="row">
       <div class="small-12 small-centered columns">
-<h1>Create New Workout</h1>
 
-<form action="create_workout.php" method="POST">
-    <h2>Workout Name</h2>
-	   <input type="text" name="workout_name"/>
+    <h1>Create Club Announcement</h1>
 
-    <h2>Type</h2>
-
-        <select name="wod_type">
-			  <option value="timed">Timed</option>
-			  <option value="not_timed">Not Timed</option>
-			  <option value="reps">As Many Reps as Possible</option>
-			  <option value="rounds">As Many Rounds as Possible</option>
-        </select>
-
-    <h2>Description</h2>
-        <input textarea placeholder="Workout Description" name="wod_description"/>
-
-    <h2>Date</h2>
-    <input type="date" name="wod_date">
+          <form action="announcement.php" method="POST">
     
-    <input type="submit" value="Create"/>
-          </form> 
+        <h2>Announcement Name</h2>
+        <input type="text" name="announcement_name"/>
+
+        <h2>Video or Image Link</h2>
+        <input type="text" placeholder="Place video link here" name="link"/>
+
+        <h2>Announcement Description</h2>
+        <input type="text" placeholder="Announcement Description" name="description"/>
+
+        </br><input class="button" type="submit" value="Create"/>
+            </form> 
     </div>
 </div>
         
@@ -71,27 +64,21 @@ if(!isset($_SESSION["sess_user"])){
 <?php 
     include 'connect.php';
 
-        $workout_name = mysqli_escape_string($sql_link, $_POST['workout_name']);
-        $wod_type = mysqli_escape_string($sql_link, $_POST['wod_type']);
-        $description = mysqli_escape_string($sql_link, $_POST['wod_description']);
-        $integer_date = strtotime($_POST['wod_date']); //integer date format
-		$wod_date = date("Y-m-d", $integer_date);
+        $announcement_name = mysqli_escape_string($sql_link, $_POST['announcement_name']);
+        $link = mysqli_escape_string($sql_link, $_POST['link']);
+        $description = mysqli_escape_string($sql_link, $_POST['description']);
         
-        $query = sprintf("INSERT INTO workouts (workout_name, wod_type, description, wod_date) VALUES ('%s', '%s', '%s', '%s')", $workout_name, $wod_type, $description, $wod_date);
+        $query = sprintf("INSERT INTO announcements (announcement_name, link, description) VALUES ('%s', '%s', '%s')", $announcement_name, $link, $description);
 
         $result = mysqli_query($sql_link, $query);
 //        echo $query;
+
 		?>
 
-	<h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
-			echo "Entered a workout for " . $_POST['name'] . " for " . $dateToDisplay;?>
-			</h1>
-
-
 	<?php else:?>
-
-	<h3>No WOD Provided</h3>
-
+    <div class="row">
+	<h3>No Announcement Provided</h3>
+    </div>
 	<?php endif;?>
 
     </body>

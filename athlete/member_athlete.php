@@ -121,8 +121,8 @@ if(!isset($_SESSION["sess_user"])){
 				
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);
-            echo $query;
-var_dump($result);
+//            echo $query;
+
         ?>
 
         <select class="wod_name" name ="leaderboard_wod"> 
@@ -134,6 +134,7 @@ var_dump($result);
             ?>  
         </select>
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
+<!--        need an anchor tag for leaderboard----------------------->
     </form>
     <div class="small-12 small-centered columns">
             <div id="wod_display" >
@@ -165,7 +166,7 @@ var_dump($result);
 <!--        start of LEADERBOARD row---------------------------------------->
 <div class="row">
     <div class="large-12 columns">
-        <h2>LEADERBOARD<p id="date_leaderboard"></p>
+        <h2>LEADERBOARD<p id="date_leaderboard"><a name="leaderboard"></a></p>
             <script>
             var d = new Date();
             document.getElementById("date_leaderboard").innerHTML = d.toDateString();

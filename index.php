@@ -43,6 +43,10 @@ if(isset($_SESSION["sess_user"])){
     </div>
 </div>
     
+<div class="row">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/-G6Fcm6rqCU" frameborder="0" allowfullscreen></iframe> 
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+    </div>
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
         <h2>What we are up to today: WOD<p id="date">
@@ -94,60 +98,6 @@ if(isset($_SESSION["sess_user"])){
             <button type="button" onclick="wod.html">LOG RESULT</button>
             </div> 
     </div>
-<!--        start of LEADERBOARD flexbox row---------------------------------------->
-<div class="row">
-    <div class="large-12 columns">
-        <h2>LEADERBOARD<p id="date_leaderboard"></p>
-            <script>
-            var d = new Date();
-            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
-            </script>
-       </h2>
-
- <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->   
-
-
-        <table class="leaderboard" id="table1" role="grid">
-            <th>Name</th>
-            <th>Workout</th>
-            <th>RX</th>
-            <th>Score</th>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-            <tr>
-                <td>Kelsey Kjeldsen</td>
-                <td>WOD B Crossfit Open 15.3</td>
-                <td>RX</td>
-                <td>131</td>            
-            </tr>
-        </table>
-    </div>
-<script language="javascript" type="text/javascript">  
-    var table1Filters = {  
-        col_0: "select",  
-        col_4: "none",  
-        btn: true  
-    }  
-    var tf03 = setFilterGrid("table1",2,table1Filters);  
-</script> 
-
-  </div>  
 
     
     

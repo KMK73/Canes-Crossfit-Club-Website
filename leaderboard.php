@@ -67,11 +67,10 @@ if(!isset($_SESSION["sess_user"])){
         </select>
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
     </form>
+    
     <div class="small-12 small-centered columns">
             <div id="wod_display" >
                 <h3>Description of Workout</h3>
- <!--display the selected workout description--------------------------------->               
-
     <!--display the selected workout description--------------------------------->
                 <p> <?php 
                 if(isset($_POST['submit'])){
@@ -85,7 +84,7 @@ if(!isset($_SESSION["sess_user"])){
                 $description_result = mysqli_query($sql_link, $query);
                 //get the value from the row of description query
                 $description_result = mysqli_fetch_array($description_result);
-                echo $description_result['description'];
+                    echo $description_result['description'];
                 }
                 ?>
     

@@ -34,10 +34,9 @@ NAVIGATION INFO FOR ATHLETES
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-        <li class="divider"></li>
+        <li><a href="/peak_login.php"/>Login</li>
         <li><a href="/api/Logout.php"/>Logout</li>
-        <a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a>
-        <li class="divider"></li>
+        <li><a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a></li>
         </ul>
       </li>
     </ul>
@@ -49,7 +48,7 @@ NAVIGATION INFO FOR ATHLETES
         <li class="divider"></li>
         <li><a href="/wod_scheduler.php">WOD Scheduler</a></li>
         <li class="divider"></li>
-        <li><a href="/leaderboard.php">Leaderboard</a></li>
+        <li><a href="/announcement.php">Announcements</a></li>
         <li class="divider"></li>
     </ul>
   </section>

@@ -30,7 +30,7 @@
 
 <!--new workout button-->
     <form action="/create_workout.php">
-        <input type="submit" value="Add New Workout">
+        <input class="button" type="submit" value="Add New Workout">
     </form> 
 
 
