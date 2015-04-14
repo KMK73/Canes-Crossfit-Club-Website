@@ -67,4 +67,76 @@ TO DO
 php by date kinda done
 
 - js event for dropdown changes 
+
+<!--DOESNT WORK TO DISPLAY DESCRIPTION -================================
+->
+
+
+<!--        start of RESULTS AREA row---------------------------------------->
+ <script>
+function myFunction() {
+    var x = document.getElementById("wod_name").selectedIndex;
+    var selected_name= document.getElementsByTagName("option")[x].value;
+    alert (selected_name);
+    document.getElementById('wod_name_form').submit();
+}
+</script>     
+<!--        Database call for workouts api ---------------------------------------------->
+
+<div class="row">    
+    <h2>Log your results for</h2>
+<!--    <form action ="wod_results.php" method="POST">-->
+    <form id="wod_name_form" name="wod_name_form" method="POST">
+        <select class="wod_name" id="wod_name" onchange="myFunction()">
+                
+            <?php include 'connect.php';
+				
+            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $result = mysqli_query($sql_link, $query);  ?>
+            
+            <?php while ($row = mysqli_fetch_assoc($result)):?>
+            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
+            <?php endwhile;?>	
+            
+            ?>  
+        </select>
+    </form>
+<!--
+        <input class="button" type="submit" name="submit" value="Log this Workout" />
+    </form>
+-->
+<!--<button type="button" onclick="myFunction()">Choose Workout</button>-->
+
+    
+    <div class="small-12 small-centered columns">
+            <div id="wod_results" >
+                <h3>Description of Workout</h3>            
+
+    <!--display the selected workout description--------------------------------->
+                <p> <?php 
+                if(isset($_POST['submit'])){
+                    
+                    $selected_wod =$_POST['wod_results']; 
+                    
+                    $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
+//                echo $query;
+
+                //get the descriptions and types of the workout from the dropdown menu
+                $wod_result = mysqli_query($sql_link, $query);
+                
+                //get the value from the row of description query
+
+                $wod_result = mysqli_fetch_array($wod_result);
+        var_dump($wod_result);
+                    echo $wod_result['workout_name'];
+                    echo $wod_result['description'];
+                    echo $wod_result['wod_type'];
+                }
+                ?>
+    
+    </p>
+                
+        </div>
+    </div>
+    
 -generate and clear rows after js event 

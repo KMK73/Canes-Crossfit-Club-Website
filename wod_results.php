@@ -41,7 +41,7 @@ if(!isset($_SESSION["sess_user"])){
         <select class="wod_name" name ="wod_results">
                 
             <?php include 'connect.php';
-				
+error_reporting(E_ALL);
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);  ?>
             
@@ -51,8 +51,8 @@ if(!isset($_SESSION["sess_user"])){
             
             ?>  
         </select>
-        <input class="button" type="submit" name="submit" value="Log this Workout" />
-    </form>
+        <input class="button" type="submit" name="wod_name" value="Log this Workout" />
+
     
     <div class="small-12 small-centered columns">
             <div id="wod_results" >
@@ -60,23 +60,24 @@ if(!isset($_SESSION["sess_user"])){
 
     <!--display the selected workout description--------------------------------->
                 <p> <?php 
-                if(isset($_POST['submit'])){
+                if(isset($_POST['wod_name'])){
                     
                     $selected_wod =$_POST['wod_results']; 
-                    
+
                     $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
 //                echo $query;
 
-                //get the descriptions and types of the workout from the dropdown menu
+                //get the name and description and types of the workout from the dropdown menu
                 $wod_result = mysqli_query($sql_link, $query);
                 
                 //get the value from the row of description query
 
-                $wod_result = mysqli_fetch_array($wod_result);
-        //var_dump($wod_result);
-                    echo $wod_result['workout_name'];
-                    echo $wod_result['description'];
-                    echo $wod_result['wod_type'];
+                $wod_display = mysqli_fetch_array($wod_result);
+//        var_dump($wod_display);
+                    echo $wod_display['workout_name'];
+                    echo $wod_display['description'];
+                    $wod_id = $wod_display['workout_id'];
+                     $_SESSION['workout_id'] = $wod_id;
                 }
                 ?>
     
@@ -86,7 +87,7 @@ if(!isset($_SESSION["sess_user"])){
     </div>
     
     <h3>What was your score for this workout?</h3>
-            <form name="wod_result_form" action ="wod_results.php" method="POST">
+<!--            <form name="wod_result_form" action ="wod_results.php" method="POST">-->
                 <h4>Workout Score</h4>
                 <input type="text" name="workout_score">
 
@@ -95,37 +96,33 @@ if(!isset($_SESSION["sess_user"])){
                 <input type = "radio" name="workout_level" value= "RX">RX
                 <input type = "radio" name="workout_level" value= "Scaled" > Scaled
 
-            <p><input class="button" type="submit" value="Submit"></p>
+            <p><input class="button" type="submit" name="submit" value="Submit"></p>
         </form>
     </div>
  
 <!--      ENTERING WORKOUT RESULTS INTO DATABASE BASED ON USER-->
- <?php
-
-		if ($mysqli->connect_errno) {
-	    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-		}
-		?>
 			
-<?php if($_POST['wod_result_form']): ?>
+<?php if($_POST['submit']): ?>
 
 <?php 
     include 'connect.php';
 
-        $workout_id = mysqli_escape_string($sql_link, $wod_result['workout_id']);
+
+        $workout_id = mysqli_escape_string($sql_link, $_SESSION['workout_id']);
         $user_id = mysqli_escape_string($sql_link, $_SESSION['user_id']);
         $workout_score = mysqli_escape_string($sql_link, $_POST['workout_score']);
         $workout_level = mysqli_escape_string($sql_link, $_POST['workout_level']);
         
         $query = sprintf("INSERT INTO wod_results (workout_id, user_id, workout_score, workout_level) VALUES ('%s', '%s', '%s','%s')", $workout_id,  $user_id, $workout_score, $workout_level);
+        
         echo $query;
         $result = mysqli_query($sql_link, $query);
-        echo $result;
+
 		?>
 
 	<?php else:?>
 
-	<h3>No PR Provided</h3>
+	<h3>No Result Provided</h3>
 
 	<?php endif;?>
    
