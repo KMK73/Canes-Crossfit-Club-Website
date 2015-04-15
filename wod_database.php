@@ -54,7 +54,7 @@
         <h2>Workout Schedule for the Week<p id="date_scheduler"></p>
             <script>
             var d = new Date();
-            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
+            document.getElementById("date_scheduler").innerHTML = d.toDateString();
             </script>
        </h2>
 
@@ -91,11 +91,16 @@ while($row = mysqli_fetch_array($result)){
     //$day[weekday]; //day of the week
   $workout_name  = $row['workout_name']; //workout name
   $workout_description = $row['description']; //workout description
-  $workout_date = $row['wod_date']; //workout date scheduled
+  
+$workout_date = $row['wod_date']; //workout date scheduled
+$integer_date = strtotime($workout_date);
+
+//new date format for table
+$wod_date = date("l F jS, Y", $integer_date); //Day, Month, Day, Year
  
 // Now for each looped row
 // <td>".$day."</td>
-echo "<tr><td>".$workout_name."</td><td>".$workout_description."</td><td>".$workout_date."</td></tr>";
+echo "<tr><td>".$workout_name."</td><td>".$workout_description."</td><td>".$wod_date."</td></tr>";
  
 }// End our while loop
 echo "</table>";
