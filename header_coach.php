@@ -46,8 +46,6 @@ NAVIGATION INFO FOR ATHLETES
         <li class="divider"></li>
         <li><a href="/wod_database.php">WOD Database</a></li>       
         <li class="divider"></li>
-        <li><a href="/wod_scheduler.php">WOD Scheduler</a></li>
-        <li class="divider"></li>
         <li><a href="/announcement.php">Announcements</a></li>
         <li class="divider"></li>
     </ul>

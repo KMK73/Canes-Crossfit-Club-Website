@@ -43,19 +43,15 @@ if(!isset($_SESSION["sess_user"])){
 <!--        COACH OPTION BUTTONS ---------------------------------------->
 
 <div class="row">
-    <div class="small-6 large-4 columns" >
+    <div class="small-6 large-6 columns" >
         <form action="/wod_database.php">
-            <input type="submit" value="Wod Database">
+            <input class="button" type="submit" value="Wod Database">
         </form>    
-        </div>
-    <div class="small-6 large-4 columns" >
-        <form action="/wod_scheduler.php">
-            <input type="submit" value="Wod Scheduler">
-        </form>
-</div>
-        <div class="small-6 large-4 columns" >
+    </div>
+    
+    <div class="small-6 large-6 columns" >
         <form action="/announcement.php">
-            <input type="submit" value="Club Announcements">
+            <input class="button" type="submit" value="Club Announcements">
         </form>  
     </div>
 </div>
