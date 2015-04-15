@@ -72,7 +72,7 @@ if(!isset($_SESSION["sess_user"])){
     
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
-        <h2>WOD<h2 id="date"></h2>
+        <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();

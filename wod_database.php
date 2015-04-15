@@ -46,67 +46,64 @@
             <option>Reps</option>
         </select>
     </div>
-        
-    <table class="leaderboard" id="table1" role="grid">
-            <th>Name</th>
-            <th>Type</th>
-            <th>Date Added</th>
-            <th>Last Used</th>
-            <tr>
-                <td>Crossfit Open 15.3</td>
-                <td>Rounds</td>
-                <td>February 25, 2015</td>
-                <td>February 26, 2015</td>  
-                    <td><form action="create_workout.php">
-                        <input type="submit" value="Edit">
-                        <input type="submit" value="Delete">
-                    </form></td>
-            </tr>
-            <tr>
-                <td>Crossfit Open 15.3</td>
-                <td>Rounds</td>
-                <td>February 25, 2015</td>
-                <td>February 26, 2015</td>  
-                    <td><form action="create_workout.php">
-                        <input type="submit" value="Edit">
-                        <input type="submit" value="Delete">
-                    </form></td>
-            </tr>
-            <tr>
-                <td>Crossfit Open 15.3</td>
-                <td>Rounds</td>
-                <td>February 25, 2015</td>
-                <td>February 26, 2015</td>
-                    <td><form action="create_workout.php">
-                        <input type="submit" value="Edit">
-                        <input type="submit" value="Delete">
-                    </form></td>
-            </tr>
-                <td>Crossfit Open 15.3</td>
-                <td>Rounds</td>
-                <td>February 25, 2015</td>
-                <td>February 26, 2015</td> 
-                    <td><form action="create_workout.php">
-                        <input type="submit" value="Edit">
-                        <input type="submit" value="Delete">
-                    </form></td>
-            </tr>
-        </table>
+     </div>
+    </div>
+    <!--        start of LEADERBOARD row---------------------------------------->
+<div class="row">
+    <div class="large-12 columns">
+        <h2>Workout Schedule for the Week<p id="date_scheduler"></p>
+            <script>
+            var d = new Date();
+            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
+            </script>
+       </h2>
 
+ <!--        start of LEADERBOARD TABLE DATA flexbox row---------------------------------------->
+            
+            <?php
+            include 'connect.php';
 
-<script language="javascript" type="text/javascript">  
-    var table1Filters = {  
-        col_0: "select",  
-        col_4: "none",  
-        btn: true  
-    }  
-    var tf03 = setFilterGrid("table1",2,table1Filters);  
-</script> 
+            $query = "SELECT * FROM workouts
+            WHERE wod_date 
+            BETWEEN DATE(NOW()) AND
+            DATE(NOW() + INTERVAL (6 - WEEKDAY(NOW())) DAY)
+            ORDER BY wod_date";
 
+            $result = mysqli_query($sql_link, $query);
+            $row = mysqli_fetch_array($result);      
+
+      
+
+    //NEED LEADERBOARD query for timed workouts to show time in desc order (need wod_results to populate time correctly) 
+                
+
+//            echo $query;
+            $result = mysqli_query($sql_link, $query);
+
+      echo "<table>
+            <th>Workout Name</th>
+            <th>Workout Description</th>
+            <th>Date Scheduled</th>
+            <tr>";
+
+while($row = mysqli_fetch_array($result)){
+  // define all of our variables 
+    //$day[weekday]; //day of the week
+  $workout_name  = $row['workout_name']; //workout name
+  $workout_description = $row['description']; //workout description
+  $workout_date = $row['wod_date']; //workout date scheduled
+ 
+// Now for each looped row
+// <td>".$day."</td>
+echo "<tr><td>".$workout_name."</td><td>".$workout_description."</td><td>".$workout_date."</td></tr>";
+ 
+}// End our while loop
+echo "</table>";
+?>
 
     </div>
-</div>      
-        
+</div>  
+
         
     </body>
 </html>

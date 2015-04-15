@@ -62,14 +62,14 @@
          </div>
       
 <!--        start of WOD TITLE row row---------------------------------------->
-   <div class="row">
-        <h2>WOD<h2 id="date"></h2>
+<div class="row">
+       <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
             </script>
        </h2>    
-    </div>
+</div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
    <div class="row">    
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->

@@ -58,8 +58,9 @@ if(!isset($_SESSION["sess_user"])){
             $query = "SELECT * FROM workouts";
             $result = mysqli_query($sql_link, $query);?>
 
+            <!--        //need last selected workout to stay in select dropdown-->
             <?php while ($row = mysqli_fetch_assoc($result)):?>
-            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
+            <option value="<?php echo $row['workout_id']?>" selected="selected"><?php echo $row['workout_name'];?></option>
             
             <?php endwhile;?>	
             
@@ -112,11 +113,28 @@ if(!isset($_SESSION["sess_user"])){
 
             if(isset($_POST['submit'])){
             //get the selected value from the drop down list
-                
+            $query = "SELECT wod_type FROM workouts WHERE workout_id = ".$selected_val;
+                $result = mysqli_query($sql_link, $query);
+                $row = mysqli_fetch_array($result);
+                if ($row['wod_type'] == "timed") {
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score ASC";
+
+                }
+                else {
             $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
 JOIN users ON wod_results.user_id = users.user_id
 JOIN workouts ON wod_results.workout_id = workouts.workout_id
 WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
+                    
+                }
+                
+            
+
+    //NEED LEADERBOARD query for timed workouts to show time in desc order (need wod_results to populate time correctly) 
+                
 
 //            echo $query;
             $result = mysqli_query($sql_link, $query);
