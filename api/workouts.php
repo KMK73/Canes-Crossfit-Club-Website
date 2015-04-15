@@ -9,8 +9,13 @@
 
 		while ($row = mysqli_fetch_assoc($result)) {
  
- 			$workout = array("id" => $row['workout_id'], "name" => $row['workout_name'], "description" => $row['description'],"workout" => $row['wod_type'], "date" => $row['wod_date'] );
-			$workouts[] = $workout;
-		}
+ 			$workout_data = array(
+                "Workout id" => $row['workout_id'],
+                "Workout Name" => $row['workout_name'], 
+                "WOD Type" => $row['wod_type'], 
+                "description" => $row['rep_description'],
+                "Date" => $row['wod_date'] );
+            $workouts[] = $workout_data;
+        }
 		echo json_encode($workouts);
 ?>

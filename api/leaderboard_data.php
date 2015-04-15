@@ -9,13 +9,14 @@ ORDER BY workout_score DESC";
 
     $result = mysqli_query($sql_link, $query);
     
-    $leaderboard_array = array();
+    $leaderboards = array();
 
     while ($row = mysqli_fetch_assoc($result)) {
         $leaderboard_array[] = array("athlete" => $row['first_name'] . " " . $row['last_name'], "workout" => $row['workout_name'], "level" => $row['workout_level'], "score" => $row['workout_score']);
+    $leaderboards[] = $leaderboard_array;
     }
                                      
-    echo json_encode($leaderboard_array);
+    echo json_encode($leaderboards);
                                      
 ?>
 

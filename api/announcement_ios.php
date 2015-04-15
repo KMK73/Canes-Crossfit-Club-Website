@@ -15,7 +15,7 @@
 //        
         $announcement_array[] = array("id" => $row['announcement_id'], "Title" => $row['announcement_name'], "Link" => $row['link'], "Description" => $row['description']);
     }
-                                     
+    //cannot get the link data to run correctly                                  
     echo json_encode($announcement_array);
                                      
 ?>
