@@ -1,4 +1,10 @@
-
+<?php 
+session_start();
+if(!isset($_SESSION["sess_user"])){
+	header("location:/peak_login.php");
+}
+include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
+?>
 <!--HOMEPAGE FOR ATHLETES (ATHLETES)----------------------------------------------->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -21,9 +27,7 @@
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
 
-<!-- -------------------------------------NAVIGATION------------------------- -->
-        
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
+
 
 <!--        logo row ---------------------------------------->
     <div class="row">
@@ -101,7 +105,7 @@
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="/athlete/member_athlete.php" method="POST">
             <?php         
-            include '../connect.php'; 
+            include 'connect.php'; 
 				
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);
@@ -160,7 +164,7 @@
        <div class="row">   
            <div class="small-8 small-centered large-6 large-centered columns">
             <?php
-                include '../connect.php'; 
+                include 'connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 
             //get the selected value from the drop down list
 

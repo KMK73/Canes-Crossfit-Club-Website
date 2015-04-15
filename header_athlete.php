@@ -1,8 +1,3 @@
-<?php 
-session_start();
-if(!isset($_SESSION["sess_user"])){
-	header("location:/peak_login.php");
-}?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 

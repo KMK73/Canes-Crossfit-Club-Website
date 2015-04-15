@@ -1,3 +1,6 @@
+<?php 
+include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -19,9 +22,6 @@
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
 
-<!-- -------------------------------------NAVIGATION------------------------- -->
-          
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
 
 <!-- -------------------------------------REGISTRATION FORM------------------------- -->
 <body>

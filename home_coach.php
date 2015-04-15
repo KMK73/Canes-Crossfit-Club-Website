@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION["sess_user"])){
 	header("location:/peak_login.php");
 }
+include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -25,8 +26,6 @@ if(!isset($_SESSION["sess_user"])){
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
 
-<!-- -------------------------------------NAVIGATION------------------------- -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');?>
 
 <!--        start of icon image flexbox row---------------------------------------->
 <!--        user icon image-->
@@ -57,11 +56,7 @@ if(!isset($_SESSION["sess_user"])){
 </div>
 
     
-    
-    
-    
-    
-    
+
     
     </body>
 </html>

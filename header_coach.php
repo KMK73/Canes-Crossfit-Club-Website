@@ -1,6 +1,3 @@
-<!--
-NAVIGATION INFO FOR ATHLETES
--->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -32,16 +29,7 @@ NAVIGATION INFO FOR ATHLETES
   </ul>
 
   <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-        <li><a href="/peak_login.php"/>Login</li>
-        <li><a href="/api/Logout.php"/>Logout</li>
-        <li><a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a></li>
-        </ul>
-      </li>
-    </ul>
-
-    <!-- Left Nav Section -->
+       <!-- Left Nav Section -->
     <ul class="left">
         <li class="divider"></li>
         <li><a href="/wod_database.php">WOD Database</a></li>       
@@ -49,6 +37,15 @@ NAVIGATION INFO FOR ATHLETES
         <li><a href="/announcement.php">Announcements</a></li>
         <li class="divider"></li>
     </ul>
+      
+      <!-- Right Nav Section -->
+    <ul class="right">
+        <li><a href="/peak_login.php"/>Login</li>
+        <li><a href="/api/Logout.php"/>Logout</li>
+        <li><a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a></li>
+        </ul>
+
+
   </section>
 </nav>
 
