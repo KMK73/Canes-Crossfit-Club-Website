@@ -58,7 +58,8 @@ if(!isset($_SESSION["sess_user"])){
         <div class="row">
                 <div class="large-12 columns">
                         <h3><?php echo $row['announcement_name']; ?></h3>
-                        <?php echo $row['link']; ?>            
+<!--                    //insert iframe info here -->
+<iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe>           
                         <p><?php echo $row['description']; ?></p>     
                </div>
         </div>

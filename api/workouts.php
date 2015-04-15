@@ -13,8 +13,8 @@
                 "Workout id" => $row['workout_id'],
                 "Workout Name" => $row['workout_name'], 
                 "WOD Type" => $row['wod_type'], 
-                //description field returning null
                 "Date" => $row['wod_date'],
+            //description field returning null unless utf8 encode
             "Description" => utf8_encode($row['description']));
             
             $workouts[] = $workout_data;
