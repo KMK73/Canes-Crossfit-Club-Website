@@ -58,11 +58,15 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         include 'connect.php';   
 
 // WANT TO DISPLAY THE WORKOUT NAME, WORKOUT DESCRIPTION, LEVEL AND SCORE OF THE USERS RECENT WOD RESULTS 
-//SELECT workout_id, user_id, workout_name FROM wod_results WHERE user_id=1
-//JOIN workouts 
-//ON  workout_id.workouts = workout_id.wod_results
 
-        $query = "SELECT * FROM wod_results WHERE user_id= '".$_SESSION['user_id']."'ORDER BY wod_date DESC";
+//SELECT *
+//FROM wod_results
+//JOIN workouts ON workouts.workout_id = wod_results.workout_id 
+//WHERE user_id = 39
+    
+        $query = "SELECT * FROM wod_results 
+        JOIN workouts ON workouts.workout_id = wod_results.workout_id  
+        WHERE user_id= '".$_SESSION['user_id']."'ORDER BY wod_date DESC";
 //        echo $query;
 		$result = mysqli_query($sql_link, $query); ?>
     
@@ -74,12 +78,14 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         <div class="large-6 columns">
             <div class="panel">
-                <h3><?php echo $row['exercise_name']; ?></h3>
-                <p><?php echo $row['rep_description']; ?></p>
-            
-        <?php $integer_date = strtotime($row['pr_date']); //integer date format
-		$pr_date = date("F j, Y", $integer_date);?>
-                <p><?php echo $pr_date; ?></p>    
+                <h3><?php echo $row['workout_name']; ?></h3>
+                <p><?php echo $row['description']; ?></p>
+                <p><?php echo $row['wod_score']; ?></p>
+                <p><?php echo $row['wod_level']; ?></p> 
+                
+        <?php $integer_date = strtotime($row['wod_date']); //integer date format
+		$wod_date = date("F j, Y", $integer_date);?>
+                <p><?php echo $wod_date; ?></p>    
         </div>   
     </div>
 
