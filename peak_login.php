@@ -55,33 +55,10 @@ ob_end_flush();
 ?>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
-  <head>
-    <meta charset="utf-8" />
-    <!-- if you remove this meta tag, the NSA will spy on you through your Xbox Kinect camera -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Peak 360 Crossfit</title>
-    <link rel="stylesheet" href="stylesheets/app.css" />
-    <link rel="stylesheet" href="stylesheets/app.css" />
-    <script src="bower_components/modernizr/modernizr.js"></script>
-  </head>
-
-  <body>
-
-    <!-- body content here -->
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
-
-
-
-<!-- -------------------------------------NAVIGATION------------------------- -->
-
+    <body>
 
 <div class="row">
-    <div class="small-8 small-centered large-6 large-centered columns">      
+    <div class="small-8 small-centered large-6 large-centered columns">  
         <img src="images/ucrossfit_logo.png" alt="Gym Logo">
       </div>
 </div>

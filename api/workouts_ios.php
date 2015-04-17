@@ -1,42 +1,23 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+?>
+   <?php
 		include 'connect.php';
-
-		$query = "SELECT * FROM workouts order by workout_id desc";
+		$query = "SELECT * FROM workouts";
 
 		$result = mysqli_query($sql_link, $query);        
-
-		$workout_data = array();
+        $workouts = array();
 
 		while ($row = mysqli_fetch_assoc($result)) {
-            
-            $id = $row['workout_id'];
-            $name = $row['workout_name'];
-            $type = $row['wod_type'];
-            $description = $row['description'];
-            $date = $row['wod_date'];
-            
-            
- 			$workout_data[] = array(
-                "id" => $id,
-                "Name" => $name, 
-                "Type" => $type,
-                "description" => $description,
-                "Date" => $date);
+            $workouts[] = array(
+                "id" => $row['workout_id'],
+                "name" => utf8_encode($row['workout_name']), 
+                "Type" => $row['wod_type'], 
+                "Date" => $row['wod_date'],
+            "Description" => utf8_encode($row['description'])
+            );
         }
-
-		echo json_encode($workout_data);
+        $json = json_encode($workouts);
+        echo $json;
 ?>
-
-<!--
-$data = array();
-while ($row = mysql_fetch_array($result)) {     
-    $id = $row['id'];
-    $title = $row['title'];
-    $content = $row['content'];
-
-    $data[] = array("id" => $id,
-        "title" => $title,
-        "success" => true
-    );
-}
-echo json_encode($data);-->

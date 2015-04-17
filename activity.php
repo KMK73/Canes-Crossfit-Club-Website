@@ -8,25 +8,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <!-- if you remove this meta tag, the NSA will spy on you through your Xbox Kinect camera -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Peak 360 Crossfit</title>
-    <link rel="stylesheet" href="stylesheets/app.css" />
-    <link rel="stylesheet" href="stylesheets/app.css" />
-    <script src="bower_components/modernizr/modernizr.js"></script>
-  </head>
-
   <body>
-
-    <!-- body content here -->
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
-
-
 <!--      start member session---------------------------------------------------->
 
 <div class="row">
@@ -78,9 +60,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         <div class="large-6 columns">
             <div class="panel">
-                <h3><?php echo $row['workout_name']; ?></h3>
+                <h3>Workout Name: <?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
-                <p><?php echo $row['wod_score']; ?></p>
+                <h4>Your Score: <?php echo $row['wod_score']; ?></h4>
                 <p><?php echo $row['wod_level']; ?></p> 
                 
         <?php $integer_date = strtotime($row['wod_date']); //integer date format
@@ -89,12 +71,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         </div>   
     </div>
 
-            <?php
-
-         };
-
-         ?>
-         </div>
+            <?php };?>
+</div>
 
 
     
