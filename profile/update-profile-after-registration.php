@@ -1,10 +1,12 @@
 <?php
     session_start();
-    $temp= $_SESSION['username'];
+    $temp= $_SESSION['user_id'];
+    echo $temp;
+
     ini_set("display_errors",1);
+    var_dump($_REQUEST);
     if(isset($_POST)){
         require '../connect.php';
-        session_start();
         $Destination = '../userfiles/avatars';
         if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name'])){
             $NewImageName= 'default.jpg';
@@ -24,30 +26,34 @@
         $user_lastname=$_REQUEST['last_name'];
         $user_email=$_REQUEST['username'];
         $user_password=$_REQUEST['password'];
-        $sql3="UPDATE users SET first_name='$user_firstname',last_name='$user_lastname',username='$user_email',password='$user_password',user_avatar='$NewImageName' WHERE username = '$temp'";
         
-        $user_username = $_SESSION['username'];
+        $sql3="UPDATE users SET first_name='$user_firstname',last_name='$user_lastname',username='$user_email',password='$user_password',user_avatar='$NewImageName' WHERE user_id = '$temp'";
         
-        $sql4="INSERT INTO users (first_name,last_name,username, password, user_avatar) VALUES ('$user_firstname','$user_lastname','$user_email','$user_password','$NewImageName') WHERE user_username = $temp";
+        var_dump($_SESSION);
+        var_dump($sql3);
+        $user_id = $_SESSION['user_id'];
         
-        $result = mysqli_query($sql_link,"SELECT * FROM users WHERE user_id = '$user_username'");
-        
+        $user_query = "SELECT * FROM users WHERE user_id = '$user_id'";
+        echo $user_query;
+        $result = mysqli_query($sql_link,$user_query);
+        var_dump($result);
+        echo "Number of Rows Found: " .mysqli_num_rows($result);
         if( mysqli_num_rows($result) > 0) {
             mysqli_query($sql_link,$sql3)or die(mysqli_error($sql_link));
-            echo '<script type="text/javascript">
-alert(\'Success!\');
- window.location.href = "http://canespeak360crossfit.com/athlete/member_athlete.php";
-</script>';
-exit; 
+            echo "Found a user to update";
+//            echo '<script type="text/javascript">
+//alert(\'Success!\');
+// window.location.href = "http://canespeak360crossfit.com/athlete/member_athlete.php";
+//</script>';
+//exit; 
         }
         else{
-            mysqli_query($sql_link,$sql3)or die(mysqli_error($sql_link));
-
-echo '<script type="text/javascript">
-alert(\'Failed Update\');
- window.location.href = "http://canespeak360crossfit.com/profile/update-profile-after-registration.php";
-</script>';
-exit; 
+            echo "Didn't find user!";
+//echo '<script type="text/javascript">
+//alert(\'Failed Update\');
+// window.location.href = "http://canespeak360crossfit.com/profile/update-profile-after-registration.php";
+//</script>';
+//exit; 
         }  
     }    
 ?>

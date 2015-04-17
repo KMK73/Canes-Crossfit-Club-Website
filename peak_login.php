@@ -31,7 +31,8 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
         $_SESSION['first_name'] = $row['first_name'];
         $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['user_type'] = $row['user_type'];
-        $_SESSION['user_id'] = $row['user_id'];       
+        $_SESSION['user_id'] = $row['user_id'];    
+        $_SESSION['username'] = $row['username']; 
     }
     else if ($numrows = null) {
 	   echo "All fields are required!";
