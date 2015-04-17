@@ -73,7 +73,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
                 $wod_display = mysqli_fetch_array($wod_result);
 //        var_dump($wod_display);
-                    echo $wod_display['workout_name'];
+//                    echo $wod_display['workout_name'];
                     echo $wod_display['description'];
                     $wod_id = $wod_display['workout_id'];
                      $_SESSION['workout_id'] = $wod_id;
@@ -82,9 +82,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             </div>
     </div>
 </div>
-           	<?php endif;?>         
-
-    
+        
     <h3>What was your score for this workout?</h3>
 <!--            <form name="wod_result_form" action ="wod_results.php" method="POST">-->
                 <h4>Workout Score</h4>
@@ -97,8 +95,10 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
             <p><input class="button" type="submit" name="submit" value="Submit"></p>
         </form>
-    </div>
- 
+    </div>        
+           	<?php endif;?>         
+
+    
 <!--      ENTERING WORKOUT RESULTS INTO DATABASE BASED ON USER-->
 			
 <?php if($_POST['submit']): ?>
@@ -114,14 +114,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         
         $query = sprintf("INSERT INTO wod_results (workout_id, user_id, workout_score, workout_level) VALUES ('%s', '%s', '%s','%s')", $workout_id,  $user_id, $workout_score, $workout_level);
         
-        echo $query;
         $result = mysqli_query($sql_link, $query);
 
 		?>
-
-	<?php else:?>
-
-	<h3>No Result Provided</h3>
+<?php
+echo '<script type="text/javascript">
+alert(\'Successfully Logged Workout\');
+ window.location.href = "http://canespeak360crossfit.com/wod_results.php";
+</script>';
+exit; 
+ ?>
 
 	<?php endif;?>
    

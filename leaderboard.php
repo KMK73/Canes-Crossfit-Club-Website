@@ -33,8 +33,6 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="row">
         <div class="large-12 columns" >
             <!--call the user first name from the database-->
-
-            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
             <div class="small-2 columns" >
             <img src="/images/kmk-logo.png" alt="User Icon"></div>
         <div class="small-10 columns">
@@ -92,7 +90,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         </div>
     </div>
 </div>
-    
+</div>
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
     <div class="large-12 columns">

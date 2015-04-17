@@ -26,29 +26,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <script src="js/app.js"></script>
 
 
-<!--      start member session---------------------------------------------------->
-
-
-<!--        user icon image-->
-    <div class="row">
-        <div class="large-12 columns" >
-            <!--call the user first name from the database-->
-
-            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
-            <div class="small-2 columns" >
-            <img src="/images/kmk-logo.png" alt="User Icon"></div>
-        <div class="small-10 columns">
-            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
-            <p><?=$_SESSION['user_type'];?></p>
-            <a href="/logout.php">Logout</a>
-        </div>
-        </div>
-    </div>
-
-
 <!--        pr enter data row---------------------------------------->
 <div class="row">
-      <div class="small-12 small-centered columns">
+      <div class="small-12 small-centered large-6 large-centered columns">
 <h1>Add new PR</h1>
 
 <form action="create_pr.php" method="POST">
@@ -59,14 +39,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         <input type="text" placeholder="Workout Description" name="rep_description"/>
 
     <h3>Date</h3>
-    <div class="small-6 columns">
-    <input type="date" name="pr_date">
-    </div>
-    
-    <input class="button" type="submit" value="Create"/>
-          </form> 
-    </div>
+
+        <input type="date" name="pr_date"><br>
+
+    </div>    
 </div>
+        <div class="row">
+                  <div class="small-12 small-centered large-6 large-centered columns">
+            <input class="button" type="submit" value="Create"/>
+            </div> 
+        </div>
+    </form> 
+
+
         
 <!--        Database call for username and password PHP ---------------------------------------------->
 			
@@ -90,12 +75,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 		?>
 
 	<h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
-			echo "Entered a PR for " . $_POST['exercise_name'] . " on " . $dateToDisplay;?>
+			echo "Entered a PR for " . $_POST['exercise_name'];?>
 			</h1>
+<?php
+echo '<script type="text/javascript">
+alert(\'Changes Successfully Made\');
+ window.location.href = "http://canespeak360crossfit.com/pr.php";
+</script>';
+exit; 
+ ?>
 
-	<?php else:?>
-
-	<h3>No PR Provided</h3>
 
 	<?php endif;?>
 

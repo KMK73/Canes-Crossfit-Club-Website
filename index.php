@@ -105,7 +105,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
 <div class="row">    
     <h2>Select Workout to see current Leaderboard</h2>
-    <form action ="/athlete/member_athlete.php" method="POST">
+    <form action ="index.php" method="POST">
             <?php         
             include 'connect.php'; 
 				
@@ -126,13 +126,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
-    <div class="small-12 small-centered columns">
-            <div id="wod_display" >
-                <h3>Description of Workout</h3>
-
     <!--display the selected workout description--------------------------------->
+    <?php if($_POST['submit']): ?>
+                <div class="small-12 small-centered columns">
+                    <div class="panel">
+                    <div id="wod_results">
+                <h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
-                if(isset($_POST['submit'])){
                     
                     $selected_description =$_POST['leaderboard_wod']; 
                     
@@ -142,25 +142,43 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                 //get the description of the workout from the dropdown menu
                 $description_result = mysqli_query($sql_link, $query);
                 //get the value from the row of description query
-                $description_result = mysqli_fetch_array($description_result);
-                echo $description_result['description'];
-                }
-                ?>
-    
-    </p>
-                
+                $description_result =       mysqli_fetch_array($description_result);
+                    echo $description_result['description'];
+
+                ?></p>
         </div>
     </div>
 </div>
-<!--        start of LEADERBOARD heading---------------------------------------->
-<div class="row">
-        <h2>LEADERBOARD<p id="date_leaderboard"></p>
-            <script>
-            var d = new Date();
-            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
-            </script>
-       </h2>
 </div>
+    <!--        start of LEADERBOARD row--------------------------------->
+<div class="row">
+    <div class="large-12 columns">
+        <h2>LEADERBOARD</h2>
+        <h4> <?php 
+//    selected workout date from dropdown                 
+        $wod_date_selected =$_POST['leaderboard_wod']; 
+                    
+        $query = "SELECT wod_date FROM workouts WHERE workout_id='".$wod_date_selected."'";
+
+
+//get the workout date of the workout from the dropdown menu
+    $date_result = mysqli_query($sql_link, $query);
+    $date_display = mysqli_fetch_array($date_result); 
+
+$workout_date = $date_display['wod_date']; //workout date scheduled
+$integer_date = strtotime($workout_date);
+
+//new date format for table
+$wod_date = date("l F jS, Y", $integer_date); //Day, Month, Day, Year
+
+
+//use workout date as h4 heading 
+echo $wod_date;
+
+                ?></h4>
+
+
+<?php endif;?>  
 
  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   

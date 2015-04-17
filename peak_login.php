@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 
 ob_start();
 
-
 if(isset($_POST["submit"])){
 if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$username =$_POST['username'];

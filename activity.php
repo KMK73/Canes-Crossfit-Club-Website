@@ -32,8 +32,6 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <div class="row">
             <div class="large-6 columns" >
             <!--call the user first name from the database-->
-
-            <h2><?=$_SESSION['first_name'];?> Personal Records</h2>
             <div class="small-4 columns" >
             <img src="/images/kmk-logo.png" alt="User Icon"></div>
         <div class="small-8 columns">
@@ -48,17 +46,23 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--new PR button-->
 <div class="row">
     <div class="large-6 columns">
-        <a href="create_pr.php" class="button round">Add new PR</a>
+        <h3>Activity Feed</h3>
+        <a href="wod_results.php" class="button round">Go Log more Workouts!</a>
     </div>
 </div>
 
-<!--       PR DATA row---------------------------------------->
+<!--      Feed DATA row---------------------------------------->
 <div class="row">
-<!--       PR DATA from sql---------------------------------------->    
+<!--       Feed DATA from sql---------------------------------------->    
     <?php
         include 'connect.php';   
 
-        $query = "SELECT * FROM pr_data WHERE user_id= '".$_SESSION['user_id']."'ORDER BY pr_date DESC";
+// WANT TO DISPLAY THE WORKOUT NAME, WORKOUT DESCRIPTION, LEVEL AND SCORE OF THE USERS RECENT WOD RESULTS 
+//SELECT workout_id, user_id, workout_name FROM wod_results WHERE user_id=1
+//JOIN workouts 
+//ON  workout_id.workouts = workout_id.wod_results
+
+        $query = "SELECT * FROM wod_results WHERE user_id= '".$_SESSION['user_id']."'ORDER BY wod_date DESC";
 //        echo $query;
 		$result = mysqli_query($sql_link, $query); ?>
     
