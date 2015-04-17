@@ -35,9 +35,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             <!--call the user first name from the database-->
 
             <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
-            <div class="small-4 columns" >
-            <img src="/images/kmk-logo.png" alt="User Icon"></div>
-        <div class="small-8 columns">
+            <div class="small-6 columns" >
+            <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>
+        <div class="small-6 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
@@ -55,10 +55,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
         <div class="row">
-                <div class="large-12 columns">
+                <div class="large-8 columns">
                         <h3><?php echo $row['announcement_name']; ?></h3>
-<!--                    //insert iframe info here -->
-<iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe>           
+<!--                    //insert iframe info here --> 
+<div class="flex-video">   
+    <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe></div>          
                         <p><?php echo $row['description']; ?></p>     
                </div>
         </div>
@@ -92,10 +93,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         ?>
 
         <div class="large-6 columns">
+            <div class="panel">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a>     
        </div>
+      </div>
 
             <?php
 
@@ -129,13 +132,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
-    <div class="small-12 small-centered columns">
-            <div id="wod_display" >
-                <h3>Description of Workout</h3>
-
     <!--display the selected workout description--------------------------------->
+    <?php if($_POST['submit']): ?>
+                <div class="small-12 large-6 columns">
+                    <div class="panel">
+                    <div id="wod_results">
+                <h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
-                if(isset($_POST['submit'])){
                     
                     $selected_description =$_POST['leaderboard_wod']; 
                     
@@ -145,25 +148,44 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                 //get the description of the workout from the dropdown menu
                 $description_result = mysqli_query($sql_link, $query);
                 //get the value from the row of description query
-                $description_result = mysqli_fetch_array($description_result);
-                echo $description_result['description'];
-                }
-                ?>
-    
-    </p>
-                
+                $description_result =       mysqli_fetch_array($description_result);
+                    echo $description_result['description'];
+
+                ?></p>
         </div>
     </div>
 </div>
-<!--        start of LEADERBOARD heading---------------------------------------->
-<div class="row">
-        <h2>LEADERBOARD<p id="date_leaderboard"></p>
-            <script>
-            var d = new Date();
-            document.getElementById("date_leaderboard").innerHTML = d.toDateString();
-            </script>
-       </h2>
 </div>
+    <!--        start of LEADERBOARD row--------------------------------->
+<div class="row">
+    <div class="large-12 columns">
+        <h2>LEADERBOARD</h2>
+        <h4> <?php 
+//    selected workout date from dropdown                 
+        $wod_date_selected =$_POST['leaderboard_wod']; 
+                    
+        $query = "SELECT wod_date FROM workouts WHERE workout_id='".$wod_date_selected."'";
+
+
+//get the workout date of the workout from the dropdown menu
+    $date_result = mysqli_query($sql_link, $query);
+    $date_display = mysqli_fetch_array($date_result); 
+
+$workout_date = $date_display['wod_date']; //workout date scheduled
+$integer_date = strtotime($workout_date);
+
+//new date format for table
+$wod_date = date("l F jS, Y", $integer_date); //Day, Month, Day, Year
+
+
+//use workout date as h4 heading 
+echo $wod_date;
+
+                ?></h4>
+
+
+<?php endif;?>  
+
 
  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   
@@ -173,14 +195,24 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             $selected_val =$_POST['leaderboard_wod']; 
             //get the selected value from the drop down list
 
-            if(isset($_POST['submit'])){
+                        if(isset($_POST['submit'])){
             //get the selected value from the drop down list
-                
-            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+            $query = "SELECT wod_type FROM workouts WHERE workout_id = ".$selected_val;
+                $result = mysqli_query($sql_link, $query);
+                $row = mysqli_fetch_array($result);
+                if ($row['wod_type'] == "timed") {
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score, wod_date FROM wod_results
 JOIN users ON wod_results.user_id = users.user_id
 JOIN workouts ON wod_results.workout_id = workouts.workout_id
-WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score ASC";
 
+                }
+                else {
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score, wod_date FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC"; }
+                            
 //            echo $query;
             $result = mysqli_query($sql_link, $query);
 

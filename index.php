@@ -52,9 +52,10 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
         <div class="row">
-                <div class="large-12 columns">
+                <div class="large-8 columns">
                         <h3><?php echo $row['announcement_name']; ?></h3>
-                        <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe>        
+                    <div class="flex-video">   
+                    <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe></div>        
                         <p><?php echo $row['description']; ?></p>     
                </div>
         </div>
@@ -128,7 +129,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </form>
     <!--display the selected workout description--------------------------------->
     <?php if($_POST['submit']): ?>
-                <div class="small-12 small-centered columns">
+                <div class="small-12 large-6 columns">
                     <div class="panel">
                     <div id="wod_results">
                 <h3><?php echo "Description of Workout"?></h3>  
@@ -188,13 +189,24 @@ echo $wod_date;
             $selected_val =$_POST['leaderboard_wod']; 
             //get the selected value from the drop down list
 
-            if(isset($_POST['submit'])){
+                        if(isset($_POST['submit'])){
             //get the selected value from the drop down list
-                
-            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score FROM wod_results
+            $query = "SELECT wod_type FROM workouts WHERE workout_id = ".$selected_val;
+                $result = mysqli_query($sql_link, $query);
+                $row = mysqli_fetch_array($result);
+                if ($row['wod_type'] == "timed") {
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score, wod_date FROM wod_results
 JOIN users ON wod_results.user_id = users.user_id
 JOIN workouts ON wod_results.workout_id = workouts.workout_id
-WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score ASC";
+
+                }
+                else {
+            $query = "SELECT first_name, last_name, wod_results.user_id, workout_name, wod_results.workout_id, workout_level, workout_score, wod_date FROM wod_results
+JOIN users ON wod_results.user_id = users.user_id
+JOIN workouts ON wod_results.workout_id = workouts.workout_id
+WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";     
+                }
 
 //            echo $query;
             $result = mysqli_query($sql_link, $query);

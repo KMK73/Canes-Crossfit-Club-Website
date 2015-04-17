@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peak 360 Crossfit</title>
     <link rel="stylesheet" href="stylesheets/app.css" />
-    <link rel="stylesheet" href="stylesheets/app.css" />
+      <link rel="stylesheet" href="css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>

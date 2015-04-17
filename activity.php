@@ -32,9 +32,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <div class="row">
             <div class="large-6 columns" >
             <!--call the user first name from the database-->
-            <div class="small-4 columns" >
-            <img src="/images/kmk-logo.png" alt="User Icon"></div>
-        <div class="small-8 columns">
+            <div class="small-6 columns" >
+            <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>
+        <div class="small-6 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
