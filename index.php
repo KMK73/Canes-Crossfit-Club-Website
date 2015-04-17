@@ -88,9 +88,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         ?>
 
         <div class="large-6 columns">
+                <div class="panel">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
-                <a href="/wod_results.php" class="button" />LOG RESULT</a>     
+                <a href="/wod_results.php" class="button" />LOG RESULT</a> 
+            </div>
        </div>
 
             <?php

@@ -52,15 +52,15 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         </select>
         <input class="button" type="submit" name="wod_name" value="Log this Workout" />
 
-    
-    <div class="small-12 small-centered columns">
-            <div id="wod_results" >
-                <h3>Description of Workout</h3>            
-
     <!--display the selected workout description--------------------------------->
-                <p> <?php 
-                if(isset($_POST['wod_name'])){
-                    
+    
+		      <?php if($_POST['wod_name']): ?>
+                <div class="small-12 small-centered columns">
+                    <div class="panel">
+                    <div id="wod_results">
+                <h3><?php echo "Description of Workout"?></h3>            
+
+        <p> <?php 
                     $selected_wod =$_POST['wod_results']; 
 
                     $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
@@ -77,13 +77,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                     echo $wod_display['description'];
                     $wod_id = $wod_display['workout_id'];
                      $_SESSION['workout_id'] = $wod_id;
-                }
                 ?>
-    
     </p>
-                
-        </div>
+            </div>
     </div>
+</div>
+           	<?php endif;?>         
+
     
     <h3>What was your score for this workout?</h3>
 <!--            <form name="wod_result_form" action ="wod_results.php" method="POST">-->

@@ -51,7 +51,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
     </div> 
 </div>
 <?php
-		if ($mysqli->connect_errno) {
+error_reporting(E_ALL);
+ini_set('display_errors',0);
+ini_set('log_errors',1);
+
+if ($mysqli->connect_errno) {
 	    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 		}
 		?>
@@ -71,19 +75,25 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
 
         $query =sprintf("SELECT * FROM users WHERE username LIKE '%%%s%%'" , $username);
 //	echo $query;
-        $result = mysqli_query($sql_link, $query);
-        
+        $result = mysqli_query($sql_link, $query)or die(mysql_error());
+        var_dump($result);
+
         $numrows = mysqli_num_rows($result);
-  
+
 	       if($numrows==0) {
                //make a new user
 				$insert_query = sprintf("INSERT INTO users (first_name, last_name, username, password, user_type) VALUES ('%s', '%s', '%s', '%s', '%s')", 
 				$first_name, $last_name, $username, $hash_password, $user_type);
-            
+            echo $insert_query;
+               
                $result = mysqli_query($sql_link, $insert_query);
+               var_dump($result);
+               echo mysqli_error($sql_link);
+               echo mysqli_error($result);               
+               
                echo json_encode($result);
     
-               if($result){
+            if($result){
 	           echo "Account Successfully Created";
                 } else {
                 echo "Failure!";

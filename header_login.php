@@ -31,8 +31,8 @@
 <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-        <li><a href="/peak_login.php"/>Login</li>
-        <li><a href="/peak_registration.php"/>Register</li>    
+        <li><a href="/peak_login.php">Login</a></li>
+        <li><a href="/peak_registration.php">Register</a></li>    
     </ul>
 
   </section>

@@ -1,5 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 ob_start();
+
 
 if(isset($_POST["submit"])){
 if(!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -7,11 +11,14 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$password =$_POST['password'];
     //connect to database in mysql
 	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
-    $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
     
+    $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
+    echo $query;
     $result = mysqli_query($con, $query);
+    echo mysqli_error($sql_link);
 //    echo $query;
     var_dump($result);
+    
     //get a row value of only 1 to know the user is in the database 
 	$numrows=mysqli_num_rows($result);
     //get the array keys to make the first name, last name, and type variables
@@ -36,7 +43,7 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
     if ($row['user_type'] == "Athlete") {
   
             /* Redirect browser */
-            header("Location: athlete/member_athlete.php");     
+            header("Location: /athlete/member_athlete.php");     
         } 
         else {
             //redirect for the coaches page
@@ -46,25 +53,32 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
 }
 ob_end_flush();
 ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Peak 360 Crossfit</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--         <link rel="stylesheet" href="css/normalize.min.css"> -->
-        <link rel="stylesheet" href="css/main.css">
+<html class="no-js" lang="en">
 
-<!--         // <script src="js/vendor/modernizr-2.6.2.min.js"></script> -->
+  <head>
+    <meta charset="utf-8" />
+    <!-- if you remove this meta tag, the NSA will spy on you through your Xbox Kinect camera -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peak 360 Crossfit</title>
+    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="stylesheets/app.css" />
+    <script src="bower_components/modernizr/modernizr.js"></script>
+  </head>
 
-    </head>
-    <body>
-        <script src="js/main.js"></script>
+  <body>
+
+    <!-- body content here -->
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+
+
 
 <!-- -------------------------------------NAVIGATION------------------------- -->
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');?>
+
 
 <div class="row">
     <div class="small-8 small-centered large-6 large-centered columns">      
