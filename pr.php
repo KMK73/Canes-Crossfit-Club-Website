@@ -10,25 +10,31 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
 <!--      start member session---------------------------------------------------->
 
-<div class="row">
-            <div class="large-6 columns" >
-            <!--call the user first name from the database-->
-
-            <h2><?=$_SESSION['first_name'];?> Personal Records</h2>
+<!--        user icon image-->
+    <div class="row">
+        <div class="large-6 columns user-info-panel">
             <div class="small-6 columns" >
-            <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>
+<!--      cannot get the image string to work     
+
+*****************************************************************
+
+-->
+                <?php echo $_SESSION['user_avatar'];?>
+            <img src="userfiles/avatar/.<?php $_SESSION['user_avatar'];?>." alt="User Icon">
+
+            </div>
+            
         <div class="small-6 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
     </div>
-</div>
-      
-      
+
       
 <!--new PR button-->
-<div class="row">
-    <div class="large-6 columns">
+<div class="row">    
+    <div class="large-12 columns">
+    <h2><?=$_SESSION['first_name'];?> Personal Records</h2>
         <a href="create_pr.php" class="button round">Add new PR</a>
     </div>
 </div>

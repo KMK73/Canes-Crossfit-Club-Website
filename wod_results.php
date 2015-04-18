@@ -12,15 +12,33 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
     <!-- body content here -->
 
+<!--        user icon image-->
+    <div class="row">
+        <div class="large-6 columns user-info-panel">
+            <div class="small-6 columns" >
+<!--      cannot get the image string to work     
 
-<!--      start member session---------------------------------------------------->
+*****************************************************************
+
+-->
+                <?php echo $_SESSION['user_avatar'];?>
+            <img src="userfiles/avatar/.<?php $_SESSION['user_avatar'];?>." alt="User Icon">
+
+            </div>
+            
+        <div class="small-6 columns">
+            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
+            <p><?=$_SESSION['user_type'];?></p>
+        </div>
+    </div>
 
 
 <!--        start of RESULTS AREA row---------------------------------------->
       
 <!--        Database call for workouts api ---------------------------------------------->
 
-<div class="row">    
+<div class="row"> 
+    <div class="large-12 columns">
     <h2>Log your results for</h2>
     <form action ="wod_results.php" method="POST">
         <select class="wod_name" name ="wod_results">
@@ -37,9 +55,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             ?>  
         </select>
         <input class="button" type="submit" name="wod_name" value="Log this Workout" />
+        </div>
+    </div>
 
     <!--display the selected workout description--------------------------------->
-    
+    <div class="row">
 		      <?php if($_POST['wod_name']): ?>
                 <div class="small-12 small-centered columns">
                     <div class="panel">
@@ -68,20 +88,24 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             </div>
     </div>
 </div>
-        
+</div>
+
+<div class="row">
+            <div class="large-6 columns">
     <h3>What was your score for this workout?</h3>
 <!--            <form name="wod_result_form" action ="wod_results.php" method="POST">-->
-                <h4>Workout Score</h4>
                 <input type="text" name="workout_score">
-
+</div>
+    <div class="large-6 columns">
             <h3>How did you perform this workout?</h3>
-                <h4>Level</h4>
                 <input type = "radio" name="workout_level" value= "RX">RX
                 <input type = "radio" name="workout_level" value= "Scaled" > Scaled
-
+            </div>
+    <div class="large-12 columns">
             <p><input class="button" type="submit" name="submit" value="Submit"></p>
         </form>
-    </div>        
+    </div>   
+</div>
            	<?php endif;?>         
 
     

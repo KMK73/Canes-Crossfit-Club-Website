@@ -61,6 +61,9 @@ if ($mysqli->connect_errno) {
 				$password = mysqli_escape_string($sql_link, $_POST['password']);
                 $hash_password = md5($password);
 				$user_type = mysqli_escape_string($sql_link, $_POST['user_type']);
+            $Destination = '/userfiles/avatars';    
+            $NewImageName= 'default.png';
+            move_uploaded_file($_FILES['ImageFile']['tmp_name'], "$Destination/$NewImageName");;
 
 
         $query =sprintf("SELECT * FROM users WHERE username LIKE '%%%s%%'" , $username);
@@ -72,8 +75,8 @@ if ($mysqli->connect_errno) {
 
 	       if($numrows==0) {
                //make a new user
-				$insert_query = sprintf("INSERT INTO users (first_name, last_name, username, password, user_type) VALUES ('%s', '%s', '%s', '%s', '%s')", 
-				$first_name, $last_name, $username, $hash_password, $user_type);
+				$insert_query = sprintf("INSERT INTO users (first_name, last_name, username, password, user_type, user_avatar) VALUES ('%s', '%s', '%s', '%s', '%s','%s')", 
+				$first_name, $last_name, $username, $hash_password, $user_type, $NewImageName);
 //            echo $insert_query;
                
                $result = mysqli_query($sql_link, $insert_query);

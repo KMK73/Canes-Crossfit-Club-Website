@@ -12,7 +12,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--      start member session---------------------------------------------------->
 
 <div class="row">
-            <div class="large-6 columns" >
+        <div class="large-6 columns user-info-panel">
             <!--call the user first name from the database-->
             <div class="small-6 columns" >
             <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>

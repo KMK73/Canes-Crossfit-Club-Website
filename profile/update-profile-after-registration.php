@@ -9,7 +9,7 @@
         require '../connect.php';
         $Destination = '../userfiles/avatars';
         if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name'])){
-            $NewImageName= 'default.jpg';
+            $NewImageName= 'default.png';
             move_uploaded_file($_FILES['ImageFile']['tmp_name'], "$Destination/$NewImageName");
         }
         else{
