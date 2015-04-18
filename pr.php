@@ -19,7 +19,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 *****************************************************************
 
 -->
-                <?php echo $_SESSION['user_avatar'];?>
+        <?php echo $_SESSION['user_avatar'];?>
             <img src="userfiles/avatar/.<?php $_SESSION['user_avatar'];?>." alt="User Icon">
 
             </div>
@@ -55,8 +55,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-        <div class="large-6 columns">
-            <div class="panel">
+        <div class="large-6 columns" data-equalizer>
+            <div class="panel" data-equalizer-watch>
                 <h3><?php echo $row['exercise_name']; ?></h3>
                 <p><?php echo $row['rep_description']; ?></p>
             

@@ -33,8 +33,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             <p><?=$_SESSION['user_type'];?></p>
         </div>
     </div>
-
-
+ </div>
+    
 <!--DATABASE CONNECTION AND club announcement -->
         <?php
         include '../connect.php';   
@@ -45,31 +45,32 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-        <div class="row">
-                <div class="large-8 columns">
-                        <h3><?php echo $row['announcement_name']; ?></h3>
+<div class="row">
+    <div class="large-12 columns panel">
+        <h2 id=homepage-announcement>CANES Crossfit Club Announcement</h2>
+        <div class="large-6 columns">
+                <h3><?php echo $row['announcement_name']; ?></h3>
+                    <p><?php echo $row['description']; ?></p>
+            </div>          
+               <div class="large-6 columns">
 <!--                    //insert iframe info here --> 
 <div class="flex-video">   
-    <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe></div>          
-                        <p><?php echo $row['description']; ?></p>     
-               </div>
-        </div>
-            <?php
-
-         };
-
-         ?>
-</div>
-    
+    <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe></div>              
+    <?php }; ?>
+    </div>
+ </div>
+    </div>
 <!--        start of WOD TITLE row row---------------------------------------->
    <div class="row">
+           <div class="small-11 large-12 columns">
         <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
             </script>
-       </h2>    
-    </div>
+       </h2> 
+       </div>
+       </div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
    <div class="row">    
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
@@ -83,7 +84,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-        <div class="large-6 columns">
+        <div class="small-11 columns large-6 columns">
             <div class="panel">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
@@ -91,16 +92,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
        </div>
       </div>
 
-            <?php
-
-         };
-
-         ?>
+            <?php }; ?>
          </div>
 
 
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
-<div class="row">    
+<div class="row">
+    <div class="large-12 columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="/athlete/member_athlete.php" method="POST">
             <?php         
@@ -120,7 +118,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
+    </div>
     <!--display the selected workout description--------------------------------->
+    <div class="large-12 columns">
     <?php if($_POST['submit']): ?>
                 <div class="small-12 large-6 columns">
                     <div class="panel">
@@ -140,9 +140,10 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                     echo $description_result['description'];
 
                 ?></p>
+            </div>
         </div>
     </div>
-</div>
+    </div>
 </div>
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
@@ -177,7 +178,7 @@ echo $wod_date;
 
  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   
-           <div class="small-8 small-centered large-6 large-centered columns">
+           <div class="small-12 small-centered large-12 large-centered columns">
             <?php
                 include '../connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 

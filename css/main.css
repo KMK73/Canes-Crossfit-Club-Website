@@ -70,9 +70,20 @@ table {
 #homepage-logo {
   padding-bottom: 20px;
 }
-    
-    
-    
+
+#activity-score, #activity-level {
+color: #fc7600;
+}
+#activity-date {
+color: #10a541;
+float: right;
+margin-left: 15px;
+}   
+
+/*HOMEPAGE ANNOUNCEMENT HEADING=================*/
+#homepage-announcement { 
+margin-bottom: 20px;
+}
 /* ==========================================================================
    Custom styles
    ========================================================================== */

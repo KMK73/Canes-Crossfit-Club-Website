@@ -8,7 +8,7 @@
 <!--        logo row ---------------------------------------->
     <div class="row">
         <div class="small-8 small-centered large-6 large-centered columns" id="homepage-logo">
-            <img src="images/ucrossfit_logo.png" alt="Gym Logo">
+            <center><img src="images/ucrossfit_logo.png" alt="Gym Logo"></center>
         </div>        
         <div class="large-12 large-centered columns">
             <center><h1>Welcome to Canes Peak 360 Crossfit Club</h1></center>
@@ -28,29 +28,31 @@
 
         ?>
         <div class="row">
-                <div class="large-8 columns">
-                        <h3><?php echo $row['announcement_name']; ?></h3>
-                    <div class="flex-video">   
-                    <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe></div>        
-                        <p><?php echo $row['description']; ?></p>     
-               </div>
-        </div>
-            <?php
-
-         };
-
-         ?>
-         </div>
-      
+    <div class="large-12 columns panel">
+        <h2 id=homepage-announcement>CANES Crossfit Club Announcement</h2>
+        <div class="large-6 columns">
+                <h3><?php echo $row['announcement_name']; ?></h3>
+                    <p><?php echo $row['description']; ?></p>
+            </div>          
+               <div class="large-6 columns">
+<!--                    //insert iframe info here --> 
+<div class="flex-video">   
+    <iframe width="560" height="315" src="<?php echo $row['link'];?>"frameborder="0" allowfullscreen></iframe></div>              
+    <?php }; ?>
+    </div>
+ </div>
+    </div>
 <!--        start of WOD TITLE row row---------------------------------------->
 <div class="row">
-       <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
+           <div class="small-11 large-12 columns">
+        <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
             </script>
-       </h2>    
-</div>
+       </h2> 
+       </div>
+       </div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
    <div class="row">    
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
@@ -161,7 +163,7 @@ echo $wod_date;
 
  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   
-           <div class="small-8 small-centered large-12 large-centered columns">
+           <div class="small-12 small-centered large-12 large-centered columns">
             <?php
                 include 'connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 

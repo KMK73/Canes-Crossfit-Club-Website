@@ -52,7 +52,7 @@
 <!--
       Call for mobile menu function
 -->
--->
+
 <script src="/bower_components/foundation/js/foundation.min.js"></script>  
 <script>
 $(document).ready(function() {

@@ -58,22 +58,26 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-        <div class="large-6 columns">
+    <div class="large-6 columns">
             <div class="panel">
-                <h3>Workout Name: <?php echo $row['workout_name']; ?></h3>
-                <p><?php echo $row['description']; ?></p>
-                <h4>Your Score: <?php echo $row['wod_score']; ?></h4>
-                <p><?php echo $row['wod_level']; ?></p> 
-                
+                        <!--        workout date-->
         <?php $integer_date = strtotime($row['wod_date']); //integer date format
 		$wod_date = date("F j, Y", $integer_date);?>
-                <p><?php echo $wod_date; ?></p>    
-        </div>   
-    </div>
+        <p id="activity-date"><?php echo $wod_date; ?></p>
+                
+            <h3>Workout Name: <?php echo $row['workout_name']; ?></h3>
+            <p><?php echo $row['description']; ?></p>
+            <h4 id="activity-score">Your Score: <?php echo $row['workout_score']; ?></h4>
+            <p id="activity-level">Performed: <?php echo $row['workout_level']; ?></p>
+                </div> 
+            </div> 
 
             <?php };?>
 </div>
-
+<script>
+      
+$(document).foundation('equalizer', 'reflow');
+</script>
 
     
     
