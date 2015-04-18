@@ -27,7 +27,7 @@
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-        <div class="row">
+        <div class="row small-10 small-centered medium-12 large-12 columns ">
     <div class="large-12 columns panel">
         <h2 id=homepage-announcement>CANES Crossfit Club Announcement</h2>
         <div class="large-6 columns">
@@ -44,7 +44,7 @@
     </div>
 <!--        start of WOD TITLE row row---------------------------------------->
 <div class="row">
-           <div class="small-11 large-12 columns">
+           <div class="small-10 small-centered medium-12 large-12 columns">
         <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
@@ -82,7 +82,7 @@
          </div>
 
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
-<div class="row">    
+<div class="row small-10 small-centered columns">    
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="index.php" method="POST">
             <?php         

@@ -13,28 +13,32 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
 
 <!--        start of icon image flexbox row---------------------------------------->
 <div class="row">
+    <div class="small-11 large-4 columns">
 <h1>Wod Database</h1>
 
 <!--new workout button-->
     <form action="/create_workout.php">
         <input class="button" type="submit" value="Add New Workout">
     </form> 
+</div>
 
 
-<!--       WORKOUT TABLE DATA flexbox row---------------------------------------->
-<div class="small-12 small-centered columns">
-<!--search bar and filter -->
-    <div class="small-12 small-centered columns">
-    <input type="search" id="database_search" placeholder="Search">
-    <h3>Type</h3><select> 
-            <option>Timed</option>
-            <option>Not Timed</option>
-            <option>Rounds</option>
-            <option>Reps</option>
-        </select>
-    </div>
-     </div>
-    </div>
+<!--       SEARCH FEATURE FOR PHASE 2---------------------------------------->
+<!--
+        <div class="small-11 large-8 columns">
+search bar and filter 
+            <div class="small-12 large-8 columns">
+            <input type="search" id="database_search" placeholder="Search">
+            <h3>Type</h3><select> 
+                    <option>Timed</option>
+                    <option>Not Timed</option>
+                    <option>Rounds</option>
+                    <option>Reps</option>
+            </select>
+            </div>
+      </div>
+-->
+</div>
     <!--        start of LEADERBOARD row---------------------------------------->
 <div class="row">
     <div class="large-12 columns">

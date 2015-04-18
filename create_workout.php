@@ -13,7 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
 
 <!--        start of icon image flexbox row---------------------------------------->
 <div class="row">
-      <div class="small-12 small-centered columns">
+      <div class="small-12 small-centered large-8 large-centered columns">
 <h1>Create New Workout</h1>
 
 <form action="create_workout.php" method="POST">
@@ -30,12 +30,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
         </select>
 
     <h2>Description</h2>
-        <input textarea placeholder="Workout Description" name="wod_description"/>
-
+<textarea placeholder="Description" name="wod_description"></textarea>
     <h2>Date</h2>
     <input type="date" name="wod_date">
     
-    <input type="submit" value="Create"/>
+    <center><input class="button" type="submit" value="Submit Workout"/></center>
           </form> 
     </div>
 </div>
@@ -53,9 +52,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
 <?php 
     include 'connect.php';
 
+//convert line breaks in texts using this function
+//$textToStore = nl2br(htmlentities($inputText, ENT_QUOTES, 'UTF-8'));
+
         $workout_name = mysqli_escape_string($sql_link, $_POST['workout_name']);
         $wod_type = mysqli_escape_string($sql_link, $_POST['wod_type']);
-        $description = mysqli_escape_string($sql_link, $_POST['wod_description']);
+        $description =$_POST['wod_description'];
+//convert line breaks in texts using this function
+        $description = nl2br(htmlentities($description, ENT_QUOTES, 'UTF-8'));
+
+//convert date into proper format
         $integer_date = strtotime($_POST['wod_date']); //integer date format
 		$wod_date = date("Y-m-d", $integer_date);
         
@@ -65,9 +71,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
 //        echo $query;
 		?>
 
-	<h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
+	<h1><div class="large-6 large-centered columns"><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
 			echo "Entered a workout for " . $_POST['name'] . " for " . $dateToDisplay;?>
-			</h1>
+			</h1></div>
 
 
 	<?php else:?>

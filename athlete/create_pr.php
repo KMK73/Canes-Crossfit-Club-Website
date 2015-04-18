@@ -40,8 +40,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 	   <input type="text" name="exercise_name"/>
 
     <h2>Enter Reps and Weights</h2>
-        <input textarea placeholder="Workout Description" name="rep_description"/>
-
+        <textarea placeholder="Workout Description" name="rep_description"></textarea>
     <h2>Date</h2>
     <input type="date" name="pr_date">
     
