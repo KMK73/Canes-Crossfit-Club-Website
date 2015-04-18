@@ -16,7 +16,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
 <!--        user icon image-->
     <div class="row">
-        <div class="large-6 columns" >
+        <div class="large-6 columns user-info-panel" >
             <!--call the user first name from the database-->
             <div class="small-6 columns" >
             <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>
@@ -30,7 +30,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
       
 <!--        Database call for workouts api ---------------------------------------------->
 
-<div class="row">    
+<div class="row"> 
+    <div class="large 6 columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="leaderboard.php" method="POST">
         <select class="wod_name" name ="leaderboard_wod"> 
@@ -48,10 +49,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             ?>  
         </select>
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
-    </form>
+        </form>
+    </div>
+</div>
     
 
     <!--display the selected workout description--------------------------------->
+<div class="row"> 
     <?php if($_POST['submit']): ?>
                 <div class="small-12 small-centered columns">
                     <div class="panel">
@@ -75,6 +79,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </div>
 </div>
 </div>
+
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
     <div class="large-12 columns">

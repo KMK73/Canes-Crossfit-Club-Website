@@ -25,6 +25,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
 }
+/*for top nav font links*/
+.top-bar-section ul li > a {
+    font-family: 'Oswald', sans-serif; 
+    font-weight: 100;
+    font-size: 16px;
+}
 
 /*change button styles*/
 button, .button {
@@ -57,6 +63,16 @@ a {
   opacity: 0;
   background: inherit;
 }
+
+table {
+    width: 100%;
+}
+#homepage-logo {
+  padding-bottom: 20px;
+}
+    
+    
+    
 /* ==========================================================================
    Custom styles
    ========================================================================== */

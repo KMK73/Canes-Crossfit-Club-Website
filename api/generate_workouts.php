@@ -32,15 +32,15 @@ var_dump($result);
         $workouts[] = $row['workout_id'];
     }
   
-    $number_of_results = 100;
+    $number_of_results = 25;
     
     for ($i = 0; $i < $number_of_results; $i++) {
         echo "Creating Record<br>";
         $selected_user = rand(0, sizeof($users));
         $selected_workout = rand(0, sizeof($workouts));
         $workout_score = rand(2,400);
-        $workout_level = rand(1,2);
-        $query = sprintf("INSERT INTO wod_results (workout_id, user_id, workout_score, workout_level) VALUES (%d, %d, %d, %d)", $workouts[$selected_workout], $users[$selected_user], $workout_score, $workout_level);
+        $workout_level = "'RX'";
+        $query = sprintf("INSERT INTO wod_results (workout_id, user_id, workout_score, workout_level) VALUES (%d, %d, %d, %s)", $workouts[$selected_workout], $users[$selected_user], $workout_score, $workout_level);
         echo $query;
         mysqli_query($sql_link, $query);
     }

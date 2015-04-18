@@ -1,11 +1,4 @@
-<?php 
-session_start();
-if(!isset($_SESSION["sess_user"])){
-	header("location:/peak_login.php");
-}
-include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
-?>
-<!DOCTYPE html>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?><!DOCTYPE html>
 <html class="no-js" lang="en">
 
   <body>
@@ -14,15 +7,15 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
 
 <!--        logo row ---------------------------------------->
     <div class="row">
-        <div class="small-8 small-centered large-6 large-centered columns">
+        <div class="small-8 small-centered large-6 large-centered columns" id="homepage-logo">
             <img src="images/ucrossfit_logo.png" alt="Gym Logo">
-        </div>
+        </div>        
+        <div class="large-12 large-centered columns">
+            <center><h1>Welcome to Canes Peak 360 Crossfit Club</h1></center>
+    </div>
     </div>
  <!--        start of ANNOUNCEMENTS row row---------------------------------------->     
     <div class="row">
-        <div class="large-12 columns">
-            <h1>Welcome to Canes Peak 360 Crossfit Club</h1>
-    </div>
    
 <!--DATABASE CONNECTION AND club announcement -->
         <?php
@@ -98,7 +91,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
 //            echo $query;
 
         ?>
-
+    <div class="large-6 columns">
         <select class="wod_name" name ="leaderboard_wod"> 
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
@@ -107,7 +100,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');
             
             ?>  
         </select>
-        <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
+        </div>
+            <div class="large-12 columns">
+                <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" /></div>
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
     <!--display the selected workout description--------------------------------->
@@ -166,7 +161,7 @@ echo $wod_date;
 
  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   
-           <div class="small-8 small-centered large-6 large-centered columns">
+           <div class="small-8 small-centered large-12 large-centered columns">
             <?php
                 include 'connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 

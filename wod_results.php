@@ -41,6 +41,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="large-12 columns">
     <h2>Log your results for</h2>
     <form action ="wod_results.php" method="POST">
+            <div class="large-6 columns">
         <select class="wod_name" name ="wod_results">
                 
             <?php include 'connect.php';
@@ -54,9 +55,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             
             ?>  
         </select>
+        </div>
+        <div class="small-12 columns">
         <input class="button" type="submit" name="wod_name" value="Log this Workout" />
         </div>
     </div>
+</div>
 
     <!--display the selected workout description--------------------------------->
     <div class="row">
