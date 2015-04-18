@@ -1,9 +1,62 @@
-/*! Building Interfaces HTML5 template */
+/*! Override custom style of Foundation 5 */
+
+
+/*UM ORANGE MAIN COLOR*/
+/*
+UM_ORANGE_HOVER = #fc963c;
+UM_ORANGE_MAIN = #fc7600  ;
+*/
+/*UM GREEN MAIN COLOR*/
+/*UM_GREEN = #0b762e;
+UM LIGHTER GREEN, LINKS #10a541 
+*/
+
+
 /*adding in Oswald google font */
-font-family: 'Oswald', sans-serif;
+font-family-sans-serif: 'Oswald', sans-serif;
+font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
+body {
+  font-family: 'Oswald', sans-serif;
+}
 
+/*change heading styles to oswald font*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+}
 
+/*change button styles*/
+button, .button {
+  font-family: 'Oswald', sans-serif;
+  background-color: #fc7600;
+  border-color: #fc963c;
+  color: #FFFFFF;
+  transition: background-color 300ms ease-out;
+}
+
+button:hover, button:focus, .button:hover, .button:focus {
+  background-color: #fc963c;
+}
+/* BUTTON HOVER TO UM LIGHT ORANGE*/
+button:hover, button:focus, .button:hover, .button:focus {
+  color: #FFFFFF;
+}
+/* BUTTON HOVER TO UM LIGHT ORANGE*/
+a {
+  color: #10a541;
+}
+
+.user-info-panel{
+  padding-bottom: 25px;
+  padding-top: 20px;
+  padding-left: 0;
+}
+
+.alert-box .close {
+  opacity: 0;
+  background: inherit;
+}
 /* ==========================================================================
    Custom styles
    ========================================================================== */

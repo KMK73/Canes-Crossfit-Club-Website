@@ -100,16 +100,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);
 //            echo $query;
-
         ?>
 
         <select class="wod_name" name ="leaderboard_wod"> 
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
             <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
-            <?php endwhile;?>	
-            
-            ?>  
+            <?php endwhile;?>	 
         </select>
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
 <!--        need an anchor tag for leaderboard----------------------->

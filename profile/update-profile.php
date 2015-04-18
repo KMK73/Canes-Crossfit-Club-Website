@@ -10,10 +10,25 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
   <body>
   <!-- body content here -->
-
+<!--        user icon image-->
+    <div class="row">
+        <div class="large-6 columns user-info-panel">
+            <!--call the user first name from the database-->
+            <div class="small-6 columns" >
+            <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>
+        <div class="small-6 columns">
+            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
+            <p><?=$_SESSION['user_type'];?></p>
+        </div>
+    </div>
+</div>
+        
+  <!--        start of update form-->  
+<div class="row">
+        <div class="large-12 large-centered columns" >
 <form action="profile/update-profile-after-registration.php" method="post" enctype="multipart/form-data" id="UploadForm" autocomplete="off">
 <?php
-    include 'connect.php';
+    include '../connect.php';
     $username = mysqli_real_escape_string($sql_link,$_REQUEST['username']);
     $query = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($sql_link,$query);
@@ -21,27 +36,27 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 ?>
     <div class="row">
         <div class="large-6 columns">
-            <label for="">First Name</label>
+            <h3>First Name</h3>
             <input type="text" class="form-control" placeholder="<?php echo $row['first_name'];?>" name="first_name" value="<?php echo $row['first_name'];?>" required>
         </div>
-        <div class="large-6 columns">
-            <label for="">Last Name</label>
+        <div class="large-6 large-centerd columns">
+            <h3>Last Name</h3>
             <input type="text" class="form-control"  placeholder="<?php echo $row['last_name'];?>" name="last_name" value="<?php echo $row['last_name'];?>" required>
         </div>        
     </div>    
     <div class="row">
-        <div class="large-6 columns">
-            <label for="">Password</label>
+        <div class="large-6 large-centerd columns">
+            <h3>Password</h3>
             <input type="password" class="form-control" placeholder="<?php echo $row['password'];?>" name="password" value="<?php echo $row['password'];?>" required>
         </div>
-        <div class="large-6 columns">
-            <label for="">Email</label>
+        <div class="large-6 large-centerd columns">
+            <h3>Email</h3>
             <input type="text" class="form-control" placeholder="<?php echo $row['username'];?>" name="username" value="<?php echo $row['username'];?>" required>
         </div>
     </div> 
         <div class="row">
-    <div class="large-6 columns">
-            <label for="">Avatar</label>
+    <div class="large-6 large-centerd columns">
+            <h3>Avatar</h3>
             <center><input name="ImageFile"  class="btn btn-primary ladda-button" data-style="zoom-in"  type="file"/></center>
             </div>  
     </div> 

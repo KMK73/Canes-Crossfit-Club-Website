@@ -7,14 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Canes Crossfit Club</title>
     <link rel="stylesheet" href="/stylesheets/app.css" />
-    <link rel="stylesheet" href="/css/main.css">
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/foundation/js/foundation.min.js"></script>
     <script src="/js/app.js"></script>       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="/css/main.css">
   </head>
 
   <body>
@@ -35,7 +34,7 @@
     <ul class="right">
         <li><a href="/peak_login.php"/>Login</li>
         <li><a href="/api/Logout.php"/>Logout</li>
-        <li><a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a></li>
+        <li><a href="/profile/update-profile.php"><?=$_SESSION['first_name'];?> Settings</a></li>
     </ul>
    <!-- Left Nav Section -->
     <ul class="left">

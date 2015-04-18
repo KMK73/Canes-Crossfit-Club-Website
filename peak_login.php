@@ -69,7 +69,8 @@ ob_end_flush();
         <form action="/peak_login.php" method="POST">
         Username: <input type="text" name="username"><br />
         Password: <input type="password" name="password"><br />	
-        <input class="button" type="submit" value="Login" name="submit" />
+                <center>
+            <input class="button" type="submit" value="Login" name="submit" /></center>
         </form>
    </div> 
         </div>
