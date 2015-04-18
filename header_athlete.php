@@ -10,7 +10,6 @@
       <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/foundation/js/foundation.min.js"></script>
     <script src="/js/app.js"></script>       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
@@ -18,6 +17,7 @@
 
   <body>
   <!-- body content here -->
+<script src="../js/foundation/foundation.topbar.js"></script>
 
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
@@ -29,13 +29,9 @@
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
 
+<!--    MOBILE SECTION CLASS-->
+
 <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-        <li><a href="/peak_login.php"/>Login</li>
-        <li><a href="/api/Logout.php"/>Logout</li>
-        <li><a href="/profile/update-profile.php"><?=$_SESSION['first_name'];?> Settings</a></li>
-    </ul>
    <!-- Left Nav Section -->
     <ul class="left">
         <li><a href="/activity.php">WOD Feed</a></li>
@@ -43,8 +39,25 @@
         <li><a href="/pr.php">PR's</a></li>
         <li><a href="/leaderboard.php">Leaderboard</a></li>
     </ul>
+            <!-- Right Nav Section -->
+    <ul class="right">
+        <li><a href="/peak_login.php"/>Login</li>
+        <li><a href="/api/Logout.php"/>Logout</li>
+        <li><a href="/profile/update-profile.php"><?=$_SESSION['first_name'];?> Settings</a></li>
+    </ul>
   </section>
 </nav>
-
+<!--
+      
+      Call for mobile menu function
+-->
+<script src="/bower_components/foundation/js/foundation.min.js"></script>  
+<script>
+$(document).ready(function() {
+    $(document).foundation();
+});
+</script>
+      
+      
     </body>
 </html>

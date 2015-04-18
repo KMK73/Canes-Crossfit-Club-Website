@@ -11,7 +11,6 @@
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   
@@ -38,6 +37,14 @@
 
   </section>
 </nav>
-
+      Call for mobile menu function
+-->
+      
+<script src="/bower_components/foundation/js/foundation.min.js"></script>  
+<script>
+$(document).ready(function() {
+    $(document).foundation();
+});
+</script>
     </body>
 </html>
