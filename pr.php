@@ -33,7 +33,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
       
 <!--new PR button-->
 <div class="row">    
-    <div class="large-12 columns">
+    <div class="small-10 small-centered large-12 columns">
     <h2><?=$_SESSION['first_name'];?> Personal Records</h2>
         <a href="create_pr.php" class="button round">Add new PR</a>
     </div>
@@ -55,7 +55,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-        <div class="large-6 columns" data-equalizer>
+        <div class="small-10 small-centered large-12 columns" data-equalizer>
             <div class="panel" data-equalizer-watch>
                 <h3><?php echo $row['exercise_name']; ?></h3>
                 <p><?php echo $row['rep_description']; ?></p>

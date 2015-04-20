@@ -81,8 +81,27 @@ margin-left: 15px;
 }   
 
 /*HOMEPAGE ANNOUNCEMENT HEADING=================*/
+#homepage-logo {
+  padding-bottom: 20px;
+    margin-top: 15px;
+}
+
 #homepage-announcement { 
 margin-bottom: 20px;
+}
+
+#home-h1 {
+   margin-bottom: 20px;
+  margin-top: 10px;   
+}
+#logo-image {
+   margin-bottom: 20px;
+}
+
+/*LEADERBOARD CSS*/
+table tr th {
+    color: #0b762e;
+    background-color: #d8d8d8;
 }
 /* ==========================================================================
    Custom styles

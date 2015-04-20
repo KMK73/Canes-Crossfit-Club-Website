@@ -11,12 +11,11 @@
             <center><img src="images/ucrossfit_logo.png" alt="Gym Logo"></center>
         </div>        
         <div class="large-12 large-centered columns">
-            <center><h1>Welcome to Canes Peak 360 Crossfit Club</h1></center>
+            <h1 id="home-h1" class="text-center">Welcome to Canes Peak 360 Crossfit Club</h1>
     </div>
     </div>
- <!--        start of ANNOUNCEMENTS row row---------------------------------------->     
+ <!--        start of ANNOUNCEMENTS row---------------------------------------->     
     <div class="row">
-   
 <!--DATABASE CONNECTION AND club announcement -->
         <?php
         include 'connect.php';   
@@ -27,8 +26,8 @@
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-        <div class="row small-10 small-centered medium-12 large-12 columns ">
-    <div class="large-12 columns panel">
+        <div class="row">
+    <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel clearfix columns">
         <h2 id=homepage-announcement>CANES Crossfit Club Announcement</h2>
         <div class="large-6 columns">
                 <h3><?php echo $row['announcement_name']; ?></h3>
@@ -42,9 +41,9 @@
     </div>
  </div>
     </div>
-<!--        start of WOD TITLE row row---------------------------------------->
+<!--        start of WOD TITLE row---------------------------------------->
 <div class="row">
-           <div class="small-10 small-centered medium-12 large-12 columns">
+           <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
         <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
@@ -65,14 +64,12 @@
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-
-        <div class="large-6 columns">
-                <div class="panel">
+                <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a> 
             </div>
-       </div>
+<!--       </div>-->
 
             <?php
 
@@ -82,7 +79,8 @@
          </div>
 
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
-<div class="row small-10 small-centered columns">    
+<div class="row"> 
+    <div class="small-12 small-centered medium-11 large-12 panel clearfix columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="index.php" method="POST">
             <?php         
@@ -110,7 +108,7 @@
     <!--display the selected workout description--------------------------------->
     <?php if($_POST['submit']): ?>
                 <div class="small-12 large-6 columns">
-                    <div class="panel">
+<!--                    <div class="panel">-->
                     <div id="wod_results">
                 <h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
@@ -131,9 +129,10 @@
     </div>
 </div>
 </div>
+
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
-    <div class="large-12 columns">
+    <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
         <h2>LEADERBOARD</h2>
         <h4> <?php 
 //    selected workout date from dropdown                 
@@ -163,7 +162,7 @@ echo $wod_date;
 
  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   
-           <div class="small-12 small-centered large-12 large-centered columns">
+           <div class="small-12 small-centered medium-12 medium-centered large-12 large-centered columns">
             <?php
                 include 'connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 
@@ -217,7 +216,7 @@ echo "</table>";
 
     </div>
 </div>
-    
+ 
     
     
     </body>

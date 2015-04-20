@@ -38,10 +38,10 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row"> 
-    <div class="large-12 columns">
-    <h2>Log your results for</h2>
+    <div class="small-10 small-centered large-12 columns">
+    <h2>Log your results for: </h2>
     <form action ="wod_results.php" method="POST">
-            <div class="large-6 columns">
+            <div class="small-12 small-centered large-12 columns">
         <select class="wod_name" name ="wod_results">
                 
             <?php include 'connect.php';
@@ -56,7 +56,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             ?>  
         </select>
         </div>
-        <div class="small-12 columns">
+        <div class="small-12 small-centered columns">
         <input class="button" type="submit" name="wod_name" value="Log this Workout" />
         </div>
     </div>
@@ -65,7 +65,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <!--display the selected workout description--------------------------------->
     <div class="row">
 		      <?php if($_POST['wod_name']): ?>
-                <div class="small-12 small-centered columns">
+                <div class="small-10 small-centered large-12 columns">
                     <div class="panel">
                     <div id="wod_results">
                 <h3><?php echo "Description of Workout"?></h3>            
@@ -95,17 +95,17 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 </div>
 
 <div class="row">
-            <div class="large-6 columns">
+            <div class="small-10 small-centered large-12 columns">
     <h3>What was your score for this workout?</h3>
 <!--            <form name="wod_result_form" action ="wod_results.php" method="POST">-->
                 <input type="text" name="workout_score">
 </div>
-    <div class="large-6 columns">
+    <div class="small-10 small-centered large-12 columns">
             <h3>How did you perform this workout?</h3>
                 <input type = "radio" name="workout_level" value= "RX">RX
                 <input type = "radio" name="workout_level" value= "Scaled" > Scaled
             </div>
-    <div class="large-12 columns">
+    <div class="small-10 small-centered large-12 columns">
             <p><input class="button" type="submit" name="submit" value="Submit"></p>
         </form>
     </div>   

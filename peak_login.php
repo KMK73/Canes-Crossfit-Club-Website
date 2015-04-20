@@ -60,12 +60,12 @@ ob_end_flush();
 
 <div class="row">
     <div class="small-8 small-centered large-6 large-centered columns">  
-        <img src="images/ucrossfit_logo.png" alt="Gym Logo">
+        <center><img id="logo-image" src="images/ucrossfit_logo.png" alt="Gym Logo"></center>
       </div>
 </div>
         
 <div class="row">
-    <div class="small-8 small-centered large-6 large-centered columns">
+    <div class="small-6 small-centered large-6 large-centered columns">
     <h3>Login Form</h3>
         <form action="/peak_login.php" method="POST">
         Username: <input type="text" name="username"><br />
@@ -77,8 +77,8 @@ ob_end_flush();
         </div>
 
 <div class="row">
-        <div class="small-8 small-centered large-6 large-centered columns">
-            <p>Not a member? <a href="/peak_registration.php">Register</a></p>     
+        <div class="small-6 small-centered large-6 large-centered columns">
+            <p class="text-center">Not a member? <a href="/peak_registration.php">Register</a></p>    
         </div>
     </div>
             
