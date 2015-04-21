@@ -31,22 +31,25 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             <p><?=$_SESSION['user_type'];?></p>
         </div>
     </div>
-
+</div>
 
 <!--        start of RESULTS AREA row---------------------------------------->
       
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row"> 
-    <div class="small-10 small-centered large-12 columns">
-    <h2>Log your results for: </h2>
+    <div class="small-10 small-centered medium-10 medium-centered large-12 panel clearfix columns">
+             <div class="small-12 small-centered large-6 large-uncentered columns">
+        <h2>Log your results for: </h2>
     <form action ="wod_results.php" method="POST">
-            <div class="small-12 small-centered large-12 columns">
         <select class="wod_name" name ="wod_results">
                 
             <?php include 'connect.php';
 
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            if($query === FALSE) { 
+                die(mysql_error()); // TODO: better error handling
+            }
             $result = mysqli_query($sql_link, $query);  ?>
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
@@ -55,18 +58,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             
             ?>  
         </select>
-        </div>
-        <div class="small-12 small-centered columns">
-        <input class="button" type="submit" name="wod_name" value="Log this Workout" />
-        </div>
-    </div>
-</div>
 
+        <input class="button" type="submit" name="wod_name" value="Log this Workout" />
+
+    </form>
+    </div>
     <!--display the selected workout description--------------------------------->
     <div class="row">
 		      <?php if($_POST['wod_name']): ?>
-                <div class="small-10 small-centered large-12 columns">
-                    <div class="panel">
+                <div class="small-12 small-centered large-6 large-uncentered columns">
+                    <div class="panel" id="wod_results_description">
                     <div id="wod_results">
                 <h3><?php echo "Description of Workout"?></h3>            
 
@@ -92,8 +93,15 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             </div>
     </div>
 </div>
+</div>        
+        
+        
+        
 </div>
 
+<!--//ending div for main log row-->
+</div>
+    
 <div class="row">
             <div class="small-10 small-centered large-12 columns">
     <h3>What was your score for this workout?</h3>

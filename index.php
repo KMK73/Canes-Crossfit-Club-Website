@@ -53,7 +53,7 @@
        </div>
        </div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
-   <div class="row">    
+   <div class="row"> 
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
         <?php
         include 'connect.php';   
@@ -64,19 +64,19 @@
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-                <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
+                <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered panel columns">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a> 
             </div>
-<!--       </div>-->
+
 
             <?php
 
          };
 
          ?>
-         </div>
+</div>
 
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
 <div class="row"> 
@@ -111,7 +111,8 @@
 <!--                    <div class="panel">-->
                     <div id="wod_results">
         <!--        anchor link for get workout leaderboard-->
-        <a name="leaderboard"></a><h3><?php echo "Description of Workout"?></h3>  
+        <a name="leaderboard"></a><h3>
+            <?php echo "Description of Workout"?></h3>  
                 <p> <?php 
                     
                     $selected_description =$_POST['leaderboard_wod']; 

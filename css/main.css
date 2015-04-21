@@ -103,6 +103,32 @@ table tr th {
     color: #0b762e;
     background-color: #d8d8d8;
 }
+
+
+/*WOD RESULTS LOG STYLES FOR FORMS=================*/
+#wod_results_description {
+background: #0b762e;
+    border-radius: 10px;
+}
+
+#wod_results_description h3, #wod_results_description p {
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
    Custom styles
    ========================================================================== */
