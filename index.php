@@ -192,12 +192,14 @@ WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
             $result = mysqli_query($sql_link, $query);
 
       echo "<table>
+            <th>Rank</th>
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
             <tr>";
-
+$count =1; //start the ranking count
+                
 while($row = mysqli_fetch_array($result)){
   // define all of our variables 
  
@@ -209,8 +211,9 @@ while($row = mysqli_fetch_array($result)){
  
 // Now for each looped row
  
-echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+echo "<tr><td>".$count."</td><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
  
+$count++;
 } // End our while loop
 echo "</table>";
 }?>

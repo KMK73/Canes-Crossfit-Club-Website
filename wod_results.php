@@ -46,7 +46,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                 
             <?php include 'connect.php';
 
-            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $query = "SELECT * FROM workouts";
             if($query === FALSE) { 
                 die(mysql_error()); // TODO: better error handling
             }
@@ -95,14 +95,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 </div>
 </div>        
         
-        
-        
-</div>
-
-<!--//ending div for main log row-->
-</div>
-    
-<div class="row">
+    <div class="row">
+        <div class="small-10 small-centered medium-11 medium-centered large-12 columns">
             <div class="small-10 small-centered large-12 columns">
     <h3>What was your score for this workout?</h3>
 <!--            <form name="wod_result_form" action ="wod_results.php" method="POST">-->
@@ -118,7 +112,14 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         </form>
     </div>   
 </div>
+</div>
            	<?php endif;?>         
+    
+        
+</div>
+
+<!--//ending div for main log row-->
+</div>     
 
     
 <!--      ENTERING WORKOUT RESULTS INTO DATABASE BASED ON USER-->

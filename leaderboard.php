@@ -31,7 +31,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row"> 
-    <div class="large 6 columns">
+    <div class="small-10 small-centered medium-10 medium-centered large-12 panel clearfix columns">
+             <div class="small-12 small-centered large-6 large-uncentered columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="leaderboard.php" method="POST">
         <select class="wod_name" name ="leaderboard_wod"> 
@@ -51,14 +52,14 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" />
         </form>
     </div>
-</div>
+
     
 
     <!--display the selected workout description--------------------------------->
 <div class="row"> 
     <?php if($_POST['submit']): ?>
-                <div class="small-12 small-centered columns">
-                    <div class="panel">
+                <div class="small-12 small-centered large-6 large-uncentered columns">
+                    <div class="panel" id="wod_results_description">
                     <div id="wod_results">
                 <h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
@@ -79,7 +80,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </div>
 </div>
 </div>
-
+</div>
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
     <div class="large-12 columns">
@@ -147,12 +148,14 @@ WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
             $result = mysqli_query($sql_link, $query);
 
       echo "<table>
+            <th>Rank</th>
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
             <tr>";
-
+$count =1; //start the ranking count
+                
 while($row = mysqli_fetch_array($result)){
   // define all of our variables 
  
@@ -164,8 +167,9 @@ while($row = mysqli_fetch_array($result)){
  
 // Now for each looped row
  
-echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+echo "<tr><td>".$count."</td><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
  
+$count++;
 } // End our while loop
 echo "</table>";
 }?>

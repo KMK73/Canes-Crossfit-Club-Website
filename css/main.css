@@ -32,6 +32,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 16px;
 }
 
+/*===========BUTTON STYLE CHANGES    =================================================== */
+
 /*change button styles*/
 button, .button {
   font-family: 'Oswald', sans-serif;
@@ -39,6 +41,7 @@ button, .button {
   border-color: #fc963c;
   color: #FFFFFF;
   transition: background-color 300ms ease-out;
+    border-radius: 5px;
 }
 
 button:hover, button:focus, .button:hover, .button:focus {
@@ -51,6 +54,17 @@ button:hover, button:focus, .button:hover, .button:focus {
 /* BUTTON HOVER TO UM LIGHT ORANGE*/
 a {
   color: #10a541;
+}
+
+input[type="submit"] {
+  -webkit-appearance: none;
+  border-radius: 5px;
+}
+
+/*===========PANEL STYLE CHANGES FROM DEFAULT  =================================================== */
+
+.panel {
+  border-radius: 5px;    
 }
 
 .user-info-panel{
@@ -115,8 +129,9 @@ background: #0b762e;
     color: white;
 }
 
-
-
+select.wod_name {
+  margin-top: 15px;
+}
 
 
 

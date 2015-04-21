@@ -29,13 +29,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             <p><?=$_SESSION['user_type'];?></p>
         </div>
     </div>
-
-      
+</div>
+    
 <!--new PR button-->
 <div class="row">    
-    <div class="small-10 small-centered large-12 columns">
+    <div class="small-10 small-centered medium-11 medium-centered large-12 columns">
     <h2><?=$_SESSION['first_name'];?> Personal Records</h2>
-        <a href="create_pr.php" class="button round">Add new PR</a>
+        <a href="create_pr.php" class="button">Add new PR</a>
     </div>
 </div>
 
@@ -55,7 +55,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-        <div class="small-10 small-centered large-12 columns" data-equalizer>
+        <div class="small-10 small-centered medium-11 medium-centered large-6 large-uncentered columns" data-equalizer>
             <div class="panel" data-equalizer-watch>
                 <h3><?php echo $row['exercise_name']; ?></h3>
                 <p><?php echo $row['rep_description']; ?></p>

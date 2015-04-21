@@ -102,7 +102,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <div class="row"> 
     <div class="small-12 small-centered medium-11 large-12 panel clearfix columns">
     <h2>Select Workout to see current Leaderboard</h2>
-    <form action ="/member/member-athlete.php#leaderboard" method="POST">
+    <form action ="/athlete/member_athlete.php#leaderboard" method="POST">
             <?php         
             include '../connect.php'; 
 				
@@ -212,12 +212,15 @@ WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
             $result = mysqli_query($sql_link, $query);
 
       echo "<table>
+            <th>Rank</th>
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
             <tr>";
 
+    $count =1; //start the ranking count
+                
 while($row = mysqli_fetch_array($result)){
   // define all of our variables 
  
@@ -229,8 +232,10 @@ while($row = mysqli_fetch_array($result)){
  
 // Now for each looped row
  
-echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+echo "<tr><td>".$count."</td><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
  
+$count++; //increment the ranking count after each row
+    
 } // End our while loop
 echo "</table>";
 }?>
