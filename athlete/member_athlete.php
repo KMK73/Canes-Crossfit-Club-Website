@@ -64,14 +64,17 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </div>
 <!--        start of WOD TITLE row---------------------------------------->
 <div class="row">
-           <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
-        <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
+           <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel clearfix columns">
+               <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered columns">
+        <h2>CANES Crossfit Club WOD</h2></div>
+        <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered columns">
+        <h3 id="date" class="large-text-right"></h3>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
-            </script>
-       </h2> 
+            </script> 
        </div>
+</div>
 </div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
    <div class="row"> 

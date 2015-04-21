@@ -25,6 +25,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
 }
+
 /*for top nav font links*/
 .top-bar-section ul li > a {
     font-family: 'Oswald', sans-serif; 
@@ -67,6 +68,12 @@ input[type="submit"] {
   border-radius: 5px;    
 }
 
+/*
+.panel h3 {
+ color: green;
+}
+*/
+
 .user-info-panel{
   padding-bottom: 25px;
   padding-top: 20px;
@@ -94,7 +101,7 @@ float: right;
 margin-left: 15px;
 }   
 
-/*HOMEPAGE ANNOUNCEMENT HEADING=================*/
+/*HOMEPAGE not loggedin ANNOUNCEMENT HEADING=================*/
 #homepage-logo {
   padding-bottom: 20px;
     margin-top: 15px;
@@ -116,6 +123,14 @@ margin-bottom: 20px;
 table tr th {
     color: #0b762e;
     background-color: #d8d8d8;
+    font-size: 16px;
+}
+
+/*MEMBER ATHLETE =================*/
+
+#date {
+margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 

@@ -29,7 +29,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <div class="row">
     <div class="large-6 columns">
         <h3>Activity Feed</h3>
-        <a href="wod_results.php" class="button round">Go Log more Workouts!</a>
+        <a href="wod_results.php" class="button">Go Log more Workouts!</a>
     </div>
 </div>
 

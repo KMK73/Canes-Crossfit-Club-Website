@@ -44,7 +44,7 @@
 <!--        start of WOD TITLE row---------------------------------------->
 <div class="row">
            <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
-        <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
+        <h2>CANES Crossfit Club WOD<h3 id="date"></h3>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
@@ -57,7 +57,7 @@
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
         <?php
         include 'connect.php';   
-        $query ="SELECT * FROM workouts WHERE wod_date = CURDATE()";
+        $query ="SELECT * FROM workouts WHERE wod_date = DATE_SUB(CURDATE(),INTERVAL 5 HOUR)";
         $result = mysqli_query($sql_link, $query);
 
     //create div boxes for workouts of current date from mysql 
