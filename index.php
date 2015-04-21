@@ -82,7 +82,7 @@
 <div class="row"> 
     <div class="small-12 small-centered medium-11 large-12 panel clearfix columns">
     <h2>Select Workout to see current Leaderboard</h2>
-    <form action ="index.php" method="POST">
+    <form action ="index.php#leaderboard" method="POST">
             <?php         
             include 'connect.php'; 
 				
@@ -102,7 +102,7 @@
         </select>
         </div>
             <div class="large-12 columns">
-                <input class="button" type="submit" name="submit" value="Get Workout Leaderboard" /></div>
+                <input class="button" type="submit" name="submit" value="Get Workout Leaderboard"/></div>
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
     <!--display the selected workout description--------------------------------->
@@ -110,7 +110,8 @@
                 <div class="small-12 large-6 columns">
 <!--                    <div class="panel">-->
                     <div id="wod_results">
-                <h3><?php echo "Description of Workout"?></h3>  
+        <!--        anchor link for get workout leaderboard-->
+        <a name="leaderboard"></a><h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
                     
                     $selected_description =$_POST['leaderboard_wod']; 
@@ -156,7 +157,6 @@ $wod_date = date("l F jS, Y", $integer_date); //Day, Month, Day, Year
 echo $wod_date;
 
                 ?></h4>
-
 
 <?php endif;?>  
 
