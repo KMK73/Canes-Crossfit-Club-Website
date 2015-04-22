@@ -40,19 +40,21 @@
 
         if( mysqli_num_rows($result) > 0) {
             mysqli_query($sql_link,$sql3)or die(mysqli_error($sql_link));
-    
+    /*
         if ($_SESSION['user_type'] == "Athlete") {
   
-            /* Redirect browser */
             header("Location: /athlete/member_athlete.php");     
         } 
         else {
             //redirect for the coaches page
             header("Location: /home_coach.php");        
         };
+*/
     ?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+    <?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?>
 <!-------- body content here -->
 <!--        logo row ---------------------------------------->
     <div class="row">
@@ -64,7 +66,7 @@
     <div class="row">
         <div class="large-12 columns">
             <h1>Successfully updated your profile information</h1>
-            <button type="button" class="button">Return to Homepage</button>
+            <button type="button" class="button"><a href="../athlete/member_athlete.php">Return to Homepage</button></a>
     </div>
         
         <?php }

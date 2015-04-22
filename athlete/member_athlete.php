@@ -18,14 +18,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
             <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
             <div class="small-6 columns" >
-<!--      cannot get the image string to work     
-
-*****************************************************************
-
--->
-                <?php echo $_SESSION['user_avatar'];?>
-            <img src="userfiles/avatar/.<?php $_SESSION['user_avatar'];?>." alt="User Icon">
-
+<!--    image string to work     -->
+            <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
             
         <div class="small-6 columns">

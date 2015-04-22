@@ -15,7 +15,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         <div class="large-6 columns user-info-panel">
             <!--call the user first name from the database-->
             <div class="small-6 columns" >
-            <img src="/images/canes_crossfit_avatar_black.png" alt="User Icon"></div>
+<!--    image string to work     -->
+            <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
+            </div>
         <div class="small-6 columns">
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
@@ -29,7 +31,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <form action="update-profile-after-registration.php" method="post" enctype="multipart/form-data" id="UploadForm" autocomplete="off">
 <?php
     include '../connect.php';
-    $username = mysqli_real_escape_string($sql_link,$_REQUEST['username']);
+    $username = mysqli_real_escape_string($sql_link,$_SESSION['username']);
     $query = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($sql_link,$query);
     $row = mysqli_fetch_array($result);
@@ -60,10 +62,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             <center><input name="ImageFile"  class="btn btn-primary ladda-button" data-style="zoom-in"  type="file"/></center>
             </div>  
     </div> 
-<?php
-    $user_username =  $_POST['username'];
-?>     
-    <hr>                 
+                
     <div class="submit">           
         <center>
             <button class="btn btn-primary ladda-button" data-style="zoom-in" type="submit"  id="SubmitButton" value="Upload" />Save Your Profile</button>

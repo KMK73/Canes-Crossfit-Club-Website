@@ -14,14 +14,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="row">
         <div class="large-6 columns user-info-panel">
             <div class="small-6 columns" >
-<!--      cannot get the image string to work     
-
-*****************************************************************
-
--->
-                <?php echo $_SESSION['user_avatar'];?>
-            <img src="userfiles/avatar/.<?php $_SESSION['user_avatar'];?>." alt="User Icon">
-
+<!--    image string to work     -->
+            <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
             
         <div class="small-6 columns">
