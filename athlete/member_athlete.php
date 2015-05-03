@@ -13,16 +13,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
 <!--        user icon image-->
     <div class="row">
-        <div class="large-6 columns user-info-panel">
+        <div class="large-6 columns user-info-panel" >
             <!--call the user first name from the database-->
 
             <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
-            <div class="small-6 columns" >
+            <div class="small-6 columns" id="user-avatar-div" >
 <!--    image string to work     -->
             <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
             
-        <div class="small-6 columns">
+        <div>
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
@@ -71,7 +71,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 </div>
 </div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
-   <div class="row"> 
+   <div class="row" data-equalizer= "box">
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
         <?php
         include '../connect.php';   
@@ -82,7 +82,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-                <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered panel columns">
+                <div class="small-12 small-centered medium-11 medium-centered large-4 large-uncentered panel columns" data-equalizer-watch="box" id="wod_box">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a> 

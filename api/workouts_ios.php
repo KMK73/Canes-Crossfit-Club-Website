@@ -4,7 +4,7 @@ ini_set('display_errors',1);
 ?>
    <?php
 		include 'connect.php';
-		$query = "SELECT * FROM workouts";
+		$query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
 
 		$result = mysqli_query($sql_link, $query);        
         $workouts = array();
@@ -18,6 +18,7 @@ ini_set('display_errors',1);
             "Description" => utf8_encode($row['description'])
             );
         }
-        $json = json_encode($workouts);
+        $json_plus = array("workouts" => $workouts);
+        $json = json_encode($json_plus);
         echo $json;
 ?>

@@ -14,7 +14,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="row">
         <div class="large-6 columns user-info-panel">
             <!--call the user first name from the database-->
-            <div class="small-6 columns" >
+            <div class="small-6 columns" id="user-avatar-div">
 <!--    image string to work     -->
             <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>

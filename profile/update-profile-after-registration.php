@@ -54,7 +54,20 @@
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-    <?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?>
+  <head>
+    <meta charset="utf-8" />
+  <!-- if you remove this meta tag, the NSA will spy on you through your Xbox Kinect camera -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peak 360 Crossfit</title>
+    <link rel="stylesheet" href="../stylesheets/app.css" />
+      <link rel="stylesheet" href="../css/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../js/app.js"></script>       
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+</head>
 <!-------- body content here -->
 <!--        logo row ---------------------------------------->
     <div class="row">
@@ -64,9 +77,9 @@
     </div>
  <!--       SUCCESSFUL UPDATE----------------------------------------> 
     <div class="row">
-        <div class="large-12 columns">
-            <h1>Successfully updated your profile information</h1>
-            <button type="button" class="button"><a href="../athlete/member_athlete.php">Return to Homepage</button></a>
+        <div class="large-12 columns" id="update_success">
+            <center><h1>Successfully updated your profile information</h1></center>
+            <center><button type="button" class="button" id="return_homepage"><a href="../athlete/member_athlete.php">Return to Homepage</button></a></center>
     </div>
         
         <?php }

@@ -18,7 +18,7 @@ ini_set('display_errors',1);
             "Description" => utf8_encode($row['description'])
             );
         }
-        $json_plus = array("result" => "success", "workouts" => $workouts);
-        $json = json_encode($workouts);
+        $json_plus = array("workouts" => $workouts);
+        $json = json_encode($json_plus);
         echo $json;
 ?>

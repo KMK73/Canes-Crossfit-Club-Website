@@ -13,12 +13,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--        user icon image-->
     <div class="row">
         <div class="large-6 columns user-info-panel">
-            <div class="small-6 columns" >
+            <div class="small-6 columns" id="user-avatar-div" >
 <!--    image string to work     -->
             <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
             
-        <div class="small-6 columns">
+        <div>
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
@@ -51,24 +51,16 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         <div class="small-10 small-centered medium-11 medium-centered large-6 large-uncentered columns" data-equalizer>
             <div class="panel" data-equalizer-watch>
-                <h3><?php echo $row['exercise_name']; ?></h3>
-                <p><?php echo $row['rep_description']; ?></p>
-            
-        <?php $integer_date = strtotime($row['pr_date']); //integer date format
+            <?php $integer_date = strtotime($row['pr_date']); //integer date format
 		$pr_date = date("F j, Y", $integer_date);?>
-                <p><?php echo $pr_date; ?></p>    
-        </div>   
-    </div>
-
-            <?php
-
-         };
-
-         ?>
-         </div>
-
-
+                <p id="pr_date"><?php echo $pr_date; ?></p>
+                
+        <h2><?php echo $row['exercise_name']; ?></h2>
+        <p id="pr_description"><?php echo $row['rep_description']; ?></p>        
     
-    
+    </div>   
+</div> <?php 
+    }; ?> </div>
+
     </body>
 </html>

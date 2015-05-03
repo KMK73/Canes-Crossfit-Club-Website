@@ -18,11 +18,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="row">
         <div class="large-6 columns user-info-panel" >
             <!--call the user first name from the database-->
-            <div class="small-6 columns" >
+            <div class="small-6 columns" id="user-avatar-div">
 <!--    image string to work     -->
             <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
-        <div class="small-6 columns">
+        <div>
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
@@ -63,6 +63,28 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                 <div class="small-12 small-centered large-6 large-uncentered columns">
                     <div class="panel" id="wod_results_description">
                     <div id="wod_results">
+    <!--display the selected workout name--------------------------------->
+                        <h3><?php echo "Workout Name:"?></h3> 
+                         <p> <?php 
+                    $selected_wod =$_POST['leaderboard_wod']; 
+
+                    $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
+//                echo $query;
+
+                //get the name and description and types of the workout from the dropdown menu
+                $wod_result = mysqli_query($sql_link, $query);
+                
+                //get the value from the row of description query
+
+                $wod_display = mysqli_fetch_array($wod_result);
+//        var_dump($wod_display);
+//                    echo $wod_display['workout_name'];
+                    echo $wod_display['workout_name'];
+                    $wod_id = $wod_display['workout_id'];
+                     $_SESSION['workout_id'] = $wod_id;
+                ?>
+    </p>
+                        
                 <h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
                     

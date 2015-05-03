@@ -25,6 +25,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
         <select name="wod_type">
 			  <option value="timed">Timed</option>
 			  <option value="not_timed">Not Timed</option>
+                <option value="weight">Weight</option>
 			  <option value="reps">As Many Reps as Possible</option>
 			  <option value="rounds">As Many Rounds as Possible</option>
         </select>

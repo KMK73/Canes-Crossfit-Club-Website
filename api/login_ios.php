@@ -1,16 +1,17 @@
 <?php
+include 'connect.php';
 
 if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$username =$_POST['username'];
 	$password =$_POST['password'];
 
-    //connect to database in mysql
-	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
+//    //connect to database in mysql
+//	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
 
     $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
-    
+//     $query = "SELECT * FROM users WHERE username='".$username."' AND password='".$password."'";   
 
-    $result = mysqli_query($con, $query);
+    $result = mysqli_query($sql_link, $query);
 
     //get a row value of only 1 to know the user is in the database 
 	$numrows = mysqli_num_rows($result);

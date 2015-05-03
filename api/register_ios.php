@@ -1,14 +1,18 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+?>
+<?php
 include 'connect.php';
 include 'MySQLDatabaseObject.php';
 //connect to database in mysql
-$sql_link = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
+//$sql_link = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
 
 $first = $_POST['first_name'];
 $last = $_POST['last_name'];
 $username = $_POST['username'];
 $password = $_POST['password'];
-$password = md5($passwod); //secure password hashing
+$password = md5($password); //secure password hashing
 $confirm_password = $_POST['c_password'];
 $user_type = $_POST['user_type'];
 

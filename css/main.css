@@ -62,22 +62,38 @@ input[type="submit"] {
   border-radius: 5px;
 }
 
+input[type="radio"] {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 /*===========PANEL STYLE CHANGES FROM DEFAULT  =================================================== */
 
 .panel {
   border-radius: 5px;    
 }
 
-/*
-.panel h3 {
- color: green;
-}
-*/
-
 .user-info-panel{
   padding-bottom: 25px;
   padding-top: 20px;
   padding-left: 0;
+}
+
+#user-avatar-div {
+    height: 155px;
+    width: 200px;
+}
+
+/*user avatar image sizing*/
+.user-info-panel img {
+    height: 155px;
+    width: 155px;
+}
+
+/*user name and athlete type */
+.user-info-panel p {
+font-size: 24px;
+
 }
 
 .alert-box .close {
@@ -91,15 +107,7 @@ table {
 #homepage-logo {
   padding-bottom: 20px;
 }
-
-#activity-score, #activity-level {
-color: #fc7600;
-}
-#activity-date {
-color: #10a541;
-float: right;
-margin-left: 15px;
-}   
+  
 
 /*HOMEPAGE not loggedin ANNOUNCEMENT HEADING=================*/
 #homepage-logo {
@@ -123,7 +131,7 @@ margin-bottom: 20px;
 table tr th {
     color: #0b762e;
     background-color: #d8d8d8;
-    font-size: 16px;
+    font-size: 16px;    
 }
 
 /*MEMBER ATHLETE =================*/
@@ -133,10 +141,35 @@ margin-bottom: 10px;
   margin-top: 10px;
 }
 
+/*WOD BOXES ALL PAGES =================*/
+
+#wod_box {
+    
+margin-right: 15px;    
+    
+}
+
+/* ACTIVITY PAGE BOXES  =======================================*/
+#activity-score, #activity-level {
+color: #fc7600;
+}
+
+#activity-date {
+color: #10a541;
+float: right;
+margin-left: 15px;
+} 
+
+#activity_box {
+    height: 400px; 
+    margin-bottom: 15px;
+}
 
 /*WOD RESULTS LOG STYLES FOR FORMS=================*/
+
 #wod_results_description {
-background: #0b762e;
+
+    background: #0b762e;
     border-radius: 10px;
 }
 
@@ -148,13 +181,30 @@ select.wod_name {
   margin-top: 15px;
 }
 
+/*PR MAIN PAGE  ====================================================*/
+
+#pr_date {
+    color: #10a541;
+    float: right;
+    margin-left: 15px;
+} 
+
+/*CREATE PR PAGE  =================*/
+
+#pr_h1 {
+    color: #0b762e; 
+}
 
 
+/*UPDATE PROFILE PAGE SUCCESS PAGE  =================*/
 
+#return_homepage a {
+ color: white;
+}
 
-
-
-
+#update_success h1 {
+    margin: 15px;
+}
 
 
 

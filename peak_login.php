@@ -9,13 +9,13 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
 	$username =$_POST['username'];
 	$password =$_POST['password'];
     //connect to database in mysql
-	$con = new mysqli("localhost", "peak_360", "admin", "peak_360") or die(mysqli_error());
+    include 'connect.php';
     
     $query = "SELECT * FROM users WHERE username='".$username."' AND password='".md5($password)."'";
     echo $query;
-    $result = mysqli_query($con, $query);
-    echo mysqli_error($sql_link);
-//    echo $query;
+    $result = mysqli_query($sql_link, $query);
+//    echo mysqli_error($sql_link);
+    echo $query;
     var_dump($result);
     
     //get a row value of only 1 to know the user is in the database 
@@ -43,7 +43,7 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
     }
     if ($row['user_type'] == "Athlete") {
   
-            /* Redirect browser */
+            /* Redirect browser to athlete page */
             header("Location: /athlete/member_athlete.php");     
         } 
         else {

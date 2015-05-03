@@ -13,12 +13,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--        user icon image-->
     <div class="row">
         <div class="large-6 columns user-info-panel">
-            <div class="small-6 columns" >
+            <div class="small-6 columns" id="user-avatar-div">
 <!--    image string to work     -->
             <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
             
-        <div class="small-6 columns">
+        <div>
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>

@@ -1,24 +1,45 @@
-<?php include($_SERVER['DOCUMENT_ROOT'].'/header_login.php');?><!DOCTYPE html>
+<?php 
+session_start();
+if(!isset($_SESSION["sess_user"])){
+	header("location:/peak_login.php");
+}
+include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
+?>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
-  <body>
-<!-------- body content here -->
+<!--      start member session---------------------------------------------------->
 
 
-<!--        logo row ---------------------------------------->
+<!--        user icon image-->
     <div class="row">
-        <div class="small-8 small-centered large-6 large-centered columns" id="homepage-logo">
-            <center><img src="images/ucrossfit_logo.png" alt="Gym Logo"></center>
-        </div>        
-        <div class="large-12 large-centered columns">
-            <h1 id="home-h1" class="text-center">Welcome to Canes Peak 360 Crossfit Club</h1>
+        <div class="large-6 columns user-info-panel">
+            <!--call the user first name from the database-->
+
+            <h2>Welcome, <?=$_SESSION['first_name'];?>! </h2>
+            <div class="small-6 columns" id="user-avatar-div">
+<!--      cannot get the image string to work     
+
+*****************************************************************
+
+-->
+                <?php echo $_SESSION['user_avatar'];?>
+            <img src="userfiles/avatar/.<?php $_SESSION['user_avatar'];?>." alt="User Icon">
+
+            </div>
+            
+        <div>
+            <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
+            <p><?=$_SESSION['user_type'];?></p>
+        </div>
     </div>
-    </div>
- <!--        start of ANNOUNCEMENTS row---------------------------------------->     
+ </div>
+    
+<!--        start of ANNOUNCEMENTS row---------------------------------------->     
     <div class="row">
 <!--DATABASE CONNECTION AND club announcement -->
         <?php
-        include 'connect.php';   
+        include '../connect.php';   
         $query ="select * from announcements order by announcement_id desc limit 1";
         $result = mysqli_query($sql_link, $query);
 
@@ -44,19 +65,19 @@
 <!--        start of WOD TITLE row---------------------------------------->
 <div class="row">
            <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
-        <h2>CANES Crossfit Club WOD<h3 id="date"></h3>
+        <h2>CANES Crossfit Club WOD<h2 id="date"></h2>
             <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d.toDateString();
             </script>
        </h2> 
        </div>
-       </div>
+</div>
 <!--        start of WOD BOXES for daily workouts row---------------------------------------->
-   <div class="row" data-equalizer= "box"> 
+   <div class="row"> 
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
         <?php
-        include 'connect.php';   
+        include '../connect.php';   
         $query ="SELECT * FROM workouts WHERE wod_date = CURDATE()";
         $result = mysqli_query($sql_link, $query);
 
@@ -64,7 +85,7 @@
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-                <div class="small-12 small-centered medium-11 medium-centered large-4 large-uncentered panel columns" data-equalizer-watch="box" id="wod_box">
+                <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered panel columns">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a> 
@@ -77,18 +98,17 @@
 
          ?>
 </div>
-
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
 <div class="row"> 
     <div class="small-12 small-centered medium-11 large-12 panel clearfix columns">
     <h2>Select Workout to see current Leaderboard</h2>
-    <form action ="index.php#leaderboard" method="POST">
+    <form action ="/member/member-athlete.php#leaderboard" method="POST">
             <?php         
-            include 'connect.php'; 
+            include '../connect.php'; 
 				
             $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
             $result = mysqli_query($sql_link, $query);
-//            echo $query;
+            echo $query;
 
         ?>
     <div class="large-6 columns">
@@ -105,14 +125,13 @@
                 <input class="button" type="submit" name="submit" value="Get Workout Leaderboard"/></div>
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
-    <!--display the selected workout description--------------------------------->
+<!--display the selected workout description--------------------------------->
     <?php if($_POST['submit']): ?>
                 <div class="small-12 large-6 columns">
 <!--                    <div class="panel">-->
                     <div id="wod_results">
         <!--        anchor link for get workout leaderboard-->
-        <a name="leaderboard"></a><h3>
-            <?php echo "Description of Workout"?></h3>  
+        <a name="leaderboard"></a><h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
                     
                     $selected_description =$_POST['leaderboard_wod']; 
@@ -131,8 +150,8 @@
     </div>
 </div>
 </div>
-
-    <!--        start of LEADERBOARD row--------------------------------->
+ 
+   <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
     <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
         <h2>LEADERBOARD</h2>
@@ -161,11 +180,12 @@ echo $wod_date;
 
 <?php endif;?>  
 
- <!--        start of LEADERBOARD database call--------------------------------------->
+
+  <!--        start of LEADERBOARD database call--------------------------------------->
        <div class="row">   
            <div class="small-12 small-centered medium-12 medium-centered large-12 large-centered columns">
             <?php
-                include 'connect.php'; 
+                include '../connect.php'; 
             $selected_val =$_POST['leaderboard_wod']; 
             //get the selected value from the drop down list
 
@@ -192,14 +212,12 @@ WHERE wod_results.workout_id ='".$selected_val."' ORDER BY workout_score DESC";
             $result = mysqli_query($sql_link, $query);
 
       echo "<table>
-            <th>Rank</th>
             <th>Name</th>
             <th>Workout</th>
             <th>RX</th>
             <th>Score</th>
             <tr>";
-$count =1; //start the ranking count
-                
+
 while($row = mysqli_fetch_array($result)){
   // define all of our variables 
  
@@ -211,9 +229,8 @@ while($row = mysqli_fetch_array($result)){
  
 // Now for each looped row
  
-echo "<tr><td>".$count."</td><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
+echo "<tr><td>".$first_name."</td><td>".$workout_name."</td><td>".$workout_level."</td><td>".$workout_score."</td></tr>";
  
-$count++;
 } // End our while loop
 echo "</table>";
 }?>

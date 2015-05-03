@@ -13,9 +13,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
 
 <!--        pr enter data row---------------------------------------->
-<div class="row small-10 small-centered large-6 large-centered columns">
-      <div class="small-10 small-centered large-6 large-centered columns">
-<h1>Add new PR</h1>
+<div class="row small-10 small-centered large-8 large-centered columns">
+      <div class="small-10 small-centered large-8 large-centered columns">
+          <center><h1 id="pr_h1">Add new PR</h1></center>
 
 <form action="create_pr.php" method="POST">
     <h3>Exercise Name</h3>
@@ -31,8 +31,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </div>    
 </div>
         <div class="row">
-                  <div class="small-10 small-centered large-6 large-centered columns">
-            <input class="button" type="submit" value="Create"/>
+                  <div class="small-10 small-centered large-8 large-centered columns">
+            <center><input class="button" type="submit" value="Create"/></center>
             </div> 
         </div>
     </form> 

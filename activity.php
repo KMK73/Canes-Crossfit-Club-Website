@@ -14,11 +14,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <div class="row">
         <div class="large-6 columns user-info-panel">
             <!--call the user first name from the database-->
-            <div class="small-6 columns" >
+            <div class="small-6 columns" id="user-avatar-div" >
 <!--    image string to work     -->
             <img src="../userfiles/avatars/<?php echo $_SESSION['user_avatar'] ?>" alt="User Icon">
             </div>
-        <div class="small-6 columns">
+        <div>
             <p><?=$_SESSION['first_name'];?> <?=$_SESSION['last_name'];?></p>
             <p><?=$_SESSION['user_type'];?></p>
         </div>
@@ -30,7 +30,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--new PR button-->
 <div class="row">
     <div class="large-6 columns">
-        <h3>Activity Feed</h3>
+        <h1>Activity Feed</h1>
         <a href="wod_results.php" class="button">Go Log more Workouts!</a>
     </div>
 </div>
@@ -60,8 +60,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-    <div class="large-6 columns">
-            <div class="panel">
+    <div class="large-6 columns" id="activity_box">
+            <div class="panel" id="activity_box">
                         <!--        workout date-->
         <?php $integer_date = strtotime($row['wod_date']); //integer date format
 		$wod_date = date("F j, Y", $integer_date);?>
@@ -76,8 +76,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
             <?php };?>
 </div>
-<script>
-      
+<!--      reflow the data after page loads when adding new workouts -->
+<script>   
 $(document).foundation('equalizer', 'reflow');
 </script>
 
