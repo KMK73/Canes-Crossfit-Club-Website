@@ -143,10 +143,12 @@ margin-bottom: 10px;
 
 /*WOD BOXES ALL PAGES =================*/
 
-#wod_box {
+/*// Large screens*/
+@media only screen and (min-width: 64.063em) { 
     
-margin-right: 15px;    
-    
+    #wod_box {
+        margin-right: 15px;    
+    }
 }
 
 /* ACTIVITY PAGE BOXES  =======================================*/
@@ -159,10 +161,12 @@ color: #10a541;
 float: right;
 margin-left: 15px;
 } 
-
-#activity_box {
-    height: 400px; 
-    margin-bottom: 15px;
+/*// Large screens*/
+@media only screen and (min-width: 64.063em) { 
+    #activity_box {
+        height: 400px; 
+        margin-bottom: 15px;
+    }
 }
 
 /*WOD RESULTS LOG STYLES FOR FORMS=================*/

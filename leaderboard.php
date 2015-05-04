@@ -33,7 +33,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row"> 
-    <div class="small-10 small-centered medium-10 medium-centered large-12 panel clearfix columns">
+    <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
              <div class="small-12 small-centered large-6 large-uncentered columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="leaderboard.php" method="POST">
@@ -108,7 +108,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 </div>
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
-    <div class="large-12 columns">
+    <div class="small-10 small-centered medium-11 medium-centered large-12 columns">
         <h2>LEADERBOARD</h2>
         <h4> <?php 
 //    selected workout date from dropdown                 

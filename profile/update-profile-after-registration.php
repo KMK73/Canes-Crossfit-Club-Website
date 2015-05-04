@@ -71,13 +71,13 @@
 <!-------- body content here -->
 <!--        logo row ---------------------------------------->
     <div class="row">
-        <div class="small-8 small-centered large-6 large-centered columns">
-            <img src="/images/ucrossfit_logo.png" alt="Gym Logo">
+        <div class="small-10 small-centered medium-11 medium-centered large-12 large-centered columns">
+            <center><img src="/images/ucrossfit_logo.png" alt="Gym Logo"></center>
         </div>
     </div>
  <!--       SUCCESSFUL UPDATE----------------------------------------> 
     <div class="row">
-        <div class="large-12 columns" id="update_success">
+        <div class="small-10 small-centered medium-11 medium-centered large-12 large-centered columns" id="update_success">
             <center><h1>Successfully updated your profile information</h1></center>
             <center><button type="button" class="button" id="return_homepage"><a href="../athlete/member_athlete.php">Return to Homepage</button></a></center>
     </div>

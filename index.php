@@ -64,7 +64,7 @@
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-                <div class="small-12 small-centered medium-11 medium-centered large-4 large-uncentered panel columns" data-equalizer-watch="box" id="wod_box">
+                <div class="small-12 small-centered medium-11 medium-centered large-5 large-uncentered panel columns" data-equalizer-watch="box" id="wod_box">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a> 
@@ -80,7 +80,7 @@
 
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
 <div class="row"> 
-    <div class="small-10 small-centered medium-10 medium-centered large-12 panel clearfix columns">
+    <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
     <div class="small-12 small-centered large-6 large-uncentered columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="index.php#leaderboard" method="POST">

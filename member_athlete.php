@@ -85,7 +85,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         while($row = mysqli_fetch_array($result)) {
 
         ?>
-                <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered panel columns">
+                <div class="small-12 small-centered medium-11 medium-centered large-5 large-uncentered panel columns" data-equalizer-watch="box" id="wod_box">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <a href="/wod_results.php" class="button" />LOG RESULT</a> 

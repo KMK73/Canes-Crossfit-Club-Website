@@ -27,7 +27,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         
   <!--        start of update form-->  
 <div class="row">
-        <div class="large-12 large-centered columns" >
+        <div class="small-10 small-centered medium-11 medium-centered large-12 large-centered columns" >
 <form action="update-profile-after-registration.php" method="post" enctype="multipart/form-data" id="UploadForm" autocomplete="off">
 <?php
     include '../connect.php';

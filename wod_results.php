@@ -32,7 +32,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--        Database call for workouts api ---------------------------------------------->
 
 <div class="row"> 
-    <div class="small-10 small-centered medium-10 medium-centered large-12 panel clearfix columns">
+    <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
              <div class="small-12 small-centered large-6 large-uncentered columns">
         <h2>Log your results for: </h2>
     <form action ="wod_results.php" method="POST">
