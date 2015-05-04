@@ -82,7 +82,8 @@
 <div class="row"> 
     <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
     <div class="small-12 small-centered large-6 large-uncentered columns">
-    <h2>Select Workout to see current Leaderboard</h2>
+    
+        <h2>Select Workout to see current Leaderboard</h2>
     <form action ="index.php#leaderboard" method="POST">
             <?php         
             include 'connect.php'; 
@@ -113,8 +114,10 @@
     <div class="panel" id="wod_results_description">
         <div id="wod_results">
     <!--display the selected workout name--------------------------------->
-                        <h3><?php echo "Workout Name:"?></h3> 
-                         <p> <?php 
+     <!--        anchor link for get workout leaderboard-->
+       <a name="leaderboard"></a><h3><?php echo "Description of Workout"?></h3> 
+                         
+            <p> <?php 
                     $selected_wod =$_POST['leaderboard_wod']; 
 
                     $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
@@ -247,8 +250,8 @@ echo "</table>";
 
     </div>
 </div>
- 
-    
+    </div>
+      </div> 
     
     </body>
 </html>

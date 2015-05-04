@@ -97,7 +97,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 </div>
  <!--        start of LEADERBOARD submit form ---------------------------------------->   
 <div class="row"> 
-    <div class="small-12 small-centered medium-11 large-12 panel clearfix columns">
+    <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
+            <div class="small-12 small-centered large-6 large-uncentered columns">
     <h2>Select Workout to see current Leaderboard</h2>
     <form action ="/athlete/member_athlete.php#leaderboard" method="POST">
             <?php         
@@ -108,7 +109,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 //            echo $query;
 
         ?>
-    <div class="large-6 columns">
+
         <select class="wod_name" name ="leaderboard_wod"> 
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
@@ -117,18 +118,43 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             
             ?>  
         </select>
-        </div>
-            <div class="large-12 columns">
-                <input class="button" type="submit" name="submit" value="Get Workout Leaderboard"/></div>
+        
+                <input class="button" type="submit" name="submit" value="Get Workout Leaderboard"/>
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
-<!--display the selected workout description--------------------------------->
+ </div>
+
+        
+        
+        <!--display the selected workout description--------------------------------->
+<div class="row"> 
     <?php if($_POST['submit']): ?>
-                <div class="small-12 large-6 columns">
-<!--                    <div class="panel">-->
-                    <div id="wod_results">
-        <!--        anchor link for get workout leaderboard-->
-        <a name="leaderboard"></a><h3><?php echo "Description of Workout"?></h3>  
+                <div class="small-12 small-centered large-6 large-uncentered columns">
+    <div class="panel" id="wod_results_description">
+        <div id="wod_results">
+    <!--display the selected workout name--------------------------------->
+                        <h3><?php echo "Workout Name:"?></h3> 
+                         <p> <?php 
+                    $selected_wod =$_POST['leaderboard_wod']; 
+
+                    $query = "SELECT * FROM workouts WHERE workout_id='".$selected_wod."'";
+//                echo $query;
+
+                //get the name and description and types of the workout from the dropdown menu
+                $wod_result = mysqli_query($sql_link, $query);
+                
+                //get the value from the row of description query
+
+                $wod_display = mysqli_fetch_array($wod_result);
+//        var_dump($wod_display);
+//                    echo $wod_display['workout_name'];
+                    echo $wod_display['workout_name'];
+                    $wod_id = $wod_display['workout_id'];
+                     $_SESSION['workout_id'] = $wod_id;
+                ?>
+    </p>
+                        
+                <h3><?php echo "Description of Workout"?></h3>  
                 <p> <?php 
                     
                     $selected_description =$_POST['leaderboard_wod']; 
@@ -147,7 +173,11 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </div>
 </div>
 </div>
- 
+        
+    </div>
+<!--    ending row div-->
+</div>
+
    <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
     <div class="small-12 small-centered medium-11 medium-centered large-12 large-centered panel columns">
