@@ -147,7 +147,8 @@ margin-bottom: 10px;
 @media only screen and (min-width: 64.063em) { 
     
     #wod_box {
-        margin-right: 15px;    
+        margin-right: 15px; 
+        width: 48%;
     }
 }
 
