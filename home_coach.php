@@ -25,6 +25,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
       
       <!--        COACH OPTION BUTTONS ---------------------------------------->
 
+<!--
 <div class="row">
     <div class="small-12 small-centered medium-11 medium-centered large-6 large-uncentered columns" >
         <form action="/wod_database.php">
@@ -38,6 +39,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_coach.php');
         </form>  
     </div>
 </div>
+-->
 
       
  <!--        start of ANNOUNCEMENTS row---------------------------------------->     

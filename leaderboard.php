@@ -104,6 +104,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     </div>
 </div>
 </div>
+        
 </div>
     <!--        start of LEADERBOARD row--------------------------------->
 <div class="row">
