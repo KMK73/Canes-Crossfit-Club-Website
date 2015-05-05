@@ -100,6 +100,20 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
             <div class="small-12 small-centered large-6 large-uncentered columns">
     <h2>Select Workout to see current Leaderboard</h2>
+    
+    <!--======================   KEEP FORM SELECTED OPTION LISTED USING COOKIES -->
+    <script>
+        $(document).ready(function(){
+            $("#selected_wod").change(function(){
+                var selectedWorkout = $("#selected_wod").val();
+                console.log("select "+ selectedWorkout);
+                $.cookie('workout', selectedWorkout);
+            });
+            $("#selected_wod").val($.cookie('workout'));         
+        });
+    </script>
+
+<!--======================   START OF SELECT DROPDOWN FOR LEADERBOARD -->          
     <form action ="/athlete/member_athlete.php#leaderboard" method="POST">
             <?php         
             include '../connect.php'; 
@@ -110,7 +124,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
         ?>
 
-        <select class="wod_name" name ="leaderboard_wod"> 
+        <select class="wod_name" name ="leaderboard_wod" id="selected_wod"> 
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
             <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
@@ -119,7 +133,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             ?>  
         </select>
         
-                <input class="button" type="submit" name="submit" value="Get Workout Leaderboard"/>
+            <a name="leaderboard"></a><input class="button" type="submit" name="submit" value="Get Workout Leaderboard"/>
 <!--        need an anchor tag for leaderboard----------------------->
     </form>
  </div>

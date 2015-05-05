@@ -84,7 +84,20 @@
     <div class="small-12 small-centered large-6 large-uncentered columns">
     
         <h2>Select Workout to see current Leaderboard</h2>
-    <form action ="index.php#leaderboard" method="POST">
+        
+<!--======================   KEEP FORM SELECTED OPTION LISTED USING COOKIES -->
+        <script>
+        $(document).ready(function(){
+            $("#selected_wod").change(function(){
+                var selectedWorkout = $("#selected_wod").val();
+                console.log("select "+ selectedWorkout);
+                $.cookie('workout', selectedWorkout);
+            });
+            $("#selected_wod").val($.cookie('workout'));         
+        });
+    </script>
+        
+        <form action ="index.php#leaderboard" method="POST">
             <?php         
             include 'connect.php'; 
 				
@@ -94,7 +107,7 @@
 
         ?>
 
-        <select class="wod_name" name ="leaderboard_wod"> 
+        <select class="wod_name" name ="leaderboard_wod" id="selected_wod"> 
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
             <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>

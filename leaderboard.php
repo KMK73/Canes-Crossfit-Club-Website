@@ -36,14 +36,26 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
              <div class="small-12 small-centered large-6 large-uncentered columns">
     <h2>Select Workout to see current Leaderboard</h2>
+
+<!--======================   KEEP FORM SELECTED OPTION LISTED USING COOKIES -->
+    <script>
+        $(document).ready(function(){
+            $("#selected_wod").change(function(){
+                var selectedWorkout = $("#selected_wod").val();
+                console.log("select "+ selectedWorkout);
+                $.cookie('workout', selectedWorkout);
+            });
+            $("#selected_wod").val($.cookie('workout'));         
+        });
+    </script>
+                 
     <form action ="leaderboard.php" method="POST">
-        <select class="wod_name" name ="leaderboard_wod"> 
+        <select class="wod_name" name ="leaderboard_wod" id="selected_wod"> 
             <?php include 'connect.php';
 				
             $query = "SELECT * FROM workouts";
             $result = mysqli_query($sql_link, $query);?>
-
-            <!--        //need last selected workout to stay in select dropdown-->
+            
             <?php while ($row = mysqli_fetch_assoc($result)):?>
             <option value="<?php echo $row['workout_id']?>" selected="selected"><?php echo $row['workout_name'];?></option>
             

@@ -67,7 +67,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             ?>  
         </select>
 
-        <input class="button" type="submit" name="wod_name" value="Log this Workout" />
+        <input class="button phase-1" type="submit" name="wod_name" value="Log this Workout" />
 
     </form>
     </div>
@@ -127,7 +127,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         
 <div class="row">
 
-        <form action ="wod_results.php" method="POST" name="wod_form">
+        <form class="phase-2" action ="wod_results.php" method="POST" name="wod_form">
         <div class="small-10 small-centered medium-11 medium-centered large-12 columns">
             <div class="small-10 small-centered large-12 columns">
     <h3>What was your score for this workout?</h3>
@@ -185,7 +185,8 @@ echo '<div class="row">
                 Successful Workout Submission
     <a href="/wod_results.php" class="close">x</a>
 </div>';
-'<script>$(document).ready(function() {
+'<script>
+$(document).ready(function() {
     $("#wod_form").submit(function(e) {
         $("#wod_form").hide();
     });
