@@ -13,6 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
 
 <!--        pr enter data row---------------------------------------->
+<div class="row">
 <div class="row small-10 small-centered large-8 large-centered columns">
       <div class="small-10 small-centered large-8 large-centered columns">
           <center><h1 id="pr_h1">Add new PR</h1></center>
@@ -27,9 +28,6 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <h3>Date</h3>
 
         <input type="date" name="pr_date"><br>
-
-    </div>    
-</div>
         <div class="row">
                   <div class="small-10 small-centered large-8 large-centered columns">
             <center><input class="button" type="submit" value="Create"/></center>
@@ -37,7 +35,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         </div>
     </form> 
 
-
+</div>
+      </div>
+</div>
         
 <!--        Database call for username and password PHP ---------------------------------------------->
 			
@@ -64,14 +64,17 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                 echo "Entered a PR for " . $_POST['exercise_name'];?>
         </h1></center>
     </div>
+
 <?php
 echo '<div class="row">
         <div class="large-6 large-centered columns">
             <div data-alert class="alert-box success radius">
                 Successful PR Submission
-    <a href="/pr.php" class="close">x</a>
+    <a href="/create_pr.php" class="close">x</a>
 </div>';
-'<script>$(document).ready(function() {
+
+'<script>
+$(document).ready(function() {
     $("#pr_form").submit(function(e) {
         $("#pr_form").hide();
     });

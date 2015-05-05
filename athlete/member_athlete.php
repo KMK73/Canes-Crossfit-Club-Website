@@ -85,9 +85,20 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
                 <div class="small-12 small-centered medium-11 medium-centered large-4 large-uncentered panel columns" data-equalizer-watch="box" id="wod_box">
                 <h3><?php echo $row['workout_name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
-                <a href="/wod_results.php" class="button" />LOG RESULT</a> 
+                
+<!--======================   KEEP FORM SELECTED workout display on wod results page USING COOKIES -->
+    <script>
+        $(document).ready(function(){
+            $("#wod_link").click(function(){
+                var linkedWorkout = $("#wod_link").val();
+                console.log("linked "+ linkedWorkout);
+                $.cookie('linkedWorkout', selectedWorkout);
+            });
+            $("#wod_link").val($.cookie('linkedWorkout'));         
+        });
+    </script>     
+            <a href="/wod_results.php" class="button" value="<?php echo $row['workout_id']?>" id="wod_link"/>LOG RESULT</a> 
             </div>
-
 
             <?php
 

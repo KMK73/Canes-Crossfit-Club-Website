@@ -36,6 +36,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
              <div class="small-12 small-centered large-6 large-uncentered columns">
         <h2>Log your results for: </h2>
     <form action ="wod_results.php" method="POST">
+<!--
+======================   KEEP FORM SELECTED workout display on wod results page USING COOKIES 
+    <script>
+        $(document).ready(function(){
+            $("#wod_link").click(function(){
+                var linkedWorkout = $("#wod_link").val();
+                console.log("linked "+ linkedWorkout);
+                $.cookie('linkedWorkout', selectedWorkout);
+            });
+            $("#wod_link").val($.cookie('linkedWorkout'));         
+        });
+    </script>  
+-->
     <script>
         $(document).ready(function(){
             $("#selected_wod").change(function(){
@@ -127,7 +140,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         
 <div class="row">
 
-        <form class="phase-2" action ="wod_results.php" method="POST" name="wod_form">
+    <form class="phase-2" action ="wod_results.php" method="POST" name="wod_form">
         <div class="small-10 small-centered medium-11 medium-centered large-12 columns">
             <div class="small-10 small-centered large-12 columns">
     <h3>What was your score for this workout?</h3>
