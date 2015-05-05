@@ -165,7 +165,7 @@ margin-left: 15px;
 /*// Large screens*/
 @media only screen and (min-width: 64.063em) { 
     #activity_box {
-        height: 400px; 
+/*        height: 400px; */
         margin-bottom: 15px;
     }
 }

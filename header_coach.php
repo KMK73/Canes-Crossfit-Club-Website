@@ -42,7 +42,7 @@
     <ul class="right">
         <li><a href="/peak_login.php"/>Login</li>
         <li><a href="/api/Logout.php"/>Logout</li>
-        <li><a href="/account.html"><?=$_SESSION['first_name'];?> Settings</a></li>
+        <li><a href="/profile/coach_profile.php"><?=$_SESSION['first_name'];?> Settings</a></li>
         </ul>
 
 

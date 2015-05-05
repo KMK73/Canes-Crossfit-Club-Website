@@ -36,18 +36,30 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
              <div class="small-12 small-centered large-6 large-uncentered columns">
         <h2>Log your results for: </h2>
     <form action ="wod_results.php" method="POST">
-        <select class="wod_name" name ="wod_results">
+    <script>
+        $(document).ready(function(){
+            $("select.wod_name").change(function(){
+                var selectedWorkout = $(".wod_name option:selected").text();
+                alert("You have selected the workout - " + selectedWorkout);
+            });
+        });
+    </script>
+        <select class="wod_name" name ="wod_results" id="selected_wod">
                 
             <?php include 'connect.php';
 
             $query = "SELECT * FROM workouts";
             if($query === FALSE) { 
-                die(mysql_error()); // TODO: better error handling
+                die(mysql_error());
             }
             $result = mysqli_query($sql_link, $query);  ?>
             
             <?php while ($row = mysqli_fetch_assoc($result)):?>
-            <option value="<?php echo $row['workout_id']?>"><?php echo $row['workout_name'];?></option>
+            <option value="<?php echo $row['workout_id']?>" selected><?php echo $row['workout_name'];?>
+            
+<!--                echo the last selected dropdown value using jquery-->
+                
+            </option>
             <?php endwhile;?>	
             
             ?>  
@@ -111,8 +123,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 </div>
 </div>        
         
-    <div class="row">
-        <form action ="wod_results.php" method="POST">
+<div class="row">
+
+        <form action ="wod_results.php" method="POST" name="wod_form">
         <div class="small-10 small-centered medium-11 medium-centered large-12 columns">
             <div class="small-10 small-centered large-12 columns">
     <h3>What was your score for this workout?</h3>
@@ -144,7 +157,6 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 
     
 <!--      ENTERING WORKOUT RESULTS INTO DATABASE BASED ON USER-->
-			
 <?php if($_POST['submit']): ?>
 
 <?php 
@@ -171,6 +183,11 @@ echo '<div class="row">
                 Successful Workout Submission
     <a href="/wod_results.php" class="close">x</a>
 </div>';
+'<script>$(document).ready(function() {
+    $("#wod_form").submit(function(e) {
+        $("#wod_form").hide();
+    });
+})</script>';
 exit; 
  ?>
 

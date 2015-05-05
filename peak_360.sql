@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 04, 2015 at 01:39 AM
+-- Generation Time: May 04, 2015 at 07:51 PM
 -- Server version: 5.5.42-37.1
 -- PHP Version: 5.5.7
 
@@ -68,7 +68,8 @@ INSERT INTO `pr_data` (`pr_id`, `user_id`, `exercise_name`, `rep_description`, `
 (23, 39, 'snatch', '2 reps @ 200lb', '2015-04-01'),
 (24, 39, 'back squat', '155lb for 1 rep', '2015-04-06'),
 (25, 39, 'back squat', '155lb for 1 rep', '2015-04-06'),
-(26, 39, 'back squat', '155lb for 1 rep', '2015-04-06');
+(26, 39, 'back squat', '155lb for 1 rep', '2015-04-06'),
+(0, 70, 'Bench Press', '400lb', '2015-05-03');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user_type` varchar(100) CHARACTER SET utf8 NOT NULL,
   `user_avatar` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -105,7 +106,7 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `password
 (36, 'star', 'wars', 'star@wars.com', 'd41d8cd98f00b204e9800998ecf8427e', '', ''),
 (37, 'json', 'encode', 'test@json.com', 'd41d8cd98f00b204e9800998ecf8427e', '', ''),
 (38, 'new', 'user', 'new@user.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', ''),
-(39, 'Snoop', 'dogg', 'snoop@dog.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', 'default.png'),
+(39, 'Snoop', 'dogg', 'snoop@dog.com', 'ec6a6536ca304edf844d1d248a4f08dc', 'Athlete', 'man_l8_1-984851103-1346289524.jpg'),
 (43, 'test', 'user', 'test@user.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', ''),
 (50, 'brew', 'boss', 'brew@boss.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', ''),
 (51, 'coach', 'test', 'test@coach.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Coach', ''),
@@ -121,7 +122,10 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `password
 (65, 'Stephen', 'Curry', 'stephen@curry.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Athlete', ''),
 (66, 'stephen', 'curry', 'steph@curry.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Athlete', ''),
 (67, 'steph', 'curry', 'steph@curry.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', ''),
-(68, 'Noah', 'Ohlsen', 'noah@ohlsen.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Coach', 'default.png');
+(68, 'Noah', 'Ohlsen', 'noah@ohlsen.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Coach', 'default.png'),
+(69, 'Ashley', 'Miller', 'ashley.miller@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Coach', 'default.png'),
+(70, 'Clay', 'Ewing', 'clay@me.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', 'default.png'),
+(71, 'Deborah', 'Kjeldsen', 'deb@me.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Athlete', 'default-4941498967.png');
 
 -- --------------------------------------------------------
 
@@ -264,7 +268,8 @@ INSERT INTO `wod_results` (`workout_id`, `user_id`, `workout_score`, `workout_le
 (65, 67, 136, 'RX', ''),
 (39, 25, 4, 'RX', ''),
 (36, 61, 20, 'RX', ''),
-(39, 25, 373, 'RX', '');
+(39, 25, 373, 'RX', ''),
+(74, 70, 6, 'Scaled', 'very light weight');
 
 -- --------------------------------------------------------
 
@@ -278,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `workouts` (
   `wod_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `wod_date` date NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `workouts`
@@ -324,7 +329,13 @@ INSERT INTO `workouts` (`workout_id`, `workout_name`, `wod_type`, `wod_date`, `d
 (65, 'Strength APRIL 29', 'weight', '2015-04-29', 'A) Strength WOD<br />\r\nFront Squats<br />\r\n1 x 5,4,3,2,1<br />\r\nFind a 1 Rep Max<br />\r\n- rest as needed btw set'),
 (66, 'Skill Work', 'not_timed', '2015-05-03', 'Skill work:<br />\r\n10 minute practice <br />\r\nSkill &ndash; muscle ups / strict<br />\r\nOr<br />\r\nThose who can perform 5 muscle ups I broke perform:<br />\r\nDeath by muscle-ups: every minute on the minute Perform 1 muscle-up. Increase the June r of reps by one every minute until you cannot complete all of the reps in that minute. Your score is the most reps you completed in the final minute of your work. '),
 (67, 'Skill Work', 'not_timed', '2015-05-04', 'Skill work:<br />\n10 minute practice <br />\nSkill &ndash; muscle ups / strict<br />\nOr<br />\nThose who can perform 5 muscle ups I broke perform:<br />\nDeath by muscle-ups: every minute on the minute Perform 1 muscle-up. Increase the number of reps by one every minute until you cannot complete all of the reps in that minute. Your score is the most reps you completed in the final minute of your work. '),
-(68, 'WOD B', 'timed', '2015-05-04', 'B)<br />\nWOD<br />\nComplete for time:<br />\n<br />\n10 Toes to Bar <br />\n15 Power Cleans (155, 105) <br />\n20 seconds unbroken L-sit<br />\n15 Front Squats (155, 105) <br />\n3 Rope Climbs <br />\n15 Shoulder to Overhead (155, 105) <br />\n10 Toes to Bar <br />\n10 Power Cleans <br />\n20 seconds unbroken L-sit<br />\n10 Front Squats<br />\n3 Rope Climbs <br />\n10 Shoulder to Overhead<br />\n10 Toes to Bar <br />\n5 Power Cleans <br />\n20 seconds unbroken L-sit<br />\n5 Front Squats<br />\n3 Rope Climbs <br />\n5 Shoulder to Overhead');
+(68, 'WOD B', 'timed', '2015-05-04', 'B)<br />\nWOD<br />\nComplete for time:<br />\n<br />\n10 Toes to Bar <br />\n15 Power Cleans (155, 105) <br />\n20 seconds unbroken L-sit<br />\n15 Front Squats (155, 105) <br />\n3 Rope Climbs <br />\n15 Shoulder to Overhead (155, 105) <br />\n10 Toes to Bar <br />\n10 Power Cleans <br />\n20 seconds unbroken L-sit<br />\n10 Front Squats<br />\n3 Rope Climbs <br />\n10 Shoulder to Overhead<br />\n10 Toes to Bar <br />\n5 Power Cleans <br />\n20 seconds unbroken L-sit<br />\n5 Front Squats<br />\n3 Rope Climbs <br />\n5 Shoulder to Overhead'),
+(70, 'Strength Work', 'timed', '2015-05-05', 'A)<br />\r\nWOD<br />\r\nComplete for time:<br />\r\n10 Clean and Jerks (145, 105)<br />\r\n8 Clean and Jerks (165, 115)<br />\r\n6 Clean and Jerks (185, 125)<br />\r\n4 Clean and Jerks (205, 135)<br />\r\n2 Clean and Jerks (225, 145)<br />\r\n*time cap 12 minutes <br />\r\n*At the 12 minute mark begin part B)'),
+(71, 'Metcon B', 'timed', '2015-05-05', 'B)<br />\r\nComplete for time:<br />\r\n30-20-10<br />\r\nC2B Pull-ups<br />\r\nWallballs (20, 14)<br />\r\nCalories Row '),
+(72, '1 Rep Max Front Squat ', 'weight', '2015-05-06', 'A) Strength WOD<br />\r\nFront Squats<br />\r\n1 x 5,4,3,2,1<br />\r\nFind a 1 Rep Max<br />\r\n- rest as needed btw sets'),
+(73, 'Metcon B', 'timed', '2015-05-06', 'B)<br />\r\nWOD <br />\r\n4 Rounds for time<br />\r\n10 Hang Squat Cleans (135, 95)<br />\r\n15 Push-Ups<br />\r\n10 Walking Lunges (KB Front Rack) (55, 35&prime;s)<br />\r\n15 Pull-ups'),
+(74, 'AMRAP', 'rounds', '2015-05-07', 'WOD<br />\r\n9 Min AMRAP<br />\r\n6 Ring Dips<br />\r\n12 KB Swings (70, 55)<br />\r\n<br />\r\n3 Min Rest<br />\r\n<br />\r\n9 Min AMRAP<br />\r\n12 Calories Row<br />\r\n60 meter Sled Push (90, 60)'),
+(75, 'TEST WORKOUT', 'weight', '2015-05-08', '1 rep max Bench Press');
 
 --
 -- Indexes for dumped tables
@@ -362,12 +373,12 @@ ALTER TABLE `workouts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `workouts`
 --
 ALTER TABLE `workouts`
-  MODIFY `workout_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=70;
+  MODIFY `workout_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=76;
 --
 -- Constraints for dumped tables
 --

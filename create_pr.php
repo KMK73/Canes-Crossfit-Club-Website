@@ -17,7 +17,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
       <div class="small-10 small-centered large-8 large-centered columns">
           <center><h1 id="pr_h1">Add new PR</h1></center>
 
-<form action="create_pr.php" method="POST">
+<form action="create_pr.php" method="POST" name="pr_form">
     <h3>Exercise Name</h3>
 	   <input type="text" placeholder="Exercise" name="exercise_name"/>
 
@@ -59,15 +59,23 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
         $result = mysqli_query($sql_link, $query);
 //        echo $query;
 		?>
-
-	<h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
-			echo "Entered a PR for " . $_POST['exercise_name'];?>
-			</h1>
+    <div class="row small-10 small-centered large-8 large-centered columns">
+        <center><h1><?php $dateToDisplay = date("F j, Y, g:i a", $integer_date);
+                echo "Entered a PR for " . $_POST['exercise_name'];?>
+        </h1></center>
+    </div>
 <?php
-echo '<script type="text/javascript">
-alert(\'Changes Successfully Made\');
- window.location.href = "http://canespeak360crossfit.com/pr.php";
-</script>';
+echo '<div class="row">
+        <div class="large-6 large-centered columns">
+            <div data-alert class="alert-box success radius">
+                Successful PR Submission
+    <a href="/pr.php" class="close">x</a>
+</div>';
+'<script>$(document).ready(function() {
+    $("#pr_form").submit(function(e) {
+        $("#pr_form").hide();
+    });
+})</script>';
 exit; 
  ?>
 
