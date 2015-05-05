@@ -38,10 +38,12 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
     <form action ="wod_results.php" method="POST">
     <script>
         $(document).ready(function(){
-            $("select.wod_name").change(function(){
-                var selectedWorkout = $(".wod_name option:selected").text();
-                alert("You have selected the workout - " + selectedWorkout);
+            $("#selected_wod").change(function(){
+                var selectedWorkout = $("#selected_wod").val();
+                console.log("select "+ selectedWorkout);
+                $.cookie('workout', selectedWorkout);
             });
+            $("#selected_wod").val($.cookie('workout'));         
         });
     </script>
         <select class="wod_name" name ="wod_results" id="selected_wod">
