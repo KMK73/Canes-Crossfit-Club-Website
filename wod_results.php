@@ -34,23 +34,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <div class="row"> 
     <div class="small-10 small-centered medium-11 medium-centered large-12 panel clearfix columns">
              <div class="small-12 small-centered large-6 large-uncentered columns">
+<!--
+<?php
+echo $_GET['var'];
+//variable from link on main athlete page with selected workout
+?>
+-->
         <h2>Log your results for: </h2>
     <form action ="wod_results.php" method="POST">
-<!--
-======================   KEEP FORM SELECTED workout display on wod results page USING COOKIES 
+
+<!--======================   KEEP FORM SELECTED workout display on wod results page USING COOKIES -->
     <script>
         $(document).ready(function(){
-            $("#wod_link").click(function(){
-                var linkedWorkout = $("#wod_link").val();
-                console.log("linked "+ linkedWorkout);
-                $.cookie('linkedWorkout', selectedWorkout);
-            });
-            $("#wod_link").val($.cookie('linkedWorkout'));         
-        });
-    </script>  
--->
-    <script>
-        $(document).ready(function(){
+            var linkedWorkout = $.cookie('linkedWorkout');
             $("#selected_wod").change(function(){
                 var selectedWorkout = $("#selected_wod").val();
                 console.log("select "+ selectedWorkout);

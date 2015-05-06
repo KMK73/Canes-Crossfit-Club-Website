@@ -199,7 +199,16 @@ select.wod_name {
 #pr_h1 {
     color: #0b762e; 
 }
+.return_pr a {
+    color: white;
+}
+.return_pr {
+   margin: 10px; 
+}
 
+#pr_logo {
+    margin: 20px;
+}
 
 /*UPDATE PROFILE PAGE SUCCESS PAGE  =================*/
 

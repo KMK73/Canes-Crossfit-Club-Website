@@ -97,7 +97,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             $("#wod_link").val($.cookie('linkedWorkout'));         
         });
     </script>     
-            <a href="/wod_results.php" class="button" value="<?php echo $row['workout_id']?>" id="wod_link"/>LOG RESULT</a> 
+            <a href="/wod_results.php?var='$row['workout_id']'" class="button" value="<?php echo $row['workout_id']?>" id="wod_link"/>LOG RESULT</a> 
             </div>
 
             <?php
