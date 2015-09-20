@@ -75,7 +75,7 @@ $displayForm = true;
 ?>
 
 <?php 
-    include 'connect.php';
+    include '/connect.php';
 
         $exercise_name = mysqli_escape_string($sql_link, $_POST['exercise_name']);
         $rep_description = mysqli_escape_string($sql_link, $_POST['rep_description']);
