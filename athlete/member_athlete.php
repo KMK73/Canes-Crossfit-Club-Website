@@ -75,7 +75,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
 <!--DATABASE CONNECTION AND DAILY WORKOUT NAME AND DESCRIPTION -->
         <?php
         include '../connect.php';   
-        $query ="SELECT * FROM workouts WHERE wod_date = CURDATE()";
+        $query ="SELECT * FROM workouts ORDER BY workout_id DESC LIMIT 1";
         $result = mysqli_query($sql_link, $query);
 
     //create div boxes for workouts of current date from mysql 
@@ -129,7 +129,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/header_athlete.php');
             <?php         
             include '../connect.php'; 
 				
-            $query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+            $query = "SELECT * FROM workouts ORDER BY workout_id DESC LIMIT 1";
             $result = mysqli_query($sql_link, $query);
 //            echo $query;
 
