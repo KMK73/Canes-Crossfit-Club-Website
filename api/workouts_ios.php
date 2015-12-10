@@ -4,7 +4,9 @@ ini_set('display_errors',1);
 ?>
    <?php
 		include 'connect.php';
-		$query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";
+//		$query = "SELECT * FROM workouts WHERE wod_date = CURDATE()";	current date query
+//selecting last listed workout
+        $query = "SELECT * FROM workouts ORDER BY `wod_date` DESC LIMIT 1";
 
 		$result = mysqli_query($sql_link, $query);        
         $workouts = array();
